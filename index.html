@@ -19,13 +19,13 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <style>
-        /* Importing Luxury Fonts: Montserrat for Headings, Inter for Body */
+        /* Importing Luxury Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600;800;900&family=Inter:wght@300;400;500&display=swap');
         
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: #ffffff; 
-            color: #1a1a1a; /* Dark slate for high contrast readability */
+            color: #1a1a1a; 
             margin: 0; 
             overflow-x: hidden; 
         }
@@ -34,7 +34,7 @@
             font-family: 'Montserrat', sans-serif; 
         }
         
-        /* The Interactive Node Network Background (Subtle Light Theme) */
+        /* The Interactive Node Network Background */
         #particles-js { 
             position: fixed; 
             width: 100%; 
@@ -43,48 +43,96 @@
             top: 0; 
             left: 0; 
             pointer-events: none;
-            opacity: 0.6;
+            opacity: 0.4;
         }
         
         .content-layer { position: relative; z-index: 10; }
         
-        /* Audemars-style minimalist premium card */
+        /* Audemars-style minimalist premium card with fluid hover */
         .premium-card { 
             background: #ffffff;
             border: 1px solid #f0f0f0;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            position: relative;
         }
         .premium-card:hover {
             border-color: #e5e5e5;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
-            transform: translateY(-4px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+            transform: translateY(-8px);
         }
 
-        /* Image hover zoom effect */
-        .img-zoom-container { overflow: hidden; }
+        /* Hover Overlay for "Click to View" */
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+        }
+        .premium-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        /* Image hover fluid zoom effect */
+        .img-zoom-container { overflow: hidden; position: relative; z-index: 10; }
         .img-zoom-container img {
-            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .premium-card:hover .img-zoom-container img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
         
-        /* Elegant Red Accent Text */
-        .luxury-red { color: #b91c1c; } /* Tailwind red-700 */
+        /* Elegant Red Accents */
+        .luxury-red { color: #b91c1c; }
         .luxury-red-bg { background-color: #b91c1c; }
 
-        /* Custom Scrollbar for Light Theme */
+        /* The Moving Headline Marquee (News Strip) */
+        .marquee-wrapper { 
+            display: flex; 
+            overflow: hidden; 
+            width: 100vw; 
+            background: #0a0a0a; 
+            color: #ffffff; 
+            border-top: 2px solid #b91c1c;
+            border-bottom: 2px solid #b91c1c;
+        }
+        .marquee { 
+            flex-shrink: 0; 
+            display: flex; 
+            align-items: center; 
+            white-space: nowrap; 
+            padding: 1.2rem 0; 
+            animation: scroll 25s linear infinite; 
+        }
+        @keyframes scroll { 
+            from { transform: translateX(0); } 
+            to { transform: translateX(-100%); } 
+        }
+
+        /* Fluid Modal Transitions */
+        .modal-enter { opacity: 0; pointer-events: none; }
+        .modal-enter-active { opacity: 1; pointer-events: auto; transition: opacity 0.5s ease; }
+        .modal-scale-enter { transform: scale(0.95) translateY(20px); }
+        .modal-scale-enter-active { transform: scale(1) translateY(0); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #f9fafb; }
         ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #b91c1c; }
 
-        /* Smooth transition for the sticky header */
-        #navbar { transition: all 0.3s ease-in-out; }
+        /* Sticky header fluidity */
+        #navbar { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
         .scrolled-nav { 
             background: rgba(255, 255, 255, 0.95) !important;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             padding-top: 1rem !important;
             padding-bottom: 1rem !important;
         }
@@ -94,37 +142,29 @@
 
     <div id="particles-js"></div>
 
-    <!-- STICKY HEADER (Audemars Style) -->
+    <!-- STICKY HEADER -->
     <header id="navbar" class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 py-6 content-layer">
         <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-            <!-- Brand Name Always Visible -->
             <a href="#" class="brand-font font-black text-xl md:text-2xl tracking-[0.2em] uppercase text-gray-900 flex items-center gap-2 group">
-                <div class="w-2 h-2 luxury-red-bg rounded-full group-hover:scale-150 transition-transform"></div>
+                <div class="w-2 h-2 luxury-red-bg rounded-full group-hover:scale-150 transition-transform duration-500"></div>
                 TAIMOUR ZAHID
             </a>
             
-            <!-- Desktop Navigation -->
             <nav class="hidden md:flex gap-8 text-sm font-medium tracking-widest uppercase text-gray-500">
-                <a href="#about" class="hover:text-red-700 transition-colors">About</a>
-                <a href="#skills" class="hover:text-red-700 transition-colors">Expertise</a>
-                <a href="#projects-cad" class="hover:text-red-700 transition-colors">Projects</a>
-                <a href="#contact" class="hover:text-red-700 transition-colors">Contact</a>
+                <a href="#about" class="hover:text-red-700 transition-colors duration-300">About</a>
+                <a href="#skills" class="hover:text-red-700 transition-colors duration-300">Expertise</a>
+                <a href="#projects-cad" class="hover:text-red-700 transition-colors duration-300">Projects</a>
+                <a href="#contact" class="hover:text-red-700 transition-colors duration-300">Contact</a>
             </nav>
-
-            <!-- Mobile Menu Icon (Visual only for this iteration) -->
-            <button class="md:hidden text-gray-900 text-2xl">
-                <i class="fa-solid fa-bars"></i>
-            </button>
         </div>
     </header>
 
     <!-- HERO SECTION -->
-    <section class="relative min-h-screen flex flex-col justify-center content-layer px-6 md:px-12 pt-32 pb-20 bg-gradient-to-b from-stone-50 to-white">
+    <section class="relative min-h-screen flex flex-col justify-center content-layer px-6 md:px-12 pt-32 pb-16 bg-gradient-to-b from-stone-50 to-white">
         <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            <!-- Text Content -->
             <div class="lg:col-span-8 order-2 lg:order-1">
-                <div data-aos="fade-right" data-aos-duration="1000">
+                <div data-aos="fade-up" data-aos-duration="1200">
                     <p class="luxury-red font-bold tracking-[0.3em] uppercase text-xs md:text-sm mb-6 flex items-center gap-3">
                         <span class="w-8 h-[1px] luxury-red-bg block"></span>
                         Mechanical Design Engineer
@@ -141,20 +181,17 @@
                     </p>
 
                     <div class="flex flex-wrap gap-4">
-                        <a href="#projects-cad" class="px-8 py-4 luxury-red-bg hover:bg-red-800 text-white font-semibold text-sm tracking-widest uppercase transition-all shadow-lg shadow-red-700/30">
+                        <a href="#projects-cad" class="px-8 py-4 luxury-red-bg hover:bg-red-800 text-white font-semibold text-sm tracking-widest uppercase transition-all duration-500 shadow-lg shadow-red-700/30 hover:shadow-red-700/50 hover:-translate-y-1">
                             Explore Portfolio
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Profile Image -->
-            <div class="lg:col-span-4 order-1 lg:order-2 flex justify-start lg:justify-end" data-aos="fade-left" data-aos-duration="1200">
-                <div class="relative w-48 h-48 md:w-72 md:h-72">
-                    <!-- Subtle accent box behind image -->
-                    <div class="absolute -inset-4 border border-gray-200 bg-white shadow-xl z-0 transform translate-x-4 translate-y-4"></div>
-                    <img src="profile.jpg" onerror="this.src='https://placehold.co/600x600/f8fafc/b91c1c?text=TZ'" alt="Taimour Zahid" class="relative w-full h-full object-cover z-10 shadow-md grayscale hover:grayscale-0 transition-all duration-700">
-                    <!-- Accent Line -->
+            <div class="lg:col-span-4 order-1 lg:order-2 flex justify-start lg:justify-end" data-aos="fade-left" data-aos-duration="1500">
+                <div class="relative w-48 h-48 md:w-72 md:h-72 group">
+                    <div class="absolute -inset-4 border border-gray-200 bg-white shadow-2xl z-0 transform translate-x-4 translate-y-4 group-hover:translate-x-6 group-hover:translate-y-6 transition-transform duration-700"></div>
+                    <img src="profile.jpg" onerror="this.src='https://placehold.co/600x600/f8fafc/b91c1c?text=TZ'" alt="Taimour Zahid" class="relative w-full h-full object-cover z-10 shadow-md grayscale group-hover:grayscale-0 transition-all duration-1000">
                     <div class="absolute -left-6 top-1/2 w-12 h-[2px] luxury-red-bg z-20 hidden md:block"></div>
                 </div>
             </div>
@@ -162,11 +199,33 @@
         </div>
     </section>
 
-    <!-- ABOUT ME -->
-    <section id="about" class="relative py-24 px-6 md:px-12 content-layer bg-white border-t border-gray-100">
+    <!-- MOVING HEADLINE (NEWS STRIP) -->
+    <div class="marquee-wrapper content-layer z-20 shadow-2xl">
+        <div class="marquee brand-font text-xl tracking-widest uppercase font-bold">
+            <span>SIEMENS NX</span> <span class="text-red-600 px-10">/</span>
+            <span>SOLIDWORKS</span> <span class="text-red-600 px-10">/</span>
+            <span>ANSYS FLUENT</span> <span class="text-red-600 px-10">/</span>
+            <span>FINITE ELEMENT ANALYSIS</span> <span class="text-red-600 px-10">/</span>
+            <span>DESIGN FOR MANUFACTURABILITY</span> <span class="text-red-600 px-10">/</span>
+            <span>RAPID PROTOTYPING</span> <span class="text-red-600 px-10">/</span>
+            <span>ARDUINO & RASPBERRY PI</span> <span class="text-red-600 px-10">/</span>
+        </div>
+        <div class="marquee brand-font text-xl tracking-widest uppercase font-bold" aria-hidden="true">
+            <span>SIEMENS NX</span> <span class="text-red-600 px-10">/</span>
+            <span>SOLIDWORKS</span> <span class="text-red-600 px-10">/</span>
+            <span>ANSYS FLUENT</span> <span class="text-red-600 px-10">/</span>
+            <span>FINITE ELEMENT ANALYSIS</span> <span class="text-red-600 px-10">/</span>
+            <span>DESIGN FOR MANUFACTURABILITY</span> <span class="text-red-600 px-10">/</span>
+            <span>RAPID PROTOTYPING</span> <span class="text-red-600 px-10">/</span>
+            <span>ARDUINO & RASPBERRY PI</span> <span class="text-red-600 px-10">/</span>
+        </div>
+    </div>
+
+    <!-- ABOUT ME & EDUCATION -->
+    <section id="about" class="relative py-24 px-6 md:px-12 content-layer bg-white">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             
-            <div class="lg:col-span-5 sticky top-32" data-aos="fade-up">
+            <div class="lg:col-span-5 sticky top-32" data-aos="fade-up" data-aos-duration="1000">
                 <h2 class="brand-font text-5xl md:text-6xl font-black text-gray-900 tracking-tight mb-4 uppercase">
                     About Me
                 </h2>
@@ -174,17 +233,31 @@
                 <p class="text-sm tracking-[0.2em] text-gray-400 uppercase font-medium">The Engineering Philosophy</p>
             </div>
 
-            <div class="lg:col-span-7 space-y-8" data-aos="fade-up" data-aos-delay="200">
+            <div class="lg:col-span-7 space-y-8" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
                 <p class="text-xl md:text-2xl text-gray-800 font-light leading-relaxed">
                     I am a Mechanical Design Engineer specializing in complex mechatronic systems, iterative rapid prototyping, and high-performance hardware architecture. I do not just build 3D models. I engineer physical realities.
                 </p>
                 <div class="h-px w-full bg-gray-100"></div>
                 <p class="text-lg text-gray-500 font-light leading-relaxed">
-                    From leading the aerodynamic design of an award-winning electric vehicle to reverse-engineering industrial agricultural systems, my focus is strictly on Design for Manufacturability (DFM) and computational validation.
+                    From leading the aerodynamic design of an award-winning electric vehicle to reverse engineering industrial agricultural systems, my focus is strictly on Design for Manufacturability (DFM) and computational validation.
                 </p>
                 <p class="text-lg text-gray-500 font-light leading-relaxed">
                     Whether it needs to be simulated in ANSYS, iterated in PETG, or modeled with micro-millimeter precision to bridge the gap between theoretical physics and functional hardware, I am the engineer who executes it.
                 </p>
+
+                <!-- Education Block -->
+                <div class="mt-12 pt-10 border-t border-gray-100" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                    <h3 class="brand-font text-2xl font-black text-gray-900 uppercase tracking-wide mb-6">Academic Background</h3>
+                    <div class="bg-stone-50 p-6 md:p-8 border-l-4 border-l-red-700 flex flex-col md:flex-row justify-between items-start md:items-center hover:bg-stone-100 transition-colors duration-500">
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">BSc Mechanical Engineering</h4>
+                            <p class="text-gray-500 font-medium">National University of Sciences and Technology (NUST)</p>
+                        </div>
+                        <div class="mt-4 md:mt-0 px-4 py-2 bg-red-100 text-red-800 font-bold tracking-widest uppercase text-xs rounded-sm whitespace-nowrap">
+                            Sept 2022 . May 2026
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -193,15 +266,13 @@
     <!-- SKILLS MATRIX -->
     <section id="skills" class="relative py-24 px-6 md:px-12 content-layer bg-stone-50 border-y border-gray-200">
         <div class="max-w-7xl mx-auto">
-            
-            <div class="text-center mb-16" data-aos="fade-up">
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
                 <h2 class="brand-font text-4xl md:text-5xl font-black text-gray-900 tracking-tight uppercase">Core Expertise</h2>
                 <div class="w-12 h-1 luxury-red-bg mx-auto mt-6"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Skill Card 1 -->
-                <div class="bg-white p-10 border-t-2 border-t-red-700 shadow-sm hover:shadow-xl transition-shadow" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white p-10 border-t-2 border-t-red-700 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                     <i class="fa-solid fa-cubes text-3xl luxury-red mb-6"></i>
                     <h3 class="brand-font text-2xl font-bold text-gray-900 mb-4 uppercase tracking-wide">Digital Architecture</h3>
                     <ul class="space-y-3 text-gray-500 font-light">
@@ -212,8 +283,7 @@
                     </ul>
                 </div>
 
-                <!-- Skill Card 2 -->
-                <div class="bg-white p-10 border-t-2 border-t-gray-800 shadow-sm hover:shadow-xl transition-shadow" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white p-10 border-t-2 border-t-gray-800 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                     <i class="fa-solid fa-network-wired text-3xl text-gray-800 mb-6"></i>
                     <h3 class="brand-font text-2xl font-bold text-gray-900 mb-4 uppercase tracking-wide">Simulation & Analysis</h3>
                     <ul class="space-y-3 text-gray-500 font-light">
@@ -224,8 +294,7 @@
                     </ul>
                 </div>
 
-                <!-- Skill Card 3 -->
-                <div class="bg-white p-10 border-t-2 border-t-gray-300 shadow-sm hover:shadow-xl transition-shadow" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-white p-10 border-t-2 border-t-gray-300 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
                     <i class="fa-solid fa-layer-group text-3xl text-gray-400 mb-6"></i>
                     <h3 class="brand-font text-2xl font-bold text-gray-900 mb-4 uppercase tracking-wide">Physical Production</h3>
                     <ul class="space-y-3 text-gray-500 font-light">
@@ -239,13 +308,13 @@
         </div>
     </section>
 
-    <!-- PARTITION I: ADVANCED CAD -->
+    <!-- DISCIPLINE 01: ADVANCED CAD -->
     <section id="projects-cad" class="relative py-24 px-6 md:px-12 content-layer bg-white">
         <div class="max-w-7xl mx-auto">
             
-            <div class="mb-16 border-b border-gray-100 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6" data-aos="fade-right">
+            <div class="mb-16 border-b border-gray-100 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6" data-aos="fade-right" data-aos-duration="1200">
                 <div>
-                    <span class="luxury-red font-bold tracking-widest text-sm uppercase block mb-2">Portfolio Partition I</span>
+                    <span class="luxury-red font-bold tracking-widest text-sm uppercase block mb-2">Discipline 01</span>
                     <h2 class="brand-font text-4xl md:text-5xl font-black text-gray-900 uppercase">Advanced CAD & Prototyping</h2>
                 </div>
                 <p class="text-gray-400 font-light text-sm tracking-widest uppercase max-w-sm text-left md:text-right">
@@ -255,116 +324,110 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 
-                <!-- CAD: AmphiGlide -->
-                <div class="premium-card group" data-aos="fade-up">
+                <div class="premium-card group" onclick="openModal('amphi-cad')" data-aos="fade-up" data-aos-duration="1000">
                     <div class="img-zoom-container">
-                        <img src="amphiglide.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=AmphiGlide+CAD'" alt="AmphiGlide CAD" class="w-full h-64 object-cover border-b border-gray-100">
+                        <img src="amphiglide.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=AmphiGlide+CAD'" class="w-full h-64 object-cover border-b border-gray-100">
+                    </div>
+                    <div class="card-overlay">
+                        <span class="brand-font text-lg font-bold text-gray-900 tracking-widest uppercase">Click to view details</span>
                     </div>
                     <div class="p-8">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide">AmphiGlide Biomimetic Robot</h3>
-                        </div>
+                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">AmphiGlide Biomimetic Robot</h3>
                         <p class="text-sm text-gray-500 font-light leading-relaxed mb-6 h-20 overflow-hidden">
-                            Engineered the structural housing to integrate a dual-environment propulsion system, transitioning from theoretical CAD models to a fully functional, 3D-printed prototype.
+                            Engineered the structural housing to integrate a dual-environment propulsion system, transitioning from theoretical CAD models to a fully functional 3D-printed prototype.
                         </p>
                         <div class="flex items-center justify-between border-t border-gray-100 pt-4">
                             <span class="text-xs text-gray-400 font-medium tracking-widest uppercase">SolidWorks / DFM</span>
-                            <span class="text-[10px] luxury-red font-bold tracking-widest uppercase bg-red-50 px-2 py-1 rounded-sm">2026</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- CAD: EHPVC -->
-                <div class="premium-card group" data-aos="fade-up" data-aos-delay="100">
+                <div class="premium-card group" onclick="openModal('ehpvc')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                     <div class="img-zoom-container">
-                        <img src="ehpvc.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=EHPVC+Trike'" alt="EHPVC Trike" class="w-full h-64 object-cover border-b border-gray-100">
+                        <img src="ehpvc.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=EHPVC+Trike'" class="w-full h-64 object-cover border-b border-gray-100">
+                    </div>
+                    <div class="card-overlay">
+                        <span class="brand-font text-lg font-bold text-gray-900 tracking-widest uppercase">Click to view details</span>
                     </div>
                     <div class="p-8">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide">EHPVC Trike Chassis</h3>
-                        </div>
+                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">EHPVC Trike Chassis</h3>
                         <p class="text-sm text-gray-500 font-light leading-relaxed mb-6 h-20 overflow-hidden">
                             Lead Designer for a tadpole recumbent tricycle. Designed a robust tubular space frame integrating a hybrid powertrain, securing 1st Position.
                         </p>
                         <div class="flex items-center justify-between border-t border-gray-100 pt-4">
                             <span class="text-xs text-gray-400 font-medium tracking-widest uppercase">Tubular Framework</span>
-                            <span class="text-[10px] luxury-red font-bold tracking-widest uppercase bg-red-50 px-2 py-1 rounded-sm">2025</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- CAD: Factory Copilot -->
-                <div class="premium-card group" data-aos="fade-up" data-aos-delay="200">
+                <div class="premium-card group" onclick="openModal('copilot')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                     <div class="img-zoom-container">
-                        <img src="copilot.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=Factory+Copilot'" alt="Factory Copilot" class="w-full h-64 object-cover border-b border-gray-100">
+                        <img src="copilot.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=Factory+Copilot'" class="w-full h-64 object-cover border-b border-gray-100">
+                    </div>
+                    <div class="card-overlay">
+                        <span class="brand-font text-lg font-bold text-gray-900 tracking-widest uppercase">Click to view details</span>
                     </div>
                     <div class="p-8">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide">Factory Copilot Wearable</h3>
-                        </div>
+                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">Factory Copilot Wearable</h3>
                         <p class="text-sm text-gray-500 font-light leading-relaxed mb-6 h-20 overflow-hidden">
                             Industrial assembly wearable ecosystem. Executed a massive three-stage iterative cycle shifting from blocky ABS models to ultra-light PETG enclosures.
                         </p>
                         <div class="flex items-center justify-between border-t border-gray-100 pt-4">
                             <span class="text-xs text-gray-400 font-medium tracking-widest uppercase">Rapid Prototyping</span>
-                            <span class="text-[10px] luxury-red font-bold tracking-widest uppercase bg-red-50 px-2 py-1 rounded-sm">2025</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- CAD: HydroSense -->
-                <div class="premium-card group" data-aos="fade-up">
+                <div class="premium-card group" onclick="openModal('hydrosense')" data-aos="fade-up" data-aos-duration="1000">
                     <div class="img-zoom-container">
-                        <img src="hydrosense.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=HydroSense'" alt="HydroSense" class="w-full h-64 object-cover border-b border-gray-100">
+                        <img src="hydrosense.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=HydroSense'" class="w-full h-64 object-cover border-b border-gray-100">
+                    </div>
+                    <div class="card-overlay">
+                        <span class="brand-font text-lg font-bold text-gray-900 tracking-widest uppercase">Click to view details</span>
                     </div>
                     <div class="p-8">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide">HydroSense System</h3>
-                        </div>
+                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">HydroSense System</h3>
                         <p class="text-sm text-gray-500 font-light leading-relaxed mb-6 h-20 overflow-hidden">
                             Smart watering device concept. Engineered a tight cylindrical electromechanical form factor with a custom tolerance-based bayonet lock mechanism.
                         </p>
                         <div class="flex items-center justify-between border-t border-gray-100 pt-4">
                             <span class="text-xs text-gray-400 font-medium tracking-widest uppercase">Mechanism Design</span>
-                            <span class="text-[10px] luxury-red font-bold tracking-widest uppercase bg-red-50 px-2 py-1 rounded-sm">2025</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- CAD: Holter Monitor -->
-                <div class="premium-card group" data-aos="fade-up" data-aos-delay="100">
+                <div class="premium-card group" onclick="openModal('holter')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                     <div class="img-zoom-container">
-                        <img src="holter.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=Holter+Enclosure'" alt="Holter Monitor" class="w-full h-64 object-cover border-b border-gray-100">
+                        <img src="holter.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=Holter+Enclosure'" class="w-full h-64 object-cover border-b border-gray-100">
+                    </div>
+                    <div class="card-overlay">
+                        <span class="brand-font text-lg font-bold text-gray-900 tracking-widest uppercase">Click to view details</span>
                     </div>
                     <div class="p-8">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide">Biomedical Holter Housing</h3>
-                        </div>
+                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">Biomedical Holter Housing</h3>
                         <p class="text-sm text-gray-500 font-light leading-relaxed mb-6 h-20 overflow-hidden">
                             Low-cost ABS enclosure achieving a fully functional, interference-free prototype on the exact first manufacturing iteration via strict DFM guidelines.
                         </p>
                         <div class="flex items-center justify-between border-t border-gray-100 pt-4">
                             <span class="text-xs text-gray-400 font-medium tracking-widest uppercase">Medical CAD</span>
-                            <span class="text-[10px] luxury-red font-bold tracking-widest uppercase bg-red-50 px-2 py-1 rounded-sm">2025</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- CAD: ASUS & Seeder -->
-                <div class="premium-card group" data-aos="fade-up" data-aos-delay="200">
+                <div class="premium-card group" onclick="openModal('asus')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                     <div class="img-zoom-container">
-                        <img src="asus.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=Hardware+Replication'" alt="Hardware Repliation" class="w-full h-64 object-cover border-b border-gray-100">
+                        <img src="asus.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=Hardware+Replication'" class="w-full h-64 object-cover border-b border-gray-100">
+                    </div>
+                    <div class="card-overlay">
+                        <span class="brand-font text-lg font-bold text-gray-900 tracking-widest uppercase">Click to view details</span>
                     </div>
                     <div class="p-8">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide">Complex Hardware Replication</h3>
-                        </div>
+                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">Complex Hardware Replication</h3>
                         <p class="text-sm text-gray-500 font-light leading-relaxed mb-6 h-20 overflow-hidden">
                             Mapped intricate micro-architecture of an ASUS PCB from scratch, and reverse-engineered a heavy-duty agricultural seeder into CNC-ready CAD.
                         </p>
                         <div class="flex items-center justify-between border-t border-gray-100 pt-4">
                             <span class="text-xs text-gray-400 font-medium tracking-widest uppercase">Reverse Engineering</span>
-                            <span class="text-[10px] luxury-red font-bold tracking-widest uppercase bg-red-50 px-2 py-1 rounded-sm">2024</span>
                         </div>
                     </div>
                 </div>
@@ -373,14 +436,14 @@
         </div>
     </section>
 
-    <!-- PARTITION II: SIMULATION -->
+    <!-- DISCIPLINE 02: SIMULATION -->
     <section id="projects-sim" class="relative py-24 px-6 md:px-12 content-layer bg-stone-50 border-y border-gray-200">
         <div class="max-w-7xl mx-auto">
             
-            <div class="mb-16 border-b border-gray-200 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6" data-aos="fade-right">
+            <div class="mb-16 border-b border-gray-200 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6" data-aos="fade-right" data-aos-duration="1200">
                 <div>
-                    <span class="luxury-red font-bold tracking-widest text-sm uppercase block mb-2">Portfolio Partition II</span>
-                    <h2 class="brand-font text-4xl md:text-5xl font-black text-gray-900 uppercase">Simulation & Analysis</h2>
+                    <span class="luxury-red font-bold tracking-widest text-sm uppercase block mb-2">Discipline 02</span>
+                    <h2 class="brand-font text-4xl md:text-5xl font-black text-gray-900 uppercase">Computational Analysis</h2>
                 </div>
                 <p class="text-gray-400 font-light text-sm tracking-widest uppercase max-w-sm text-left md:text-right">
                     Computational Fluid Dynamics (CFD) and Finite Element Analysis (FEA).
@@ -389,51 +452,42 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 
-                <!-- SIM: OceanGate -->
-                <div class="premium-card group border-t-2 border-t-gray-800" data-aos="fade-up">
-                    <div class="p-8">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide">OceanGate Titan Failure FEA</h3>
-                        </div>
+                <div class="premium-card group border-t-2 border-t-gray-800" onclick="openModal('oceangate')" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="card-overlay rounded-t-none">
+                        <span class="brand-font text-sm font-bold text-gray-900 tracking-widest uppercase">Click to view</span>
+                    </div>
+                    <div class="p-8 relative z-10">
+                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">OceanGate Titan Failure FEA</h3>
                         <p class="text-sm text-gray-500 font-light leading-relaxed mb-6">
                             Rigorous digital simulation study focused on the structural validation and pressure failure analysis of the submersible hull using ANSYS structural.
                         </p>
-                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-                            <span class="text-xs text-gray-400 font-medium tracking-widest uppercase">ANSYS Structural</span>
-                            <span class="text-[10px] text-gray-500 font-bold tracking-widest uppercase bg-gray-100 px-2 py-1 rounded-sm">2024</span>
-                        </div>
+                        <span class="text-xs text-gray-400 font-medium tracking-widest uppercase block border-t border-gray-100 pt-4">ANSYS Structural</span>
                     </div>
                 </div>
 
-                <!-- SIM: Li-Ion -->
-                <div class="premium-card group border-t-2 border-t-gray-800" data-aos="fade-up" data-aos-delay="100">
-                    <div class="p-8">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide">Li-Ion Thermal Mgmt CFD</h3>
-                        </div>
+                <div class="premium-card group border-t-2 border-t-gray-800" onclick="openModal('li-ion')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="card-overlay rounded-t-none">
+                        <span class="brand-font text-sm font-bold text-gray-900 tracking-widest uppercase">Click to view</span>
+                    </div>
+                    <div class="p-8 relative z-10">
+                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">Li-Ion Thermal Mgmt CFD</h3>
                         <p class="text-sm text-gray-500 font-light leading-relaxed mb-6">
                             Advanced computational fluid dynamics studies utilizing ANSYS Fluent to monitor heat dissipation and optimize battery pack thermal management systems.
                         </p>
-                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-                            <span class="text-xs text-gray-400 font-medium tracking-widest uppercase">ANSYS Fluent</span>
-                            <span class="text-[10px] text-gray-500 font-bold tracking-widest uppercase bg-gray-100 px-2 py-1 rounded-sm">2025</span>
-                        </div>
+                        <span class="text-xs text-gray-400 font-medium tracking-widest uppercase block border-t border-gray-100 pt-4">ANSYS Fluent</span>
                     </div>
                 </div>
 
-                <!-- SIM: AmphiGlide Sim -->
-                <div class="premium-card group border-t-2 border-t-gray-800" data-aos="fade-up" data-aos-delay="200">
-                    <div class="p-8">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide">AmphiGlide Validation Data</h3>
-                        </div>
+                <div class="premium-card group border-t-2 border-t-gray-800" onclick="openModal('amphi-sim')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="card-overlay rounded-t-none">
+                        <span class="brand-font text-sm font-bold text-gray-900 tracking-widest uppercase">Click to view</span>
+                    </div>
+                    <div class="p-8 relative z-10">
+                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">AmphiGlide Validation Data</h3>
                         <p class="text-sm text-gray-500 font-light leading-relaxed mb-6">
                             Comprehensive computational validation of the biomimetic robot, executing both structural FEA for chassis integrity and CFD for aquatic fluid dynamics.
                         </p>
-                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-                            <span class="text-xs text-gray-400 font-medium tracking-widest uppercase">CFD & FEA</span>
-                            <span class="text-[10px] text-gray-500 font-bold tracking-widest uppercase bg-gray-100 px-2 py-1 rounded-sm">2026</span>
-                        </div>
+                        <span class="text-xs text-gray-400 font-medium tracking-widest uppercase block border-t border-gray-100 pt-4">CFD & FEA</span>
                     </div>
                 </div>
 
@@ -441,14 +495,14 @@
         </div>
     </section>
 
-    <!-- PARTITION III: MECHATRONICS -->
+    <!-- DISCIPLINE 03: MECHATRONICS -->
     <section id="projects-elec" class="relative py-24 px-6 md:px-12 content-layer bg-white">
         <div class="max-w-7xl mx-auto">
             
-            <div class="mb-16 border-b border-gray-100 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6" data-aos="fade-right">
+            <div class="mb-16 border-b border-gray-100 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6" data-aos="fade-right" data-aos-duration="1200">
                 <div>
-                    <span class="luxury-red font-bold tracking-widest text-sm uppercase block mb-2">Portfolio Partition III</span>
-                    <h2 class="brand-font text-4xl md:text-5xl font-black text-gray-900 uppercase">Mechatronics & Electronics</h2>
+                    <span class="luxury-red font-bold tracking-widest text-sm uppercase block mb-2">Discipline 03</span>
+                    <h2 class="brand-font text-4xl md:text-5xl font-black text-gray-900 uppercase">Hardware & Control</h2>
                 </div>
                 <p class="text-gray-400 font-light text-sm tracking-widest uppercase max-w-sm text-left md:text-right">
                     Hardware control logic, sensor integration, and Arduino platforms.
@@ -457,9 +511,11 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 
-                <!-- ELEC: AmphiGlide Control -->
-                <div class="premium-card group border-l-4 border-l-red-700" data-aos="fade-up">
-                    <div class="p-8">
+                <div class="premium-card group border-l-4 border-l-red-700" onclick="openModal('amphi-logic')" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="card-overlay rounded-l-none">
+                        <span class="brand-font text-sm font-bold text-gray-900 tracking-widest uppercase">Click to view</span>
+                    </div>
+                    <div class="p-8 relative z-10">
                         <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">AmphiGlide Architecture</h3>
                         <p class="text-sm text-gray-500 font-light leading-relaxed mb-6">
                             Collaborated with Ali Shahbaz to engineer the core control architecture, integrating Raspberry Pi and ESP32 systems for seamless dual-terrain actuation and logic.
@@ -468,10 +524,12 @@
                     </div>
                 </div>
 
-                <!-- ELEC: Wind Tunnel -->
-                <div class="premium-card group border-l-4 border-l-gray-800" data-aos="fade-up" data-aos-delay="100">
-                    <div class="p-8">
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">Arduino Wind Tunnel Control</h3>
+                <div class="premium-card group border-l-4 border-l-gray-800" onclick="openModal('wind-tunnel')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="card-overlay rounded-l-none">
+                        <span class="brand-font text-sm font-bold text-gray-900 tracking-widest uppercase">Click to view</span>
+                    </div>
+                    <div class="p-8 relative z-10">
+                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">Arduino Wind Tunnel</h3>
                         <p class="text-sm text-gray-500 font-light leading-relaxed mb-6">
                             Developed the electronic control architecture and sensor integration network for a custom-built fluid mechanics wind tunnel utilizing the Arduino environment.
                         </p>
@@ -479,9 +537,11 @@
                     </div>
                 </div>
 
-                <!-- ELEC: Robot -->
-                <div class="premium-card group border-l-4 border-l-gray-400" data-aos="fade-up" data-aos-delay="200">
-                    <div class="p-8">
+                <div class="premium-card group border-l-4 border-l-gray-400" onclick="openModal('robot')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="card-overlay rounded-l-none">
+                        <span class="brand-font text-sm font-bold text-gray-900 tracking-widest uppercase">Click to view</span>
+                    </div>
+                    <div class="p-8 relative z-10">
                         <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">Object Detection Robotics</h3>
                         <p class="text-sm text-gray-500 font-light leading-relaxed mb-6">
                             Engineered a dedicated motion and line-following navigator robot. Integrated active object detection protocols and real-time sensor feedback loops.
@@ -498,27 +558,24 @@
     <section id="contact" class="relative py-32 px-6 md:px-12 content-layer bg-gray-900 text-white border-t-4 border-red-700">
         <div class="max-w-4xl mx-auto text-center">
             
-            <h2 class="brand-font text-4xl md:text-6xl font-black tracking-tight mb-6 uppercase" data-aos="fade-up">
+            <h2 class="brand-font text-4xl md:text-6xl font-black tracking-tight mb-6 uppercase" data-aos="fade-up" data-aos-duration="1000">
                 Initiate Contact
             </h2>
-            <p class="text-gray-400 font-light text-lg mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+            <p class="text-gray-400 font-light text-lg mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                 Available for high-level mechanical design consulting, rapid prototyping contracts, and full-time enterprise engineering roles.
             </p>
             
-            <div class="flex flex-col md:flex-row justify-center items-center gap-6" data-aos="fade-up" data-aos-delay="200">
-                <!-- CV Link -->
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                 <a href="https://drive.google.com/drive/u/1/folders/1Ri5rVG-Jso5dPkj5_PkYzr3RmSEthcvE" target="_blank" class="w-full md:w-auto px-10 py-4 luxury-red-bg hover:bg-red-800 text-white font-bold tracking-widest uppercase text-sm transition-colors flex items-center justify-center gap-3">
                     <i class="fa-solid fa-file-pdf text-lg"></i> View Curriculum Vitae
                 </a>
                 
-                <!-- LinkedIn -->
                 <a href="https://www.linkedin.com/in/taimour-z-41a39a290/" target="_blank" class="w-full md:w-auto px-10 py-4 border border-gray-600 hover:border-white hover:bg-white hover:text-gray-900 font-bold tracking-widest uppercase text-sm transition-all flex items-center justify-center gap-3">
                     <i class="fa-brands fa-linkedin text-lg"></i> LinkedIn Profile
                 </a>
                 
-                <!-- GitHub / Fiverr Link -->
                 <a href="https://github.com/Taimour007" target="_blank" class="w-full md:w-auto px-10 py-4 border border-gray-800 hover:bg-gray-800 text-gray-300 hover:text-white font-bold tracking-widest uppercase text-sm transition-all flex items-center justify-center gap-3">
-                    <i class="fa-solid fa-link text-lg"></i> Github / Fiverr
+                    <i class="fa-brands fa-github text-lg"></i> GitHub Repository
                 </a>
             </div>
             
@@ -530,13 +587,36 @@
         </div>
     </section>
 
+    <!-- FULLSCREEN FLUID MODAL -->
+    <div id="project-modal" class="fixed inset-0 z-[100] flex items-center justify-center modal-enter">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-md" onclick="closeModal()"></div>
+        <div id="modal-content" class="relative bg-white w-11/12 max-w-5xl rounded-sm shadow-2xl overflow-hidden modal-scale-enter">
+            
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-20 w-12 h-12 bg-white/80 hover:bg-white hover:text-red-700 rounded-full flex items-center justify-center backdrop-blur text-gray-900 transition-all duration-300 shadow-lg">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            
+            <div class="flex flex-col md:flex-row h-full max-h-[85vh] overflow-y-auto">
+                <div class="md:w-1/2 relative bg-gray-100 flex items-center justify-center min-h-[300px]">
+                    <img id="modal-img" src="" class="absolute inset-0 w-full h-full object-cover">
+                </div>
+                <div class="md:w-1/2 p-8 md:p-14 flex flex-col justify-center bg-white">
+                    <span id="modal-date" class="text-xs font-bold text-red-700 tracking-widest uppercase mb-3 block"></span>
+                    <h3 id="modal-title" class="brand-font text-3xl md:text-4xl font-black uppercase text-gray-900 mb-6 leading-tight"></h3>
+                    <p id="modal-desc" class="text-gray-600 font-light leading-relaxed mb-8 text-lg"></p>
+                    <div id="modal-tags" class="flex flex-wrap gap-3 mt-auto"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Initialize Scroll Animations
+        // Fluid Initialize Scroll Animations
         AOS.init({
             once: true,
             offset: 50,
-            duration: 800,
-            easing: 'ease-out-cubic',
+            duration: 1200, // Increased duration for fluidity
+            easing: 'ease-out-quint', // Ultra-smooth curve
         });
 
         // Sticky Header Shrink Effect on Scroll
@@ -552,21 +632,21 @@
         // Subtle Red/Grey Network Background for White Theme
         particlesJS('particles-js', {
           "particles": {
-            "number": { "value": 40, "density": { "enable": true, "value_area": 800 } },
-            "color": { "value": ["#b91c1c", "#e5e7eb"] }, // Red and light grey dots
+            "number": { "value": 30, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": ["#b91c1c", "#e5e7eb"] },
             "shape": { "type": "circle" },
-            "opacity": { "value": 0.5, "random": false },
+            "opacity": { "value": 0.4, "random": false },
             "size": { "value": 3, "random": true },
             "line_linked": {
               "enable": true,
               "distance": 150,
-              "color": "#e5e7eb", // Light grey connecting lines
+              "color": "#e5e7eb",
               "opacity": 0.6,
               "width": 1
             },
             "move": {
               "enable": true,
-              "speed": 0.8, // Very slow, luxurious movement
+              "speed": 0.6, 
               "direction": "none",
               "random": false,
               "straight": false,
@@ -581,10 +661,163 @@
               "resize": true
             },
             "modes": {
-              "grab": { "distance": 200, "line_linked": { "opacity": 1, "color": "#b91c1c" } } // Lines turn red when grabbed
+              "grab": { "distance": 250, "line_linked": { "opacity": 0.8, "color": "#b91c1c" } }
             }
           },
           "retina_detect": true
+        });
+
+        // Modal Logic & Data
+        const projectData = {
+            'amphi-cad': {
+                title: 'AmphiGlide Biomimetic Robot',
+                img: 'amphiglide.jpg',
+                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=AmphiGlide+Robot',
+                date: 'May 2026',
+                desc: 'A novel amphibious robotic platform engineered for versatile, multi-terrain navigation. Engineered the structural housing to integrate a dual-environment propulsion system, bridging the gap between aquatic and terrestrial environments. The project successfully transitioned from theoretical CAD models to a fully functional 3D-printed prototype for empirical field testing.',
+                tags: ['SolidWorks', 'Biomimetic Design', 'FDM Printing', 'Rapid Prototyping']
+            },
+            'ehpvc': {
+                title: 'EHPVC Trike Chassis',
+                img: 'ehpvc.jpg',
+                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=EHPVC+Trike',
+                date: 'May 2025',
+                desc: 'Served as Team Lead, Lead Designer, and Head of Analysis. Spearheaded the development of this vehicle utilizing a "tadpole" recumbent tricycle configuration for superior stability. Designed a robust tubular space frame chassis with a high-profile roll cage, integrating a hybrid powertrain involving a rear hub motor and a front manual pedal chain drive. Secured 1st Position in the university competition.',
+                tags: ['Team Lead', 'Tubular Frame', 'Aerodynamics', 'Hybrid Powertrain']
+            },
+            'copilot': {
+                title: 'Factory Copilot Wearable',
+                img: 'copilot.jpg',
+                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Factory+Copilot',
+                date: 'Aug 2025',
+                desc: 'An industrial head-mounted wearable designed to assist workers in assembly environments. Executed three distinct design iterations. Evolved the architecture from a bulky block ABS housing to a highly streamlined PETG frame, eventually offloading the Raspberry Pi processing unit and battery payload into a separate, ergonomic belt-mounted power module to maximize user comfort.',
+                tags: ['Iterative Design', 'Raspberry Pi Zero', 'PETG/ABS', 'Ergonomics']
+            },
+            'hydrosense': {
+                title: 'HydroSense System',
+                img: 'hydrosense.jpg',
+                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=HydroSense',
+                date: 'April 2025',
+                desc: 'A fully integrated smart plant watering system designed as an innovative consumer product. Engineered a space-efficient cylindrical housing featuring a custom-designed, tolerance-based bayonet lock mechanism. The electromechanical assembly flawlessly integrated internal fluid routing, miniature pump mechanisms, and dual soil moisture probes.',
+                tags: ['Electromechanical', 'Tolerance Analysis', 'Mechanism Design']
+            },
+            'holter': {
+                title: 'Biomedical Holter Housing',
+                img: 'holter.jpg',
+                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Holter+Enclosure',
+                date: 'April 2025',
+                desc: 'Collaborated directly with electrical engineering researchers to develop a custom 3D CAD enclosure for a low-cost Holter monitor. Rigorously applied Design for Manufacturability (DFM) principles and conducted thorough tolerance analysis. Delivered an interference-free, medical-grade ABS prototype that met all design specifications on its absolute first iteration.',
+                tags: ['Medical Device', 'DFM', 'ABS Plastic', 'PCB Integration']
+            },
+            'asus': {
+                title: 'Hardware Replication',
+                img: 'asus.jpg',
+                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=ASUS+Motherboard',
+                date: 'Nov 2024',
+                desc: 'Commissioned freelance project mapping the complex micro-architecture of a modern ASUS motherboard. Independently modeled high-density components from scratch to achieve exact dimensional accuracy, validating spatial layouts of standard interfaces. Also collaboratively reverse-engineered a heavy-duty physical agricultural seeder into a fully validated, CNC-ready 3D CAD model.',
+                tags: ['Reverse Engineering', 'Complex Assembly', 'Freelance Contract']
+            },
+            'oceangate': {
+                title: 'OceanGate Failure FEA',
+                img: 'oceangate.jpg',
+                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=OceanGate+FEA',
+                date: 'Dec 2024',
+                desc: 'A rigorous digital simulation study focused on the structural validation and pressure failure analysis of the OceanGate Titan submersible hull. Executed comprehensive Finite Element Analysis (FEA) utilizing ANSYS Structural to determine failure points under extreme deep-sea pressure variables.',
+                tags: ['ANSYS Structural', 'Failure Analysis', 'Deep Sea FEA']
+            },
+            'li-ion': {
+                title: 'Li-Ion Thermal Mgmt',
+                img: 'li-ion.jpg',
+                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Thermal+CFD',
+                date: 'April 2025',
+                desc: 'Advanced computational fluid dynamics (CFD) studies focused on the optimization of battery thermal management. Utilized ANSYS Fluent to meticulously monitor heat dissipation patterns, testing variables to ensure peak operational safety and efficiency for lithium-ion power banks.',
+                tags: ['ANSYS Fluent', 'Thermal Management', 'CFD']
+            },
+            'amphi-sim': {
+                title: 'AmphiGlide Validation',
+                img: 'amphi-sim.jpg',
+                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=AmphiGlide+Sim',
+                date: 'May 2026',
+                desc: 'Comprehensive computational validation of the AmphiGlide biomimetic robot prior to physical manufacturing. The complex external geometry was rigorously validated using ANSYS CFD for fluid dynamics, paired alongside ANSYS FEA to guarantee absolute structural integrity under high-pressure aquatic conditions.',
+                tags: ['ANSYS CFD', 'Structural FEA', 'Design Validation']
+            },
+            'amphi-logic': {
+                title: 'AmphiGlide Control Logic',
+                img: 'amphi-logic.jpg',
+                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Control+Logic',
+                date: 'May 2026',
+                desc: 'Collaborated alongside Ali Shahbaz to engineer the overarching control architecture for the amphibious robot. Successfully integrated Raspberry Pi and ESP32 computing modules to handle complex sensor inputs and dictate seamless mechanical actuation across diverse aquatic and terrestrial terrains.',
+                tags: ['Raspberry Pi', 'ESP32', 'Mechatronics', 'System Architecture']
+            },
+            'wind-tunnel': {
+                title: 'Arduino Wind Tunnel',
+                img: 'wind-tunnel.jpg',
+                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Wind+Tunnel',
+                date: '2025',
+                desc: 'Developed the complete electronic control architecture for a custom-built fluid mechanics wind tunnel. The system was engineered utilizing the Arduino platform, integrating a complex network of sensors to extract and log precise aerodynamic data during physical testing phases.',
+                tags: ['Arduino', 'Sensor Integration', 'Data Logging']
+            },
+            'robot': {
+                title: 'Object Detection Bot',
+                img: 'robot.jpg',
+                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Robotics',
+                date: '2024',
+                desc: 'Engineered a specialized motion and line-following navigator robotics platform. The hardware integration involved establishing active object detection protocols, utilizing real-time sensor feedback loops to dynamically adjust the robotic path and avoid physical collisions.',
+                tags: ['Robotics', 'Hardware Logic', 'Object Detection']
+            }
+        };
+
+        const modal = document.getElementById('project-modal');
+        const modalContent = document.getElementById('modal-content');
+
+        function openModal(projectId) {
+            const data = projectData[projectId];
+            if (!data) return;
+
+            // Populate Data
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-desc').textContent = data.desc;
+            document.getElementById('modal-date').textContent = data.date;
+            
+            const imgEl = document.getElementById('modal-img');
+            imgEl.src = data.img;
+            imgEl.onerror = () => { imgEl.src = data.fallback; };
+
+            // Build Tags
+            const tagsHtml = data.tags.map(tag => 
+                `<span class="px-4 py-2 bg-stone-100 text-gray-800 font-bold tracking-widest uppercase text-[10px] rounded-sm border border-stone-200">${tag}</span>`
+            ).join('');
+            document.getElementById('modal-tags').innerHTML = tagsHtml;
+
+            // Trigger Fluid Open Animations
+            modal.classList.remove('modal-enter');
+            modal.classList.add('modal-enter-active');
+            
+            modalContent.classList.remove('modal-scale-enter');
+            // Small delay to allow display:block to register before scaling
+            requestAnimationFrame(() => {
+                modalContent.classList.add('modal-scale-enter-active');
+            });
+            
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal() {
+            // Trigger Fluid Close Animations
+            modal.classList.remove('modal-enter-active');
+            modal.classList.add('modal-enter');
+            
+            modalContent.classList.remove('modal-scale-enter-active');
+            modalContent.classList.add('modal-scale-enter');
+            
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('modal-enter-active')) {
+                closeModal();
+            }
         });
     </script>
 </body>
