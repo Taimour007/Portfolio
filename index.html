@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taimour Zahid | Mechanical Design Engineer</title>
+    
+    <!-- Import Google Fonts: Bebas Neue (for the Galgo/Cinematic look) and Inter (for readable body text) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Configuration to map our fonts and specific colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'bebas': ['"Bebas Neue"', 'sans-serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        batman: {
+                            dark: '#0a0a0a',
+                            red: '#dc2626',
+                            blood: '#7f1d1d'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- GSAP for High-Performance Cinematic Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        /* Custom glow effect for the text */
+        .text-glow {
+            text-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+        }
+        /* Hide scrollbar for a cleaner look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #dc2626; }
+    </style>
+</head>
+<body class="antialiased font-sans">
+
+    <!-- HERO SECTION: 150vh tall to allow scrolling effects while the content stays sticky -->
+    <section class="relative h-[150vh] bg-black" id="hero-container">
+        
+        <!-- Sticky Wrapper keeps the content on screen while we scroll through the 150vh height -->
+        <div class="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden w-full">
+            
+            <!-- Radial Red Background Glow -->
+            <div id="hero-glow" class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-batman-blood/30 via-black to-black opacity-80 z-0"></div>
+
+            <!-- Main Hero Text Content -->
+            <div id="hero-content" class="relative z-10 flex flex-col items-center text-center px-6 w-full max-w-5xl">
+                
+                <p class="text-gray-400 tracking-[0.4em] uppercase text-xs md:text-sm mb-6 font-bold">
+                    Mechanical Design Engineer
+                </p>
+
+                <!-- Cinematic Condensed Name -->
+                <h1 class="font-bebas text-7xl md:text-[10rem] leading-none tracking-tight mb-2 flex flex-col md:flex-row items-center justify-center gap-4">
+                    <span class="text-white">TAIMOUR</span>
+                    <span class="bg-gradient-to-b from-batman-red to-batman-blood bg-clip-text text-transparent text-glow">
+                        ZAHID
+                    </span>
+                </h1>
+
+                <!-- Theme Subtitle -->
+                <h2 class="text-lg md:text-2xl text-gray-400 font-light tracking-wide max-w-2xl mt-4">
+                    Bridging Digital Architecture with <strong class="text-white font-bold">Physical Reality</strong>
+                </h2>
+
+                <!-- Skills Matrix Badges -->
+                <div class="mt-12 flex flex-wrap justify-center gap-4 md:gap-8 text-xs md:text-sm text-gray-500 border-t border-red-900/40 pt-8 w-full">
+                    <span class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-batman-red animate-pulse"></span>
+                        Advanced Simulation (ANSYS)
+                    </span>
+                    <span class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-batman-red animate-pulse"></span>
+                        Iterative Prototyping
+                    </span>
+                    <span class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-batman-red animate-pulse"></span>
+                        Precision DFM
+                    </span>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-10">
+                <span class="text-[10px] text-batman-red tracking-[0.3em] uppercase mb-3">Deploy Sequence</span>
+                <div class="w-[1px] h-16 bg-gradient-to-b from-batman-red to-transparent overflow-hidden">
+                    <!-- Animated line inside the track -->
+                    <div class="w-full h-1/2 bg-white animate-[slideDown_1.5s_ease-in-out_infinite]"></div>
+                </div>
+            </div>
+            
+            <!-- Inline animation for the scroll line -->
+            <style>
+                @keyframes slideDown {
+                    0% { transform: translateY(-100%); opacity: 0; }
+                    50% { opacity: 1; }
+                    100% { transform: translateY(200%); opacity: 0; }
+                }
+            </style>
+        </div>
+    </section>
+
+    <!-- ENGINEERING MILESTONES TIMELINE -->
+    <section class="relative bg-black py-32 px-6 md:px-12 w-full z-20">
+        <div class="max-w-4xl mx-auto">
+            
+            <div class="mb-20 text-center md:text-left">
+                <h3 class="font-bebas text-5xl md:text-7xl text-white tracking-wide">Engineering <span class="text-batman-red">Timeline</span></h3>
+                <p class="text-gray-400 mt-2">Chronological project execution and hardware validation.</p>
+            </div>
+
+            <!-- The Timeline Container -->
+            <div class="relative border-l border-red-900/30 ml-4 md:ml-0">
+                
+                <!-- 2026 Section Header -->
+                <div class="mb-12 relative">
+                    <div class="absolute w-4 h-4 bg-black border-2 border-batman-red rounded-full -left-[9px] top-1"></div>
+                    <h4 class="font-bebas text-4xl text-white ml-8 tracking-wider">2026</h4>
+                </div>
+
+                <!-- Timeline Item: AmphiGlide -->
+                <div class="timeline-item mb-16 ml-8 pl-4 relative group">
+                    <div class="absolute w-2 h-2 bg-gray-700 rounded-full -left-[29px] top-2 transition-colors duration-300 group-hover:bg-batman-red"></div>
+                    <p class="text-batman-red text-xs font-bold tracking-widest uppercase mb-1">Aug 2025 – May 2026</p>
+                    <h5 class="text-2xl font-bold text-white mb-2">AmphiGlide Biomimetic Amphibious Robot</h5>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Major final-year design project. Engineered a dual-environment propulsion mechanism and structural housing. Validated using ANSYS CFD and FEA, successfully transitioning from theoretical surfaces to a fully functional 3D-printed physical prototype.
+                    </p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="text-[10px] border border-gray-800 text-gray-500 px-2 py-1 rounded uppercase">ANSYS CFD</span>
+                        <span class="text-[10px] border border-gray-800 text-gray-500 px-2 py-1 rounded uppercase">FEA</span>
+                        <span class="text-[10px] border border-gray-800 text-gray-500 px-2 py-1 rounded uppercase">Rapid Prototyping</span>
+                    </div>
+                </div>
+
+                <!-- 2025 Section Header -->
+                <div class="mb-12 mt-24 relative">
+                    <div class="absolute w-4 h-4 bg-black border-2 border-batman-red rounded-full -left-[9px] top-1"></div>
+                    <h4 class="font-bebas text-4xl text-white ml-8 tracking-wider">2025</h4>
+                </div>
+
+                <!-- Timeline Item: Factory Copilot -->
+                <div class="timeline-item mb-16 ml-8 pl-4 relative group">
+                    <div class="absolute w-2 h-2 bg-gray-700 rounded-full -left-[29px] top-2 transition-colors duration-300 group-hover:bg-batman-red"></div>
+                    <p class="text-batman-red text-xs font-bold tracking-widest uppercase mb-1">June – Aug 2025</p>
+                    <h5 class="text-2xl font-bold text-white mb-2">Factory Copilot Wearable Ecosystem</h5>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        A massive three-stage iterative design cycle for an industrial wearable. Evolved from a bulky ABS head unit and power pack into an ultra-lightweight, streamlined PETG and ABS vision-capture frame that successfully offloaded processing and battery weight to a body-mounted power module.
+                    </p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="text-[10px] border border-gray-800 text-gray-500 px-2 py-1 rounded uppercase">Iterative Design</span>
+                        <span class="text-[10px] border border-gray-800 text-gray-500 px-2 py-1 rounded uppercase">PETG / ABS</span>
+                        <span class="text-[10px] border border-gray-800 text-gray-500 px-2 py-1 rounded uppercase">Ergonomics</span>
+                    </div>
+                </div>
+
+                <!-- Timeline Item: Multiple April Projects -->
+                <div class="timeline-item mb-16 ml-8 pl-4 relative group">
+                    <div class="absolute w-2 h-2 bg-gray-700 rounded-full -left-[29px] top-2 transition-colors duration-300 group-hover:bg-batman-red"></div>
+                    <p class="text-batman-red text-xs font-bold tracking-widest uppercase mb-1">April 2025</p>
+                    <h5 class="text-2xl font-bold text-white mb-2">Rapid R&D Prototyping Sprint</h5>
+                    <ul class="text-gray-400 text-sm leading-relaxed mb-4 space-y-3">
+                        <li><strong class="text-gray-200">Lithium-Ion Thermal Management:</strong> Conducted advanced CFD studies using ANSYS Fluent to optimize battery thermal management.</li>
+                        <li><strong class="text-gray-200">HydroSense Smart Watering Device:</strong> Consumer product concept with a tight cylindrical form factor and custom tolerance-based bayonet lock mechanism.</li>
+                        <li><strong class="text-gray-200">Low-Cost Holter Monitor Enclosure:</strong> Biomedical device ABS enclosure achieving a fully functional, interference-free prototype on the very first manufacturing iteration.</li>
+                    </ul>
+                </div>
+
+                <!-- Timeline Item: EHPVC -->
+                <div class="timeline-item mb-16 ml-8 pl-4 relative group">
+                    <div class="absolute w-2 h-2 bg-gray-700 rounded-full -left-[29px] top-2 transition-colors duration-300 group-hover:bg-batman-red"></div>
+                    <p class="text-batman-red text-xs font-bold tracking-widest uppercase mb-1">Feb – May 2025</p>
+                    <h5 class="text-2xl font-bold text-white mb-2">Electric Human Powered Vehicle (EHPVC)</h5>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Served as Team Lead, Lead Designer, and Head of Analysis. Conducted extensive FEA and aerodynamic drag optimization on a tadpole recumbent tricycle, securing 1st Position at the university level.
+                    </p>
+                </div>
+
+                <!-- 2024 Section Header -->
+                <div class="mb-12 mt-24 relative">
+                    <div class="absolute w-4 h-4 bg-black border-2 border-batman-red rounded-full -left-[9px] top-1"></div>
+                    <h4 class="font-bebas text-4xl text-white ml-8 tracking-wider">2024</h4>
+                </div>
+
+                <!-- Timeline Item: OceanGate -->
+                <div class="timeline-item mb-16 ml-8 pl-4 relative group">
+                    <div class="absolute w-2 h-2 bg-gray-700 rounded-full -left-[29px] top-2 transition-colors duration-300 group-hover:bg-batman-red"></div>
+                    <p class="text-batman-red text-xs font-bold tracking-widest uppercase mb-1">December 2024</p>
+                    <h5 class="text-2xl font-bold text-white mb-2">OceanGate Titan Failure Analysis</h5>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Advanced digital simulation study focused on structural validation and failure analysis of the submersible hull using ANSYS.
+                    </p>
+                </div>
+
+                <!-- Timeline Item: ASUS Board -->
+                <div class="timeline-item mb-16 ml-8 pl-4 relative group">
+                    <div class="absolute w-2 h-2 bg-gray-700 rounded-full -left-[29px] top-2 transition-colors duration-300 group-hover:bg-batman-red"></div>
+                    <p class="text-batman-red text-xs font-bold tracking-widest uppercase mb-1">November 2024</p>
+                    <h5 class="text-2xl font-bold text-white mb-2">Precision ASUS Motherboard CAD</h5>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Commissioned freelance project mapping complex micro-architecture. Independently modeled high-density components from scratch to achieve exact dimensional accuracy.
+                    </p>
+                </div>
+
+                <!-- Timeline Item: Field Seeder -->
+                <div class="timeline-item mb-16 ml-8 pl-4 relative group">
+                    <div class="absolute w-2 h-2 bg-gray-700 rounded-full -left-[29px] top-2 transition-colors duration-300 group-hover:bg-batman-red"></div>
+                    <p class="text-batman-red text-xs font-bold tracking-widest uppercase mb-1">July – Aug 2024</p>
+                    <h5 class="text-2xl font-bold text-white mb-2">Field Seeder System Vehicle</h5>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Collaborative reverse engineering of a physical agricultural planter into a validated, production-ready 3D CAD model. Optimized specifically for plate-and-tube welding and CNC manufacturability (DFM).
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACT CTA -->
+    <footer class="bg-batman-dark py-16 border-t border-red-900/20 text-center">
+        <h2 class="font-bebas text-5xl text-white mb-6">Initiate <span class="text-batman-red">Project</span></h2>
+        <p class="text-gray-400 max-w-md mx-auto mb-8 text-sm">
+            Currently available for freelance hardware design, CAD modeling, and full-time mechanical engineering roles.
+        </p>
+        <a href="https://linktr.ee/Taimour_Zahid" target="_blank" class="inline-block bg-batman-blood hover:bg-batman-red text-white font-bold py-3 px-8 rounded-sm tracking-wider uppercase transition-colors duration-300 text-sm">
+            Access LinkTree Profile
+        </a>
+        <p class="text-gray-600 text-xs mt-12">© 2026 Taimour Zahid. Engineered with precision.</p>
+    </footer>
+
+    <!-- JAVASCRIPT FOR CINEMATIC ANIMATIONS -->
+    <script>
+        // Register GSAP ScrollTrigger plugin
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. Hero Section Scroll Animations (Fade out and zoom in on scroll)
+        const heroTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#hero-container",
+                start: "top top",      // Start when top of hero hits top of viewport
+                end: "bottom top",     // End when bottom of hero hits top of viewport
+                scrub: 1,              // Smooth scrubbing effect tied directly to scrollbar
+            }
+        });
+
+        // Fade out the text and move it slightly up
+        heroTimeline.to("#hero-content", {
+            opacity: 0,
+            y: -100,
+            ease: "none"
+        }, 0);
+
+        // Make the background glow larger as you scroll away
+        heroTimeline.to("#hero-glow", {
+            scale: 1.5,
+            opacity: 0,
+            ease: "none"
+        }, 0);
+
+        // 2. Timeline Item Reveal Animations
+        // Select all timeline items and animate them individually as they enter the screen
+        const timelineItems = gsap.utils.toArray('.timeline-item');
+        
+        timelineItems.forEach((item, i) => {
+            gsap.fromTo(item, 
+                { opacity: 0, x: -30 }, // Starting state: invisible and shifted left
+                {
+                    opacity: 1, 
+                    x: 0, 
+                    duration: 1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top 85%", // Trigger animation when top of item is 85% down the screen
+                        toggleActions: "play none none reverse" // Play on scroll down, reverse on scroll up
+                    }
+                }
+            );
+        });
+
+        // 3. Initial Load Animation (Fade in the hero text)
+        gsap.fromTo("#hero-content > *", 
+            { opacity: 0, y: 30 }, 
+            { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: "power3.out", delay: 0.2 }
+        );
+    </script>
+</body>
+</html>
