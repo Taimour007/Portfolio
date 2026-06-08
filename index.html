@@ -326,7 +326,7 @@
                 
                 <div class="premium-card group" onclick="openModal('amphi-cad')" data-aos="fade-up" data-aos-duration="1000">
                     <div class="img-zoom-container">
-                        <img src="amphiglide.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=AmphiGlide+CAD'" class="w-full h-64 object-cover border-b border-gray-100">
+                        <img src="amphiglide-1.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=AmphiGlide+CAD'" class="w-full h-64 object-cover border-b border-gray-100">
                     </div>
                     <div class="card-overlay">
                         <span class="brand-font text-lg font-bold text-gray-900 tracking-widest uppercase">Click to view details</span>
@@ -362,7 +362,7 @@
 
                 <div class="premium-card group" onclick="openModal('copilot')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                     <div class="img-zoom-container">
-                        <img src="copilot.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=Factory+Copilot'" class="w-full h-64 object-cover border-b border-gray-100">
+                        <img src="copilot-1.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=Factory+Copilot'" class="w-full h-64 object-cover border-b border-gray-100">
                     </div>
                     <div class="card-overlay">
                         <span class="brand-font text-lg font-bold text-gray-900 tracking-widest uppercase">Click to view details</span>
@@ -587,7 +587,7 @@
         </div>
     </section>
 
-    <!-- FULLSCREEN FLUID MODAL -->
+    <!-- FULLSCREEN FLUID MODAL WITH CAROUSEL -->
     <div id="project-modal" class="fixed inset-0 z-[100] flex items-center justify-center modal-enter">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-md" onclick="closeModal()"></div>
         <div id="modal-content" class="relative bg-white w-11/12 max-w-6xl rounded-sm shadow-2xl overflow-hidden modal-scale-enter">
@@ -597,9 +597,27 @@
             </button>
             
             <div class="flex flex-col md:flex-row h-full max-h-[90vh] overflow-y-auto">
-                <div class="md:w-1/2 relative bg-gray-100 flex items-center justify-center min-h-[300px]">
-                    <img id="modal-img" src="" class="absolute inset-0 w-full h-full object-cover">
+                
+                <!-- Image Container with Carousel Controls -->
+                <div class="md:w-1/2 relative bg-gray-100 flex items-center justify-center min-h-[300px] group overflow-hidden">
+                    <img id="modal-img" src="" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300">
+                    
+                    <!-- Left Arrow -->
+                    <button id="prev-btn" onclick="prevImage()" class="absolute left-4 z-20 w-10 h-10 bg-white/80 hover:bg-white hover:text-red-700 rounded-full flex items-center justify-center backdrop-blur text-gray-900 transition-all duration-300 shadow-lg hidden">
+                        <i class="fa-solid fa-chevron-left text-sm"></i>
+                    </button>
+                    
+                    <!-- Right Arrow -->
+                    <button id="next-btn" onclick="nextImage()" class="absolute right-4 z-20 w-10 h-10 bg-white/80 hover:bg-white hover:text-red-700 rounded-full flex items-center justify-center backdrop-blur text-gray-900 transition-all duration-300 shadow-lg hidden">
+                        <i class="fa-solid fa-chevron-right text-sm"></i>
+                    </button>
+
+                    <!-- Image Counter Badge -->
+                    <div id="image-counter" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/60 backdrop-blur text-white text-[10px] font-bold tracking-widest px-3 py-1 rounded-full hidden z-20">
+                        1 / 3
+                    </div>
                 </div>
+
                 <div class="md:w-1/2 p-10 md:p-16 flex flex-col justify-center bg-white">
                     <span id="modal-date" class="text-xs font-bold text-red-700 tracking-widest uppercase mb-4 block"></span>
                     <h3 id="modal-title" class="brand-font text-3xl md:text-5xl font-black uppercase text-gray-900 mb-6 leading-tight"></h3>
@@ -615,8 +633,8 @@
         AOS.init({
             once: true,
             offset: 50,
-            duration: 1200, // Increased duration for fluidity
-            easing: 'ease-out-quint', // Ultra-smooth curve
+            duration: 1200, 
+            easing: 'ease-out-quint', 
         });
 
         // Sticky Header Shrink Effect on Scroll
@@ -667,11 +685,12 @@
           "retina_detect": true
         });
 
-        // Modal Logic & Data
+        // Updated Project Data with Image Arrays
         const projectData = {
             'amphi-cad': {
                 title: 'AmphiGlide Biomimetic Robot',
-                img: 'amphiglide.jpg',
+                // Notice the array here! Upload these 3 images to test the slider.
+                images: ['amphiglide-1.jpg', 'amphiglide-2.jpg', 'amphiglide-3.jpg'],
                 fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=AmphiGlide+Robot',
                 date: 'May 2026',
                 desc: 'A novel amphibious robotic platform engineered for versatile, multi-terrain navigation. Engineered the structural housing to integrate a dual-environment propulsion system, bridging the gap between aquatic and terrestrial environments. The project successfully transitioned from theoretical CAD models to a fully functional 3D-printed prototype for empirical field testing.',
@@ -679,7 +698,7 @@
             },
             'ehpvc': {
                 title: 'EHPVC Trike Chassis',
-                img: 'ehpvc.jpg',
+                images: ['ehpvc.jpg'], // Only one image means no arrows will appear.
                 fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=EHPVC+Trike',
                 date: 'May 2025',
                 desc: 'Served as Team Lead, Lead Designer, and Head of Analysis. Spearheaded the development of this vehicle utilizing a "tadpole" recumbent tricycle configuration for superior stability. Designed a robust tubular space frame chassis with a high-profile roll cage, integrating a hybrid powertrain involving a rear hub motor and a front manual pedal chain drive. Secured 1st Position in the university competition.',
@@ -687,7 +706,7 @@
             },
             'copilot': {
                 title: 'Factory Copilot Wearable',
-                img: 'copilot.jpg',
+                images: ['copilot-1.jpg', 'copilot-2.jpg', 'copilot-3.jpg'],
                 fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Factory+Copilot',
                 date: 'Aug 2025',
                 desc: 'An industrial head-mounted wearable designed to assist workers in assembly environments. Executed three distinct design iterations. Evolved the architecture from a bulky block ABS housing to a highly streamlined PETG frame, eventually offloading the Raspberry Pi processing unit and battery payload into a separate, ergonomic belt-mounted power module to maximize user comfort.',
@@ -695,7 +714,7 @@
             },
             'hydrosense': {
                 title: 'HydroSense System',
-                img: 'hydrosense.jpg',
+                images: ['hydrosense.jpg'],
                 fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=HydroSense',
                 date: 'April 2025',
                 desc: 'A fully integrated smart plant watering system designed as an innovative consumer product. Engineered a space-efficient cylindrical housing featuring a custom-designed, tolerance-based bayonet lock mechanism. The electromechanical assembly flawlessly integrated internal fluid routing, miniature pump mechanisms, and dual soil moisture probes.',
@@ -703,7 +722,7 @@
             },
             'holter': {
                 title: 'Biomedical Holter Housing',
-                img: 'holter.jpg',
+                images: ['holter.jpg'],
                 fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Holter+Enclosure',
                 date: 'April 2025',
                 desc: 'Collaborated directly with electrical engineering researchers to develop a custom 3D CAD enclosure for a low-cost Holter monitor. Rigorously applied Design for Manufacturability (DFM) principles and conducted thorough tolerance analysis. Delivered an interference-free, medical-grade ABS prototype that met all design specifications on its absolute first iteration.',
@@ -711,7 +730,7 @@
             },
             'asus': {
                 title: 'Hardware Replication',
-                img: 'asus.jpg',
+                images: ['asus.jpg'],
                 fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=ASUS+Motherboard',
                 date: 'Nov 2024',
                 desc: 'Commissioned freelance project mapping the complex micro-architecture of a modern ASUS motherboard. Independently modeled high-density components from scratch to achieve exact dimensional accuracy, validating spatial layouts of standard interfaces. Also collaboratively reverse-engineered a heavy-duty physical agricultural seeder into a fully validated, CNC-ready 3D CAD model.',
@@ -719,7 +738,7 @@
             },
             'oceangate': {
                 title: 'OceanGate Failure FEA',
-                img: 'oceangate.jpg',
+                images: ['oceangate.jpg'],
                 fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=OceanGate+FEA',
                 date: 'Dec 2024',
                 desc: 'A rigorous digital simulation study focused on the structural validation and pressure failure analysis of the OceanGate Titan submersible hull. Executed comprehensive Finite Element Analysis (FEA) utilizing ANSYS Structural to determine failure points under extreme deep-sea pressure variables.',
@@ -727,7 +746,7 @@
             },
             'li-ion': {
                 title: 'Li-Ion Thermal Mgmt',
-                img: 'li-ion.jpg',
+                images: ['li-ion.jpg'],
                 fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Thermal+CFD',
                 date: 'April 2025',
                 desc: 'Advanced computational fluid dynamics (CFD) studies focused on the optimization of battery thermal management. Utilized ANSYS Fluent to meticulously monitor heat dissipation patterns, testing variables to ensure peak operational safety and efficiency for lithium-ion power banks.',
@@ -735,7 +754,7 @@
             },
             'amphi-sim': {
                 title: 'AmphiGlide Validation',
-                img: 'amphi-sim.jpg',
+                images: ['amphi-sim.jpg'],
                 fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=AmphiGlide+Sim',
                 date: 'May 2026',
                 desc: 'Comprehensive computational validation of the AmphiGlide biomimetic robot prior to physical manufacturing. The complex external geometry was rigorously validated using ANSYS CFD for fluid dynamics, paired alongside ANSYS FEA to guarantee absolute structural integrity under high-pressure aquatic conditions.',
@@ -743,7 +762,7 @@
             },
             'amphi-logic': {
                 title: 'AmphiGlide Control Logic',
-                img: 'amphi-logic.jpg',
+                images: ['amphi-logic.jpg'],
                 fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Control+Logic',
                 date: 'May 2026',
                 desc: 'Collaborated alongside Ali Shahbaz to engineer the overarching control architecture for the amphibious robot. Successfully integrated Raspberry Pi and ESP32 computing modules to handle complex sensor inputs and dictate seamless mechanical actuation across diverse aquatic and terrestrial terrains.',
@@ -751,7 +770,7 @@
             },
             'wind-tunnel': {
                 title: 'Arduino Wind Tunnel',
-                img: 'wind-tunnel.jpg',
+                images: ['wind-tunnel.jpg'],
                 fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Wind+Tunnel',
                 date: '2025',
                 desc: 'Developed the complete electronic control architecture for a custom-built fluid mechanics wind tunnel. The system was engineered utilizing the Arduino platform, integrating a complex network of sensors to extract and log precise aerodynamic data during physical testing phases.',
@@ -759,7 +778,7 @@
             },
             'robot': {
                 title: 'Object Detection Bot',
-                img: 'robot.jpg',
+                images: ['robot.jpg'],
                 fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Robotics',
                 date: '2024',
                 desc: 'Engineered a specialized motion and line-following navigator robotics platform. The hardware integration involved establishing active object detection protocols, utilizing real-time sensor feedback loops to dynamically adjust the robotic path and avoid physical collisions.',
@@ -767,21 +786,21 @@
             }
         };
 
+        // Modal and Carousel Logic
         const modal = document.getElementById('project-modal');
         const modalContent = document.getElementById('modal-content');
+        
+        let currentProjectImages = [];
+        let currentImageIndex = 0;
 
         function openModal(projectId) {
             const data = projectData[projectId];
             if (!data) return;
 
-            // Populate Data
+            // Populate Text Data
             document.getElementById('modal-title').textContent = data.title;
             document.getElementById('modal-desc').textContent = data.desc;
             document.getElementById('modal-date').textContent = data.date;
-            
-            const imgEl = document.getElementById('modal-img');
-            imgEl.src = data.img;
-            imgEl.onerror = () => { imgEl.src = data.fallback; };
 
             // Build Tags
             const tagsHtml = data.tags.map(tag => 
@@ -789,28 +808,70 @@
             ).join('');
             document.getElementById('modal-tags').innerHTML = tagsHtml;
 
+            // Setup Carousel State
+            currentProjectImages = data.images;
+            currentImageIndex = 0;
+            renderCarouselImage();
+
             // Trigger Fluid Open Animations
             modal.classList.remove('modal-enter');
             modal.classList.add('modal-enter-active');
             
             modalContent.classList.remove('modal-scale-enter');
-            // Small delay to allow display:block to register before scaling
             requestAnimationFrame(() => {
                 modalContent.classList.add('modal-scale-enter-active');
             });
             
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function renderCarouselImage() {
+            const imgEl = document.getElementById('modal-img');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const counter = document.getElementById('image-counter');
+
+            // Quick fade out effect for smooth transitions
+            imgEl.style.opacity = '0.4';
+            
+            setTimeout(() => {
+                const currentData = Object.values(projectData).find(p => p.images === currentProjectImages);
+                imgEl.src = currentProjectImages[currentImageIndex];
+                imgEl.onerror = () => { imgEl.src = currentData ? currentData.fallback : 'https://placehold.co/800x800/f8fafc/1a1a1a'; };
+                imgEl.style.opacity = '1';
+            }, 150); // Matches opacity transition duration
+
+            // Show/Hide Controls based on image count
+            if (currentProjectImages.length > 1) {
+                prevBtn.classList.remove('hidden');
+                nextBtn.classList.remove('hidden');
+                counter.classList.remove('hidden');
+                counter.textContent = `${currentImageIndex + 1} / ${currentProjectImages.length}`;
+            } else {
+                prevBtn.classList.add('hidden');
+                nextBtn.classList.add('hidden');
+                counter.classList.add('hidden');
+            }
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + currentProjectImages.length) % currentProjectImages.length;
+            renderCarouselImage();
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % currentProjectImages.length;
+            renderCarouselImage();
         }
 
         function closeModal() {
-            // Trigger Fluid Close Animations
             modal.classList.remove('modal-enter-active');
             modal.classList.add('modal-enter');
             
             modalContent.classList.remove('modal-scale-enter-active');
             modalContent.classList.add('modal-scale-enter');
             
-            document.body.style.overflow = 'auto'; // Restore scrolling
+            document.body.style.overflow = 'auto'; 
         }
 
         // Close modal on ESC key
