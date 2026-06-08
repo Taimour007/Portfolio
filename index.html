@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taimour Zahid | Mechanical Engineer</title>
-    <!-- Tailwind CSS for styling -->
+    <title>Taimour Zahid | Mechanical Design Engineer</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for the LinkedIn Icon -->
+    
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Particles.js for the Matrix/Node Net Effect -->
+    
+    <!-- Particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <!-- AOS Animation Library for Scroll Effects -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap');
         
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #050505; 
+            background-color: #030303; 
             color: #fff; 
             margin: 0; 
             overflow-x: hidden; 
@@ -24,7 +31,14 @@
         
         h1, h2, h3, .bebas { font-family: 'Bebas Neue', sans-serif; }
         
-        /* Forces the particle matrix to sit behind the content */
+        /* Emulating the ultra-condensed "Galgo" font look */
+        .galgo-text {
+            display: inline-block;
+            transform: scaleY(1.3);
+            letter-spacing: -0.02em;
+            line-height: 0.8;
+        }
+        
         #particles-js { 
             position: fixed; 
             width: 100%; 
@@ -32,26 +46,38 @@
             z-index: 0; 
             top: 0; 
             left: 0; 
+            pointer-events: none; /* Lets clicks pass through to buttons */
         }
         
         .content-layer { position: relative; z-index: 10; }
         
-        /* Glassmorphism for the project cards to look tech-heavy */
         .glass-card { 
-            background: rgba(20, 0, 0, 0.4); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(220, 38, 38, 0.2); 
+            background: rgba(15, 0, 0, 0.6); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(220, 38, 38, 0.15); 
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(220, 38, 38, 0.5);
+            box-shadow: 0 10px 40px rgba(220, 38, 38, 0.2);
+            transform: translateY(-5px);
         }
         
-        /* The Batman Gradient text effect */
+        /* The Batman Gradient */
         .batman-gradient { 
-            background: linear-gradient(180deg, #ff2a2a 0%, #5a0000 100%); 
+            background: linear-gradient(180deg, #ff3333 0%, #7a0000 100%); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
-            filter: drop-shadow(0 0 15px rgba(220,38,38,0.4)); 
+            filter: drop-shadow(0 0 12px rgba(220,38,38,0.5)); 
         }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #030303; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #dc2626; }
     </style>
 </head>
 <body class="antialiased">
@@ -59,119 +85,263 @@
     <!-- The Interactive Node Network Background -->
     <div id="particles-js"></div>
 
-    <!-- HERO SECTION -->
-    <div class="relative min-h-screen flex flex-col items-center justify-center content-layer px-4 text-center">
+    <section class="relative min-h-screen flex flex-col items-center justify-center content-layer px-4 text-center pt-10">
         
-        <!-- Glowing Profile Image -->
-        <div class="mb-8 relative group">
-            <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-900 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-            <!-- Make sure you upload a picture named 'profile.jpg' to your GitHub! -->
-            <img src="profile.jpg" alt="Taimour Zahid" class="relative w-44 h-44 rounded-full object-cover border-2 border-red-500 shadow-[0_0_25px_rgba(220,38,38,0.6)]">
+        <!-- Profile Image with safe placeholder fallback -->
+        <div class="mb-10 relative group" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-900 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
+            <!-- Temporary placeholder so it doesn't look broken. Just replace 'profile.jpg' when ready -->
+            <img src="profile.jpg" onerror="this.src='https://placehold.co/400x400/1a0000/dc2626?text=TZ'" alt="Taimour Zahid" class="relative w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border-2 border-red-600 shadow-[0_0_30px_rgba(220,38,38,0.5)] z-10">
         </div>
 
-        <p class="text-gray-400 tracking-[0.3em] uppercase text-sm md:text-base mb-4 font-bold">Mechanical Design Engineer</p>
+        <p class="text-gray-400 tracking-[0.4em] uppercase text-xs md:text-sm mb-6 font-bold" data-aos="fade-up" data-aos-delay="200">Mechanical Design Engineer</p>
         
-        <h1 class="text-7xl md:text-9xl font-extrabold uppercase tracking-tighter mb-2">
-            <span class="text-white">Taimour </span>
-            <span class="batman-gradient">Zahid</span>
+        <h1 class="text-7xl md:text-[9rem] font-extrabold uppercase mb-4 overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+            <span class="text-white galgo-text">TAIMOUR</span>
+            <span class="batman-gradient galgo-text ml-2 md:ml-4">ZAHID</span>
         </h1>
 
-        <h2 class="text-xl md:text-3xl text-gray-300 font-light tracking-wide max-w-2xl mt-4 bebas">
-            Bridging Digital Architecture with <strong class="text-white font-bold tracking-widest">Physical Reality</strong>
+        <h2 class="text-lg md:text-3xl text-gray-300 font-light tracking-widest max-w-2xl mt-4 bebas" data-aos="fade-up" data-aos-delay="600">
+            Bridging Digital Architecture with <strong class="text-white font-bold">Physical Reality</strong>
         </h2>
 
-        <!-- Call To Action Buttons (LinkedIn added) -->
-        <div class="mt-10 flex flex-wrap justify-center gap-4">
-            <a href="#projects" class="px-8 py-3 bg-red-700 hover:bg-red-600 text-white font-bold rounded shadow-[0_0_15px_rgba(220,38,38,0.6)] transition-all">
-                View Projects
+        <!-- Call To Action Buttons -->
+        <div class="mt-12 flex flex-wrap justify-center gap-4" data-aos="fade-up" data-aos-delay="800">
+            <a href="#about" class="px-8 py-3 bg-red-700 hover:bg-red-600 text-white font-bold rounded shadow-[0_0_15px_rgba(220,38,38,0.4)] transition-all uppercase tracking-wider text-sm">
+                Initiate Sequence
             </a>
-            <a href="YOUR_LINKEDIN_URL_HERE" target="_blank" class="px-8 py-3 border border-red-700 hover:bg-red-900/40 text-white font-bold rounded transition-all flex items-center gap-2">
-                <i class="fa-brands fa-linkedin text-xl"></i> LinkedIn
+            <a href="https://linkedin.com" target="_blank" class="px-8 py-3 border border-red-800 hover:bg-red-900/30 text-white font-bold rounded transition-all flex items-center gap-2 uppercase tracking-wider text-sm">
+                <i class="fa-brands fa-linkedin text-lg"></i> LinkedIn
             </a>
-            <a href="https://linktr.ee/Taimour_Zahid" target="_blank" class="px-8 py-3 border border-gray-700 hover:bg-gray-800 text-white font-bold rounded transition-all flex items-center gap-2">
-                <i class="fa-solid fa-link"></i> Links
+            <a href="https://linktr.ee/Taimour_Zahid" target="_blank" class="px-8 py-3 border border-gray-700 hover:bg-gray-800 text-white font-bold rounded transition-all flex items-center gap-2 uppercase tracking-wider text-sm">
+                <i class="fa-solid fa-link text-lg"></i> Portals
             </a>
         </div>
-    </div>
+    </section>
 
-    <!-- PROJECTS SECTION -->
-    <div id="projects" class="relative py-20 px-6 content-layer max-w-7xl mx-auto">
-        <h2 class="text-5xl md:text-7xl bebas text-center mb-16"><span class="text-white">Engineering </span><span class="batman-gradient">Impact</span></h2>
+    <section id="about" class="relative py-24 px-6 content-layer max-w-5xl mx-auto border-t border-red-900/30">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-4" data-aos="fade-right">
+                <h2 class="text-5xl md:text-7xl bebas leading-none"><span class="text-white">System</span><br><span class="batman-gradient">Architecture</span></h2>
+                <div class="w-16 h-1 bg-red-600 mt-6"></div>
+            </div>
+            <div class="md:col-span-8 text-gray-400 text-lg leading-relaxed space-y-6 font-light" data-aos="fade-left">
+                <p>
+                    I am a Mechanical Design Engineer specializing in <strong class="text-gray-200 font-semibold">complex mechatronic systems, iterative rapid prototyping, and high-performance hardware architecture.</strong> I don't just build 3D models—I engineer physical realities.
+                </p>
+                <p>
+                    From leading the aerodynamic design of an award-winning electric vehicle to reverse-engineering industrial agricultural systems, my focus is strictly on <strong class="text-gray-200 font-semibold">Design for Manufacturability (DFM)</strong> and computational validation. 
+                </p>
+                <p>
+                    If it needs to be simulated in ANSYS, iterated in PETG, or modeled with micro-millimeter precision to bridge the gap between theoretical physics and functional hardware, I am the engineer who executes it.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative py-20 px-6 content-layer bg-[#080000] border-y border-red-900/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-6xl bebas text-center mb-16 text-white tracking-widest">Technical <span class="batman-gradient">Arsenal</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Skill Category 1 -->
+                <div class="glass-card p-8 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-cubes text-3xl text-red-600 mb-4"></i>
+                    <h3 class="text-2xl bebas text-white mb-4 tracking-wide">Digital Architecture</h3>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-red-500 text-xs"></i> Siemens NX & SolidWorks</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-red-500 text-xs"></i> Precision Surface Modeling</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-red-500 text-xs"></i> Complex Assembly Structuring</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-red-500 text-xs"></i> Reverse Engineering</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category 2 -->
+                <div class="glass-card p-8 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-network-wired text-3xl text-red-600 mb-4"></i>
+                    <h3 class="text-2xl bebas text-white mb-4 tracking-wide">Simulation & Analysis</h3>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-red-500 text-xs"></i> ANSYS Fluent (CFD)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-red-500 text-xs"></i> Finite Element Analysis (FEA)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-red-500 text-xs"></i> Thermal Management Studies</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-red-500 text-xs"></i> Aerodynamic Optimization</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category 3 -->
+                <div class="glass-card p-8 rounded-lg" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-print text-3xl text-red-600 mb-4"></i>
+                    <h3 class="text-2xl bebas text-white mb-4 tracking-wide">Physical Production</h3>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-red-500 text-xs"></i> Design for Manufacturability (DFM)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-red-500 text-xs"></i> FDM Rapid Prototyping</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-red-500 text-xs"></i> Material Profiling (PETG/ABS)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-red-500 text-xs"></i> Hardware Integration (Arduino)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="relative py-24 px-6 content-layer max-w-7xl mx-auto">
+        <h2 class="text-5xl md:text-7xl bebas text-center mb-16"><span class="text-white">PROJECTS</span></h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
-            <!-- AmphiGlide Card -->
-            <div class="glass-card rounded-lg overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
-                <!-- Upload 'amphiglide.jpg' to GitHub -->
-                <img src="amphiglide.jpg" alt="AmphiGlide Robot" class="w-full h-56 object-cover border-b border-red-900/50 opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">
+            <!-- Project 1: AmphiGlide -->
+            <div class="glass-card rounded-lg overflow-hidden group" data-aos="fade-up">
+                <img src="amphiglide.jpg" onerror="this.src='https://placehold.co/600x400/0a0000/dc2626?text=AmphiGlide'" alt="AmphiGlide" class="w-full h-56 object-cover border-b border-red-900/50 opacity-70 group-hover:opacity-100 transition-all duration-500">
                 <div class="p-6">
-                    <h3 class="text-2xl bebas text-white mb-2 tracking-wide">AmphiGlide Robot</h3>
-                    <p class="text-sm text-gray-400 mb-4">Biomimetic amphibious robotic platform. Dual environment propulsion validated with ANSYS CFD.</p>
-                    <div class="text-xs text-red-500 font-bold tracking-wider">AUG 2025 • MAY 2026</div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl bebas text-white tracking-wide">AmphiGlide Robot</h3>
+                        <span class="text-[10px] text-red-500 font-bold tracking-widest border border-red-900/50 px-2 py-1 rounded">2026</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4 h-16 overflow-hidden">Biomimetic amphibious robotic platform. Engineered dual-environment propulsion mechanism validated with ANSYS CFD and FEA.</p>
                 </div>
             </div>
 
-            <!-- EHPVC Card -->
-            <div class="glass-card rounded-lg overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
-                <!-- Upload 'ehpvc.jpg' to GitHub -->
-                <img src="ehpvc.jpg" alt="EHPVC Vehicle" class="w-full h-56 object-cover border-b border-red-900/50 opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">
+            <!-- Project 2: EHPVC -->
+            <div class="glass-card rounded-lg overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                <img src="ehpvc.jpg" onerror="this.src='https://placehold.co/600x400/0a0000/dc2626?text=EHPVC+Trike'" alt="EHPVC" class="w-full h-56 object-cover border-b border-red-900/50 opacity-70 group-hover:opacity-100 transition-all duration-500">
                 <div class="p-6">
-                    <h3 class="text-2xl bebas text-white mb-2 tracking-wide">EHPVC Trike</h3>
-                    <p class="text-sm text-gray-400 mb-4">1st Position (University). Tadpole recumbent tricycle featuring a robust tubular space frame and hybrid powertrain.</p>
-                    <div class="text-xs text-red-500 font-bold tracking-wider">FEB 2025 • MAY 2025</div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl bebas text-white tracking-wide">EHPVC Trike</h3>
+                        <span class="text-[10px] text-red-500 font-bold tracking-widest border border-red-900/50 px-2 py-1 rounded">2025</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4 h-16 overflow-hidden">1st Position Winner. Lead Designer for a tadpole recumbent tricycle featuring robust tubular space frame and hybrid powertrain.</p>
                 </div>
             </div>
 
-            <!-- Factory Copilot Card -->
-            <div class="glass-card rounded-lg overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
-                <!-- Upload 'copilot.jpg' to GitHub -->
-                <img src="copilot.jpg" alt="Factory Copilot" class="w-full h-56 object-cover border-b border-red-900/50 opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">
+            <!-- Project 3: Factory Copilot -->
+            <div class="glass-card rounded-lg overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                <img src="copilot.jpg" onerror="this.src='https://placehold.co/600x400/0a0000/dc2626?text=Factory+Copilot'" alt="Factory Copilot" class="w-full h-56 object-cover border-b border-red-900/50 opacity-70 group-hover:opacity-100 transition-all duration-500">
                 <div class="p-6">
-                    <h3 class="text-2xl bebas text-white mb-2 tracking-wide">Factory Copilot</h3>
-                    <p class="text-sm text-gray-400 mb-4">Industrial assembly wearable. Iterative rapid prototyping from blocky ABS to a highly streamlined PETG frame.</p>
-                    <div class="text-xs text-red-500 font-bold tracking-wider">JUN 2025 • AUG 2025</div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl bebas text-white tracking-wide">Factory Copilot</h3>
+                        <span class="text-[10px] text-red-500 font-bold tracking-widest border border-red-900/50 px-2 py-1 rounded">2025</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4 h-16 overflow-hidden">Industrial assembly wearable ecosystem. A massive three-stage iterative cycle shifting from blocky ABS to ultra-light PETG.</p>
+                </div>
+            </div>
+
+            <!-- Project 4: HydroSense -->
+            <div class="glass-card rounded-lg overflow-hidden group" data-aos="fade-up">
+                <img src="hydrosense.jpg" onerror="this.src='https://placehold.co/600x400/0a0000/dc2626?text=HydroSense'" alt="HydroSense" class="w-full h-56 object-cover border-b border-red-900/50 opacity-70 group-hover:opacity-100 transition-all duration-500">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl bebas text-white tracking-wide">HydroSense</h3>
+                        <span class="text-[10px] text-red-500 font-bold tracking-widest border border-red-900/50 px-2 py-1 rounded">2025</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4 h-16 overflow-hidden">Smart watering device concept. Engineered a tight cylindrical form factor with a custom tolerance-based bayonet lock mechanism.</p>
+                </div>
+            </div>
+
+            <!-- Project 5: Battery Thermal Mgmt -->
+            <div class="glass-card rounded-lg overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                <img src="thermal.jpg" onerror="this.src='https://placehold.co/600x400/0a0000/dc2626?text=Li-Ion+Thermal+CFD'" alt="Thermal Mgmt" class="w-full h-56 object-cover border-b border-red-900/50 opacity-70 group-hover:opacity-100 transition-all duration-500">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl bebas text-white tracking-wide">Li-Ion Thermal CFD</h3>
+                        <span class="text-[10px] text-red-500 font-bold tracking-widest border border-red-900/50 px-2 py-1 rounded">2025</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4 h-16 overflow-hidden">Advanced computational fluid dynamics studies using ANSYS Fluent to drastically optimize battery thermal management systems.</p>
+                </div>
+            </div>
+
+            <!-- Project 6: Holter Monitor -->
+            <div class="glass-card rounded-lg overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                <img src="holter.jpg" onerror="this.src='https://placehold.co/600x400/0a0000/dc2626?text=Holter+Enclosure'" alt="Holter Monitor" class="w-full h-56 object-cover border-b border-red-900/50 opacity-70 group-hover:opacity-100 transition-all duration-500">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl bebas text-white tracking-wide">Holter Enclosure</h3>
+                        <span class="text-[10px] text-red-500 font-bold tracking-widest border border-red-900/50 px-2 py-1 rounded">2025</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4 h-16 overflow-hidden">Low-cost biomedical ABS enclosure achieving a fully functional, interference-free prototype on the exact first manufacturing iteration.</p>
+                </div>
+            </div>
+
+            <!-- Project 7: OceanGate Titan -->
+            <div class="glass-card rounded-lg overflow-hidden group" data-aos="fade-up">
+                <img src="oceangate.jpg" onerror="this.src='https://placehold.co/600x400/0a0000/dc2626?text=Titan+FEA'" alt="Titan Analysis" class="w-full h-56 object-cover border-b border-red-900/50 opacity-70 group-hover:opacity-100 transition-all duration-500">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl bebas text-white tracking-wide">Titan Failure Analysis</h3>
+                        <span class="text-[10px] text-red-500 font-bold tracking-widest border border-red-900/50 px-2 py-1 rounded">2024</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4 h-16 overflow-hidden">Rigorous digital simulation study focused on the structural validation and failure analysis of the submersible hull using ANSYS.</p>
+                </div>
+            </div>
+
+            <!-- Project 8: ASUS Motherboard -->
+            <div class="glass-card rounded-lg overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                <img src="asus.jpg" onerror="this.src='https://placehold.co/600x400/0a0000/dc2626?text=ASUS+CAD+Replica'" alt="ASUS Motherboard" class="w-full h-56 object-cover border-b border-red-900/50 opacity-70 group-hover:opacity-100 transition-all duration-500">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl bebas text-white tracking-wide">ASUS Board CAD</h3>
+                        <span class="text-[10px] text-red-500 font-bold tracking-widest border border-red-900/50 px-2 py-1 rounded">2024</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4 h-16 overflow-hidden">Freelance 3-week sprint mapping complex micro-architecture. Independently modeled high-density PCB components from scratch.</p>
+                </div>
+            </div>
+
+            <!-- Project 9: Field Seeder -->
+            <div class="glass-card rounded-lg overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                <img src="seeder.jpg" onerror="this.src='https://placehold.co/600x400/0a0000/dc2626?text=Field+Seeder'" alt="Field Seeder" class="w-full h-56 object-cover border-b border-red-900/50 opacity-70 group-hover:opacity-100 transition-all duration-500">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl bebas text-white tracking-wide">Field Seeder Vehicle</h3>
+                        <span class="text-[10px] text-red-500 font-bold tracking-widest border border-red-900/50 px-2 py-1 rounded">2024</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4 h-16 overflow-hidden">Collaborative reverse engineering of an agricultural planter into a validated, production-ready 3D CAD model optimized for DFM.</p>
                 </div>
             </div>
 
         </div>
-    </div>
+    </section>
 
-    <!-- Matrix Network Javascript Logic -->
+    <!-- FOOTER -->
+    <footer class="bg-[#050000] py-12 text-center border-t border-red-900/30 content-layer">
+        <p class="text-gray-500 text-sm tracking-widest uppercase">© 2026 Taimour Zahid | Engineered with Precision</p>
+    </footer>
+
     <script>
+        // Initialize Scroll Animations
+        AOS.init({
+            once: true, // Whether animation should happen only once - while scrolling down
+            offset: 100, // Offset (in px) from the original trigger point
+        });
+
+        // Initialize Matrix Particle Network
         particlesJS('particles-js', {
           "particles": {
-            "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
-            "color": { "value": "#ff0000" },
+            "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": "#dc2626" },
             "shape": { "type": "circle" },
-            "opacity": { "value": 0.4, "random": false },
+            "opacity": { "value": 0.3, "random": false },
             "size": { "value": 2, "random": true },
             "line_linked": {
               "enable": true,
               "distance": 150,
-              "color": "#ff0000",
-              "opacity": 0.3,
+              "color": "#dc2626",
+              "opacity": 0.2,
               "width": 1
             },
             "move": {
               "enable": true,
-              "speed": 1.5,
+              "speed": 1,
               "direction": "none",
               "random": true,
-              "straight": false,
-              "out_mode": "out",
-              "bounce": false
+              "out_mode": "out"
             }
           },
           "interactivity": {
             "detect_on": "canvas",
             "events": {
               "onhover": { "enable": true, "mode": "grab" },
-              "onclick": { "enable": true, "mode": "push" },
               "resize": true
             },
             "modes": {
-              "grab": { "distance": 180, "line_linked": { "opacity": 0.8 } },
-              "push": { "particles_nb": 3 }
+              "grab": { "distance": 200, "line_linked": { "opacity": 0.6 } }
             }
           },
           "retina_detect": true
