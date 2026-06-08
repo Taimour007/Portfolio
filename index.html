@@ -202,22 +202,22 @@
     <!-- MOVING HEADLINE (NEWS STRIP) -->
     <div class="marquee-wrapper content-layer z-20 shadow-2xl">
         <div class="marquee brand-font text-xl tracking-widest uppercase font-bold">
-            <span>SIEMENS NX</span> <span class="text-red-600 px-10">/</span>
-            <span>SOLIDWORKS</span> <span class="text-red-600 px-10">/</span>
-            <span>ANSYS FLUENT</span> <span class="text-red-600 px-10">/</span>
-            <span>FINITE ELEMENT ANALYSIS</span> <span class="text-red-600 px-10">/</span>
-            <span>DESIGN FOR MANUFACTURABILITY</span> <span class="text-red-600 px-10">/</span>
-            <span>RAPID PROTOTYPING</span> <span class="text-red-600 px-10">/</span>
-            <span>ARDUINO & RASPBERRY PI</span> <span class="text-red-600 px-10">/</span>
+            <span>SIEMENS NX</span> <span class="inline-block w-3 h-3 rounded-full bg-red-600 mx-10"></span>
+            <span>SOLIDWORKS</span> <span class="inline-block w-3 h-3 rounded-full bg-red-600 mx-10"></span>
+            <span>ANSYS FLUENT</span> <span class="inline-block w-3 h-3 rounded-full bg-red-600 mx-10"></span>
+            <span>FINITE ELEMENT ANALYSIS</span> <span class="inline-block w-3 h-3 rounded-full bg-red-600 mx-10"></span>
+            <span>DESIGN FOR MANUFACTURABILITY</span> <span class="inline-block w-3 h-3 rounded-full bg-red-600 mx-10"></span>
+            <span>RAPID PROTOTYPING</span> <span class="inline-block w-3 h-3 rounded-full bg-red-600 mx-10"></span>
+            <span>ARDUINO & RASPBERRY PI</span> <span class="inline-block w-3 h-3 rounded-full bg-red-600 mx-10"></span>
         </div>
         <div class="marquee brand-font text-xl tracking-widest uppercase font-bold" aria-hidden="true">
-            <span>SIEMENS NX</span> <span class="text-red-600 px-10">/</span>
-            <span>SOLIDWORKS</span> <span class="text-red-600 px-10">/</span>
-            <span>ANSYS FLUENT</span> <span class="text-red-600 px-10">/</span>
-            <span>FINITE ELEMENT ANALYSIS</span> <span class="text-red-600 px-10">/</span>
-            <span>DESIGN FOR MANUFACTURABILITY</span> <span class="text-red-600 px-10">/</span>
-            <span>RAPID PROTOTYPING</span> <span class="text-red-600 px-10">/</span>
-            <span>ARDUINO & RASPBERRY PI</span> <span class="text-red-600 px-10">/</span>
+            <span>SIEMENS NX</span> <span class="inline-block w-3 h-3 rounded-full bg-red-600 mx-10"></span>
+            <span>SOLIDWORKS</span> <span class="inline-block w-3 h-3 rounded-full bg-red-600 mx-10"></span>
+            <span>ANSYS FLUENT</span> <span class="inline-block w-3 h-3 rounded-full bg-red-600 mx-10"></span>
+            <span>FINITE ELEMENT ANALYSIS</span> <span class="inline-block w-3 h-3 rounded-full bg-red-600 mx-10"></span>
+            <span>DESIGN FOR MANUFACTURABILITY</span> <span class="inline-block w-3 h-3 rounded-full bg-red-600 mx-10"></span>
+            <span>RAPID PROTOTYPING</span> <span class="inline-block w-3 h-3 rounded-full bg-red-600 mx-10"></span>
+            <span>ARDUINO & RASPBERRY PI</span> <span class="inline-block w-3 h-3 rounded-full bg-red-600 mx-10"></span>
         </div>
     </div>
 
@@ -544,7 +544,7 @@
                     <div class="p-8 relative z-10">
                         <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">Object Detection Robotics</h3>
                         <p class="text-sm text-gray-500 font-light leading-relaxed mb-6">
-                            Engineered a dedicated motion and line-following navigator robot. Integrated active object detection protocols and real-time sensor feedback loops.
+                            Engineered a specialized motion and line-following navigator robotics platform. The hardware integration involved establishing active object detection protocols, utilizing real-time sensor feedback loops to dynamically adjust the robotic path and avoid physical collisions.
                         </p>
                         <span class="text-xs text-gray-500 font-bold tracking-widest uppercase">Robotics / Logic</span>
                     </div>
@@ -590,21 +590,21 @@
     <!-- FULLSCREEN FLUID MODAL -->
     <div id="project-modal" class="fixed inset-0 z-[100] flex items-center justify-center modal-enter">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-md" onclick="closeModal()"></div>
-        <div id="modal-content" class="relative bg-white w-11/12 max-w-5xl rounded-sm shadow-2xl overflow-hidden modal-scale-enter">
+        <div id="modal-content" class="relative bg-white w-11/12 max-w-6xl rounded-sm shadow-2xl overflow-hidden modal-scale-enter">
             
             <button onclick="closeModal()" class="absolute top-4 right-4 z-20 w-12 h-12 bg-white/80 hover:bg-white hover:text-red-700 rounded-full flex items-center justify-center backdrop-blur text-gray-900 transition-all duration-300 shadow-lg">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
             
-            <div class="flex flex-col md:flex-row h-full max-h-[85vh] overflow-y-auto">
+            <div class="flex flex-col md:flex-row h-full max-h-[90vh] overflow-y-auto">
                 <div class="md:w-1/2 relative bg-gray-100 flex items-center justify-center min-h-[300px]">
                     <img id="modal-img" src="" class="absolute inset-0 w-full h-full object-cover">
                 </div>
-                <div class="md:w-1/2 p-8 md:p-14 flex flex-col justify-center bg-white">
-                    <span id="modal-date" class="text-xs font-bold text-red-700 tracking-widest uppercase mb-3 block"></span>
-                    <h3 id="modal-title" class="brand-font text-3xl md:text-4xl font-black uppercase text-gray-900 mb-6 leading-tight"></h3>
-                    <p id="modal-desc" class="text-gray-600 font-light leading-relaxed mb-8 text-lg"></p>
-                    <div id="modal-tags" class="flex flex-wrap gap-3 mt-auto"></div>
+                <div class="md:w-1/2 p-10 md:p-16 flex flex-col justify-center bg-white">
+                    <span id="modal-date" class="text-xs font-bold text-red-700 tracking-widest uppercase mb-4 block"></span>
+                    <h3 id="modal-title" class="brand-font text-3xl md:text-5xl font-black uppercase text-gray-900 mb-6 leading-tight"></h3>
+                    <p id="modal-desc" class="text-gray-600 font-light leading-relaxed mb-10 text-lg"></p>
+                    <div id="modal-tags" class="flex flex-wrap gap-3 mt-2 mb-2"></div>
                 </div>
             </div>
         </div>
