@@ -1,22 +1,18 @@
-<!-- Cinematic Portfolio for Taimour Zahid -->
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taimour Zahid | Mechanical Design Engineer</title>
+    
     <link rel="icon" href="logo.png" type="image/png">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
-    <!-- AOS Animation Library for Scroll Effects -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
@@ -144,12 +140,12 @@
 
     <div id="particles-js"></div>
 
-    <!-- STICKY HEADER -->
     <header id="navbar" class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 py-6 content-layer">
         <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-            <a href="#" class="brand-font font-black text-xl md:text-2xl tracking-[0.2em] uppercase text-gray-900 flex items-center gap-2 group">
-                <div class="w-2 h-2 luxury-red-bg rounded-full group-hover:scale-150 transition-transform duration-500"></div>
-                TAIMOUR ZAHID
+            
+            <a href="#" class="flex items-center gap-4 group">
+                <img src="logo.png" alt="Logo" class="h-8 w-auto object-contain">
+                <span class="brand-font font-black text-xl md:text-2xl tracking-[0.2em] uppercase text-gray-900">TAIMOUR ZAHID</span>
             </a>
             
             <nav class="hidden md:flex gap-8 text-sm font-medium tracking-widest uppercase text-gray-500">
@@ -161,7 +157,6 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
     <section class="relative min-h-screen flex flex-col justify-center content-layer px-6 md:px-12 pt-32 pb-16 bg-gradient-to-b from-stone-50 to-white">
         <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
@@ -201,7 +196,6 @@
         </div>
     </section>
 
-    <!-- MOVING HEADLINE (NEWS STRIP) -->
     <div class="marquee-wrapper content-layer z-20 shadow-2xl">
         <div class="marquee brand-font text-xl tracking-widest uppercase font-bold">
             <span>SIEMENS NX</span> <span class="inline-block w-3 h-3 rounded-full bg-red-600 mx-10"></span>
@@ -223,7 +217,6 @@
         </div>
     </div>
 
-    <!-- ABOUT ME & EDUCATION -->
     <section id="about" class="relative py-24 px-6 md:px-12 content-layer bg-white">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             
@@ -247,7 +240,6 @@
                     Whether it needs to be simulated in ANSYS, iterated in PETG, or modeled with micro-millimeter precision to bridge the gap between theoretical physics and functional hardware, I am the engineer who executes it.
                 </p>
 
-                <!-- Education Block -->
                 <div class="mt-12 pt-10 border-t border-gray-100" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
                     <h3 class="brand-font text-2xl font-black text-gray-900 uppercase tracking-wide mb-6">Academic Background</h3>
                     <div class="bg-stone-50 p-6 md:p-8 border-l-4 border-l-red-700 flex flex-col md:flex-row justify-between items-start md:items-center hover:bg-stone-100 transition-colors duration-500">
@@ -265,7 +257,6 @@
         </div>
     </section>
 
-    <!-- SKILLS MATRIX -->
     <section id="skills" class="relative py-24 px-6 md:px-12 content-layer bg-stone-50 border-y border-gray-200">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
@@ -310,7 +301,6 @@
         </div>
     </section>
 
-    <!-- DISCIPLINE 01: ADVANCED CAD -->
     <section id="projects-cad" class="relative py-24 px-6 md:px-12 content-layer bg-white">
         <div class="max-w-7xl mx-auto">
             
@@ -438,7 +428,6 @@
         </div>
     </section>
 
-    <!-- DISCIPLINE 02: SIMULATION -->
     <section id="projects-sim" class="relative py-24 px-6 md:px-12 content-layer bg-stone-50 border-y border-gray-200">
         <div class="max-w-7xl mx-auto">
             
@@ -497,7 +486,6 @@
         </div>
     </section>
 
-    <!-- DISCIPLINE 03: MECHATRONICS -->
     <section id="projects-elec" class="relative py-24 px-6 md:px-12 content-layer bg-white">
         <div class="max-w-7xl mx-auto">
             
@@ -556,7 +544,6 @@
         </div>
     </section>
 
-    <!-- CONTACT & FOOTER -->
     <section id="contact" class="relative py-32 px-6 md:px-12 content-layer bg-gray-900 text-white border-t-4 border-red-700">
         <div class="max-w-4xl mx-auto text-center">
             
@@ -589,7 +576,6 @@
         </div>
     </section>
 
-    <!-- FULLSCREEN FLUID MODAL WITH CAROUSEL -->
     <div id="project-modal" class="fixed inset-0 z-[100] flex items-center justify-center modal-enter">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-md" onclick="closeModal()"></div>
         <div id="modal-content" class="relative bg-white w-11/12 max-w-6xl rounded-sm shadow-2xl overflow-hidden modal-scale-enter">
@@ -600,21 +586,17 @@
             
             <div class="flex flex-col md:flex-row h-full max-h-[90vh] overflow-y-auto">
                 
-                <!-- Image Container with Carousel Controls -->
                 <div class="md:w-1/2 relative bg-gray-100 flex items-center justify-center min-h-[300px] group overflow-hidden">
                     <img id="modal-img" src="" class="absolute inset-0 w-full h-full object-contain p-4 transition-opacity duration-300">
                     
-                    <!-- Left Arrow -->
                     <button id="prev-btn" onclick="prevImage()" class="absolute left-4 z-20 w-10 h-10 bg-white/80 hover:bg-white hover:text-red-700 rounded-full flex items-center justify-center backdrop-blur text-gray-900 transition-all duration-300 shadow-lg hidden">
                         <i class="fa-solid fa-chevron-left text-sm"></i>
                     </button>
                     
-                    <!-- Right Arrow -->
                     <button id="next-btn" onclick="nextImage()" class="absolute right-4 z-20 w-10 h-10 bg-white/80 hover:bg-white hover:text-red-700 rounded-full flex items-center justify-center backdrop-blur text-gray-900 transition-all duration-300 shadow-lg hidden">
                         <i class="fa-solid fa-chevron-right text-sm"></i>
                     </button>
 
-                    <!-- Image Counter Badge -->
                     <div id="image-counter" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/60 backdrop-blur text-white text-[10px] font-bold tracking-widest px-3 py-1 rounded-full hidden z-20">
                         1 / 3
                     </div>
@@ -691,8 +673,6 @@
         const projectData = {
             'amphi-cad': {
                 title: 'AmphiGlide Biomimetic Robot',
-                // YOU CAN ADD AS MANY IMAGES AS YOU WANT HERE! 
-                // Just add a comma and the new filename inside quotes.
                 images: ['amphiglide-1.jpg', 'amphiglide-2.jpg', 'amphiglide-3.jpg', 'amphiglide-4.jpg'],
                 fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=AmphiGlide+Robot',
                 date: 'May 2026',
@@ -701,7 +681,6 @@
             },
             'ehpvc': {
                 title: 'EHPVC Trike Chassis',
-                // To add more images, just change this to: ['ehpvc-1.jpg', 'ehpvc-2.jpg']
                 images: ['ehpvc.jpg'], 
                 fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=EHPVC+Trike',
                 date: 'May 2025',
