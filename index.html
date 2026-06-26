@@ -1,4 +1,4 @@
-<!-- Cinematic Portfolio for Taimour Zahid -->
+<!-- Cinematic Digital Resume for Taimour Zahid -->
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -50,46 +50,6 @@
         
         .content-layer { position: relative; z-index: 10; }
         
-        /* Audemars-style minimalist premium card with fluid hover */
-        .premium-card { 
-            background: #ffffff;
-            border: 1px solid #f0f0f0;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: pointer;
-            position: relative;
-        }
-        .premium-card:hover {
-            border-color: #e5e5e5;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
-            transform: translateY(-8px);
-        }
-
-        /* Hover Overlay for "Click to View" */
-        .card-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(4px);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 20;
-        }
-        .premium-card:hover .card-overlay {
-            opacity: 1;
-        }
-
-        /* Image hover fluid zoom effect */
-        .img-zoom-container { overflow: hidden; position: relative; z-index: 10; }
-        .img-zoom-container img {
-            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .premium-card:hover .img-zoom-container img {
-            transform: scale(1.08);
-        }
-        
         /* Elegant Red Accents */
         .luxury-red { color: #b91c1c; }
         .luxury-red-bg { background-color: #b91c1c; }
@@ -116,12 +76,6 @@
             from { transform: translateX(0); } 
             to { transform: translateX(-100%); } 
         }
-
-        /* Fluid Modal Transitions */
-        .modal-enter { opacity: 0; pointer-events: none; }
-        .modal-enter-active { opacity: 1; pointer-events: auto; transition: opacity 0.5s ease; }
-        .modal-scale-enter { transform: scale(0.95) translateY(20px); }
-        .modal-scale-enter-active { transform: scale(1) translateY(0); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
@@ -155,8 +109,8 @@
             <nav class="hidden md:flex gap-8 text-sm font-medium tracking-widest uppercase text-gray-500">
                 <a href="#about" class="hover:text-red-700 transition-colors duration-300">About</a>
                 <a href="#skills" class="hover:text-red-700 transition-colors duration-300">Expertise</a>
-                <a href="#projects-cad" class="hover:text-red-700 transition-colors duration-300">Projects</a>
-                <a href="#contact" class="hover:text-red-700 transition-colors duration-300">Contact</a>
+                <a href="#experience" class="hover:text-red-700 transition-colors duration-300">Experience</a>
+                <a href="#contact" class="hover:text-red-700 transition-colors duration-300">Connect</a>
             </nav>
         </div>
     </header>
@@ -169,22 +123,25 @@
                 <div data-aos="fade-up" data-aos-duration="1200">
                     <p class="luxury-red font-bold tracking-[0.3em] uppercase text-xs md:text-sm mb-6 flex items-center gap-3">
                         <span class="w-8 h-[1px] luxury-red-bg block"></span>
-                        Mechanical Design Engineer
+                        Mechanical Design Engineer & Founder
                     </p>
                     
                     <h1 class="brand-font text-6xl md:text-[7rem] font-black uppercase leading-[0.9] tracking-tighter mb-8 text-gray-900">
-                        Bridging <br>
-                        <span class="text-gray-300 font-bold">Digital</span> <br>
-                        Reality.
+                        The Mind <br>
+                        <span class="text-gray-300 font-bold">Behind</span> <br>
+                        The Build.
                     </h1>
 
                     <p class="text-lg md:text-xl text-gray-500 font-light max-w-2xl leading-relaxed mb-10">
-                        Transforming theoretical mathematics and computational models into high-performance, precision-manufactured physical architecture.
+                        Transforming theoretical mathematics and computational models into high-performance, precision-manufactured physical architecture. Founder and Lead Engineer at Lowinertia.
                     </p>
 
                     <div class="flex flex-wrap gap-4">
-                        <a href="#projects-cad" class="px-8 py-4 luxury-red-bg hover:bg-red-800 text-white font-semibold text-sm tracking-widest uppercase transition-all duration-500 shadow-lg shadow-red-700/30 hover:shadow-red-700/50 hover:-translate-y-1">
-                            Explore Portfolio
+                        <a href="https://lowinertia.com/portfolio/taimour-zahid" target="_blank" class="px-8 py-4 luxury-red-bg hover:bg-red-800 text-white font-semibold text-sm tracking-widest uppercase transition-all duration-500 shadow-lg shadow-red-700/30 hover:shadow-red-700/50 hover:-translate-y-1">
+                            Explore Enterprise Portfolio
+                        </a>
+                        <a href="#experience" class="px-8 py-4 border border-gray-300 hover:border-gray-900 text-gray-900 font-semibold text-sm tracking-widest uppercase transition-all duration-500 hover:-translate-y-1">
+                            View Experience
                         </a>
                     </div>
                 </div>
@@ -310,246 +267,48 @@
         </div>
     </section>
 
-    <!-- DISCIPLINE 01: ADVANCED CAD -->
-    <section id="projects-cad" class="relative py-24 px-6 md:px-12 content-layer bg-white">
-        <div class="max-w-7xl mx-auto">
+    <!-- PROFESSIONAL EXPERIENCE TIMELINE -->
+    <section id="experience" class="relative py-24 px-6 md:px-12 content-layer bg-white">
+        <div class="max-w-4xl mx-auto">
             
-            <div class="mb-16 border-b border-gray-100 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6" data-aos="fade-right" data-aos-duration="1200">
-                <div>
-                    <span class="luxury-red font-bold tracking-widest text-sm uppercase block mb-2">Discipline 01</span>
-                    <h2 class="brand-font text-4xl md:text-5xl font-black text-gray-900 uppercase">Advanced CAD & Prototyping</h2>
-                </div>
-                <p class="text-gray-400 font-light text-sm tracking-widest uppercase max-w-sm text-left md:text-right">
-                    Precision surface modeling, DFM enclosures, and mechanical assemblies.
-                </p>
+            <div class="mb-16 border-b border-gray-100 pb-6" data-aos="fade-right" data-aos-duration="1200">
+                <span class="luxury-red font-bold tracking-widest text-sm uppercase block mb-2">Career Trajectory</span>
+                <h2 class="brand-font text-4xl md:text-5xl font-black text-gray-900 uppercase">Professional Experience</h2>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div class="relative border-l-2 border-red-700 pl-8 md:pl-12 space-y-16">
                 
-                <div class="premium-card group" onclick="openModal('amphi-cad')" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="img-zoom-container">
-                        <img src="amphiglide-1.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=AmphiGlide+CAD'" class="w-full h-64 object-cover border-b border-gray-100">
-                    </div>
-                    <div class="card-overlay">
-                        <span class="brand-font text-lg font-bold text-gray-900 tracking-widest uppercase">Click to view details</span>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">AmphiGlide Biomimetic Robot</h3>
-                        <p class="text-sm text-gray-500 font-light leading-relaxed mb-6 h-20 overflow-hidden">
-                            Engineered the structural housing to integrate a dual-environment propulsion system, transitioning from theoretical CAD models to a fully functional 3D-printed prototype.
-                        </p>
-                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-                            <span class="text-xs text-gray-400 font-medium tracking-widest uppercase">SolidWorks / DFM</span>
-                        </div>
-                    </div>
+                <!-- Job 1 -->
+                <div class="relative group" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="absolute -left-[41px] md:-left-[57px] top-1 w-5 h-5 luxury-red-bg rounded-full border-4 border-white shadow-md group-hover:scale-125 transition-transform duration-300"></div>
+                    <span class="text-xs font-bold text-gray-400 tracking-widest uppercase mb-2 block">Present - 2024</span>
+                    <h3 class="brand-font text-2xl md:text-3xl font-bold text-gray-900 uppercase tracking-wide mb-1">Founder & Lead Engineer</h3>
+                    <h4 class="text-lg text-red-700 font-bold mb-4 uppercase tracking-widest text-sm">Lowinertia</h4>
+                    <p class="text-gray-500 font-light leading-relaxed text-lg">
+                        Directing end-to-end mechanical design, computational fluid dynamics (CFD), and rapid prototyping for high-profile enterprise clients. Overseeing a full design portfolio bridging theoretical physics with functional hardware.
+                    </p>
                 </div>
 
-                <div class="premium-card group" onclick="openModal('ehpvc')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                    <div class="img-zoom-container">
-                        <img src="ehpvc.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=EHPVC+Trike'" class="w-full h-64 object-cover border-b border-gray-100">
-                    </div>
-                    <div class="card-overlay">
-                        <span class="brand-font text-lg font-bold text-gray-900 tracking-widest uppercase">Click to view details</span>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">EHPVC Trike Chassis</h3>
-                        <p class="text-sm text-gray-500 font-light leading-relaxed mb-6 h-20 overflow-hidden">
-                            Lead Designer for a tadpole recumbent tricycle. Designed a robust tubular space frame integrating a hybrid powertrain, securing 1st Position.
-                        </p>
-                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-                            <span class="text-xs text-gray-400 font-medium tracking-widest uppercase">Tubular Framework</span>
-                        </div>
-                    </div>
+                <!-- Job 2 -->
+                <div class="relative group" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="absolute -left-[41px] md:-left-[57px] top-1 w-5 h-5 bg-gray-300 rounded-full border-4 border-white shadow-md group-hover:bg-red-700 transition-colors duration-300"></div>
+                    <span class="text-xs font-bold text-gray-400 tracking-widest uppercase mb-2 block">May 2025</span>
+                    <h3 class="brand-font text-2xl md:text-3xl font-bold text-gray-900 uppercase tracking-wide mb-1">Team Lead & Head of Analysis</h3>
+                    <h4 class="text-lg text-gray-700 font-bold mb-4 uppercase tracking-widest text-sm">EHPVC Trike Chassis</h4>
+                    <p class="text-gray-500 font-light leading-relaxed text-lg">
+                        Spearheaded the development of a hybrid powertrain tadpole recumbent tricycle. Designed the robust tubular space frame and managed all aerodynamic validation, securing 1st Position globally.
+                    </p>
                 </div>
 
-                <div class="premium-card group" onclick="openModal('copilot')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                    <div class="img-zoom-container">
-                        <img src="copilot-1.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=Factory+Copilot'" class="w-full h-64 object-cover border-b border-gray-100">
-                    </div>
-                    <div class="card-overlay">
-                        <span class="brand-font text-lg font-bold text-gray-900 tracking-widest uppercase">Click to view details</span>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">Factory Copilot Wearable</h3>
-                        <p class="text-sm text-gray-500 font-light leading-relaxed mb-6 h-20 overflow-hidden">
-                            Industrial assembly wearable ecosystem. Executed a massive three-stage iterative cycle shifting from blocky ABS models to ultra-light PETG enclosures.
-                        </p>
-                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-                            <span class="text-xs text-gray-400 font-medium tracking-widest uppercase">Rapid Prototyping</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="premium-card group" onclick="openModal('hydrosense')" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="img-zoom-container">
-                        <img src="hydrosense.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=HydroSense'" class="w-full h-64 object-cover border-b border-gray-100">
-                    </div>
-                    <div class="card-overlay">
-                        <span class="brand-font text-lg font-bold text-gray-900 tracking-widest uppercase">Click to view details</span>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">HydroSense System</h3>
-                        <p class="text-sm text-gray-500 font-light leading-relaxed mb-6 h-20 overflow-hidden">
-                            Smart watering device concept. Engineered a tight cylindrical electromechanical form factor with a custom tolerance-based bayonet lock mechanism.
-                        </p>
-                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-                            <span class="text-xs text-gray-400 font-medium tracking-widest uppercase">Mechanism Design</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="premium-card group" onclick="openModal('holter')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                    <div class="img-zoom-container">
-                        <img src="holter.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=Holter+Enclosure'" class="w-full h-64 object-cover border-b border-gray-100">
-                    </div>
-                    <div class="card-overlay">
-                        <span class="brand-font text-lg font-bold text-gray-900 tracking-widest uppercase">Click to view details</span>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">Biomedical Holter Housing</h3>
-                        <p class="text-sm text-gray-500 font-light leading-relaxed mb-6 h-20 overflow-hidden">
-                            Low-cost ABS enclosure achieving a fully functional, interference-free prototype on the exact first manufacturing iteration via strict DFM guidelines.
-                        </p>
-                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-                            <span class="text-xs text-gray-400 font-medium tracking-widest uppercase">Medical CAD</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="premium-card group" onclick="openModal('asus')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                    <div class="img-zoom-container">
-                        <img src="asus.jpg" onerror="this.src='https://placehold.co/600x400/f8fafc/1a1a1a?text=Hardware+Replication'" class="w-full h-64 object-cover border-b border-gray-100">
-                    </div>
-                    <div class="card-overlay">
-                        <span class="brand-font text-lg font-bold text-gray-900 tracking-widest uppercase">Click to view details</span>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">Complex Hardware Replication</h3>
-                        <p class="text-sm text-gray-500 font-light leading-relaxed mb-6 h-20 overflow-hidden">
-                            Mapped intricate micro-architecture of an ASUS PCB from scratch, and reverse-engineered a heavy-duty agricultural seeder into CNC-ready CAD.
-                        </p>
-                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-                            <span class="text-xs text-gray-400 font-medium tracking-widest uppercase">Reverse Engineering</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- DISCIPLINE 02: SIMULATION -->
-    <section id="projects-sim" class="relative py-24 px-6 md:px-12 content-layer bg-stone-50 border-y border-gray-200">
-        <div class="max-w-7xl mx-auto">
-            
-            <div class="mb-16 border-b border-gray-200 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6" data-aos="fade-right" data-aos-duration="1200">
-                <div>
-                    <span class="luxury-red font-bold tracking-widest text-sm uppercase block mb-2">Discipline 02</span>
-                    <h2 class="brand-font text-4xl md:text-5xl font-black text-gray-900 uppercase">Computational Analysis</h2>
-                </div>
-                <p class="text-gray-400 font-light text-sm tracking-widest uppercase max-w-sm text-left md:text-right">
-                    Computational Fluid Dynamics (CFD) and Finite Element Analysis (FEA).
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                
-                <div class="premium-card group border-t-2 border-t-gray-800" onclick="openModal('oceangate')" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="card-overlay rounded-t-none">
-                        <span class="brand-font text-sm font-bold text-gray-900 tracking-widest uppercase">Click to view</span>
-                    </div>
-                    <div class="p-8 relative z-10">
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">OceanGate Titan Failure FEA</h3>
-                        <p class="text-sm text-gray-500 font-light leading-relaxed mb-6">
-                            Rigorous digital simulation study focused on the structural validation and pressure failure analysis of the submersible hull using ANSYS structural.
-                        </p>
-                        <span class="text-xs text-gray-400 font-medium tracking-widest uppercase block border-t border-gray-100 pt-4">ANSYS Structural</span>
-                    </div>
-                </div>
-
-                <div class="premium-card group border-t-2 border-t-gray-800" onclick="openModal('li-ion')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                    <div class="card-overlay rounded-t-none">
-                        <span class="brand-font text-sm font-bold text-gray-900 tracking-widest uppercase">Click to view</span>
-                    </div>
-                    <div class="p-8 relative z-10">
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">Li-Ion Thermal Mgmt CFD</h3>
-                        <p class="text-sm text-gray-500 font-light leading-relaxed mb-6">
-                            Advanced computational fluid dynamics studies utilizing ANSYS Fluent to monitor heat dissipation and optimize battery pack thermal management systems.
-                        </p>
-                        <span class="text-xs text-gray-400 font-medium tracking-widest uppercase block border-t border-gray-100 pt-4">ANSYS Fluent</span>
-                    </div>
-                </div>
-
-                <div class="premium-card group border-t-2 border-t-gray-800" onclick="openModal('amphi-sim')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                    <div class="card-overlay rounded-t-none">
-                        <span class="brand-font text-sm font-bold text-gray-900 tracking-widest uppercase">Click to view</span>
-                    </div>
-                    <div class="p-8 relative z-10">
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">AmphiGlide Validation Data</h3>
-                        <p class="text-sm text-gray-500 font-light leading-relaxed mb-6">
-                            Comprehensive computational validation of the biomimetic robot, executing both structural FEA for chassis integrity and CFD for aquatic fluid dynamics.
-                        </p>
-                        <span class="text-xs text-gray-400 font-medium tracking-widest uppercase block border-t border-gray-100 pt-4">CFD & FEA</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- DISCIPLINE 03: MECHATRONICS -->
-    <section id="projects-elec" class="relative py-24 px-6 md:px-12 content-layer bg-white">
-        <div class="max-w-7xl mx-auto">
-            
-            <div class="mb-16 border-b border-gray-100 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6" data-aos="fade-right" data-aos-duration="1200">
-                <div>
-                    <span class="luxury-red font-bold tracking-widest text-sm uppercase block mb-2">Discipline 03</span>
-                    <h2 class="brand-font text-4xl md:text-5xl font-black text-gray-900 uppercase">Hardware & Control</h2>
-                </div>
-                <p class="text-gray-400 font-light text-sm tracking-widest uppercase max-w-sm text-left md:text-right">
-                    Hardware control logic, sensor integration, and Arduino platforms.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                
-                <div class="premium-card group border-l-4 border-l-red-700" onclick="openModal('amphi-logic')" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="card-overlay rounded-l-none">
-                        <span class="brand-font text-sm font-bold text-gray-900 tracking-widest uppercase">Click to view</span>
-                    </div>
-                    <div class="p-8 relative z-10">
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">AmphiGlide Architecture</h3>
-                        <p class="text-sm text-gray-500 font-light leading-relaxed mb-6">
-                            Collaborated with Ali Shahbaz to engineer the core control architecture, integrating Raspberry Pi and ESP32 systems for seamless dual-terrain actuation and logic.
-                        </p>
-                        <span class="text-xs text-red-700 font-bold tracking-widest uppercase">Raspberry Pi / ESP32</span>
-                    </div>
-                </div>
-
-                <div class="premium-card group border-l-4 border-l-gray-800" onclick="openModal('wind-tunnel')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                    <div class="card-overlay rounded-l-none">
-                        <span class="brand-font text-sm font-bold text-gray-900 tracking-widest uppercase">Click to view</span>
-                    </div>
-                    <div class="p-8 relative z-10">
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">Arduino Wind Tunnel</h3>
-                        <p class="text-sm text-gray-500 font-light leading-relaxed mb-6">
-                            Developed the electronic control architecture and sensor integration network for a custom-built fluid mechanics wind tunnel utilizing the Arduino environment.
-                        </p>
-                        <span class="text-xs text-gray-800 font-bold tracking-widest uppercase">Arduino / Sensors</span>
-                    </div>
-                </div>
-
-                <div class="premium-card group border-l-4 border-l-gray-400" onclick="openModal('robot')" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                    <div class="card-overlay rounded-l-none">
-                        <span class="brand-font text-sm font-bold text-gray-900 tracking-widest uppercase">Click to view</span>
-                    </div>
-                    <div class="p-8 relative z-10">
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide mb-3">Object Detection Robotics</h3>
-                        <p class="text-sm text-gray-500 font-light leading-relaxed mb-6">
-                            Engineered a specialized motion and line-following navigator robotics platform. The hardware integration involved establishing active object detection protocols, utilizing real-time sensor feedback loops to dynamically adjust the robotic path and avoid physical collisions.
-                        </p>
-                        <span class="text-xs text-gray-500 font-bold tracking-widest uppercase">Robotics / Logic</span>
-                    </div>
+                <!-- Job 3 -->
+                <div class="relative group" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="absolute -left-[41px] md:-left-[57px] top-1 w-5 h-5 bg-gray-300 rounded-full border-4 border-white shadow-md group-hover:bg-red-700 transition-colors duration-300"></div>
+                    <span class="text-xs font-bold text-gray-400 tracking-widest uppercase mb-2 block">Nov 2024</span>
+                    <h3 class="brand-font text-2xl md:text-3xl font-bold text-gray-900 uppercase tracking-wide mb-1">Freelance Hardware Replicator</h3>
+                    <h4 class="text-lg text-gray-700 font-bold mb-4 uppercase tracking-widest text-sm">Independent Contract</h4>
+                    <p class="text-gray-500 font-light leading-relaxed text-lg">
+                        Mapped intricate micro-architecture of modern ASUS motherboards and reverse-engineered heavy-duty agricultural systems into fully validated, CNC-ready 3D CAD models.
+                    </p>
                 </div>
 
             </div>
@@ -561,23 +320,29 @@
         <div class="max-w-4xl mx-auto text-center">
             
             <h2 class="brand-font text-4xl md:text-6xl font-black tracking-tight mb-6 uppercase" data-aos="fade-up" data-aos-duration="1000">
-                Initiate Contact
+                Digital Identity
             </h2>
             <p class="text-gray-400 font-light text-lg mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                Available for high-level mechanical design consulting, rapid prototyping contracts, and full-time enterprise engineering roles.
+                Explore my complete enterprise design portfolio, review my curriculum vitae, or connect for high-level mechanical design consulting.
             </p>
             
             <div class="flex flex-col md:flex-row justify-center items-center gap-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                <a href="https://drive.google.com/drive/u/1/folders/1Ri5rVG-Jso5dPkj5_PkYzr3RmSEthcvE" target="_blank" class="w-full md:w-auto px-10 py-4 luxury-red-bg hover:bg-red-800 text-white font-bold tracking-widest uppercase text-sm transition-colors flex items-center justify-center gap-3">
-                    <i class="fa-solid fa-file-pdf text-lg"></i> View Curriculum Vitae
+                
+                <!-- Main CTA to Lowinertia -->
+                <a href="https://lowinertia.com/portfolio/taimour-zahid" target="_blank" class="w-full md:w-auto px-10 py-4 luxury-red-bg hover:bg-red-800 text-white font-bold tracking-widest uppercase text-sm transition-colors flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-briefcase text-lg"></i> View Lowinertia Portfolio
+                </a>
+
+                <a href="https://drive.google.com/drive/u/1/folders/1Ri5rVG-Jso5dPkj5_PkYzr3RmSEthcvE" target="_blank" class="w-full md:w-auto px-8 py-4 border border-gray-600 hover:border-white hover:bg-white hover:text-gray-900 font-bold tracking-widest uppercase text-sm transition-all flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-file-pdf text-lg"></i> Resume
                 </a>
                 
-                <a href="https://www.linkedin.com/in/taimour-z-41a39a290/" target="_blank" class="w-full md:w-auto px-10 py-4 border border-gray-600 hover:border-white hover:bg-white hover:text-gray-900 font-bold tracking-widest uppercase text-sm transition-all flex items-center justify-center gap-3">
-                    <i class="fa-brands fa-linkedin text-lg"></i> LinkedIn Profile
+                <a href="https://www.linkedin.com/in/taimour-z-41a39a290/" target="_blank" class="w-full md:w-auto px-6 py-4 text-gray-400 hover:text-white font-bold tracking-widest uppercase text-sm transition-all flex items-center justify-center gap-3">
+                    <i class="fa-brands fa-linkedin text-xl"></i>
                 </a>
                 
-                <a href="https://github.com/Taimour007" target="_blank" class="w-full md:w-auto px-10 py-4 border border-gray-800 hover:bg-gray-800 text-gray-300 hover:text-white font-bold tracking-widest uppercase text-sm transition-all flex items-center justify-center gap-3">
-                    <i class="fa-brands fa-github text-lg"></i> GitHub Repository
+                <a href="https://github.com/Taimour007" target="_blank" class="w-full md:w-auto px-6 py-4 text-gray-400 hover:text-white font-bold tracking-widest uppercase text-sm transition-all flex items-center justify-center gap-3">
+                    <i class="fa-brands fa-github text-xl"></i>
                 </a>
             </div>
             
@@ -588,47 +353,6 @@
             
         </div>
     </section>
-
-    <!-- FULLSCREEN FLUID MODAL WITH CAROUSEL -->
-    <div id="project-modal" class="fixed inset-0 z-[100] flex items-center justify-center modal-enter">
-        <div class="absolute inset-0 bg-black/70 backdrop-blur-md" onclick="closeModal()"></div>
-        <div id="modal-content" class="relative bg-white w-11/12 max-w-6xl rounded-sm shadow-2xl overflow-hidden modal-scale-enter">
-            
-            <button onclick="closeModal()" class="absolute top-4 right-4 z-20 w-12 h-12 bg-white/80 hover:bg-white hover:text-red-700 rounded-full flex items-center justify-center backdrop-blur text-gray-900 transition-all duration-300 shadow-lg">
-                <i class="fa-solid fa-xmark text-xl"></i>
-            </button>
-            
-            <div class="flex flex-col md:flex-row h-full max-h-[90vh] overflow-y-auto">
-                
-                <!-- Image Container with Carousel Controls -->
-                <div class="md:w-1/2 relative bg-gray-100 flex items-center justify-center min-h-[300px] group overflow-hidden">
-                    <img id="modal-img" src="" class="absolute inset-0 w-full h-full object-contain p-4 transition-opacity duration-300">
-                    
-                    <!-- Left Arrow -->
-                    <button id="prev-btn" onclick="prevImage()" class="absolute left-4 z-20 w-10 h-10 bg-white/80 hover:bg-white hover:text-red-700 rounded-full flex items-center justify-center backdrop-blur text-gray-900 transition-all duration-300 shadow-lg hidden">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </button>
-                    
-                    <!-- Right Arrow -->
-                    <button id="next-btn" onclick="nextImage()" class="absolute right-4 z-20 w-10 h-10 bg-white/80 hover:bg-white hover:text-red-700 rounded-full flex items-center justify-center backdrop-blur text-gray-900 transition-all duration-300 shadow-lg hidden">
-                        <i class="fa-solid fa-chevron-right text-sm"></i>
-                    </button>
-
-                    <!-- Image Counter Badge -->
-                    <div id="image-counter" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/60 backdrop-blur text-white text-[10px] font-bold tracking-widest px-3 py-1 rounded-full hidden z-20">
-                        1 / 3
-                    </div>
-                </div>
-
-                <div class="md:w-1/2 p-10 md:p-16 flex flex-col justify-start bg-white">
-                    <span id="modal-date" class="text-xs font-bold text-red-700 tracking-widest uppercase mb-4 block"></span>
-                    <h3 id="modal-title" class="brand-font text-3xl md:text-5xl font-black uppercase text-gray-900 mb-6 leading-tight"></h3>
-                    <p id="modal-desc" class="text-gray-600 font-light leading-relaxed mb-10 text-lg"></p>
-                    <div id="modal-tags" class="flex flex-wrap gap-3 mt-auto"></div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
         // Fluid Initialize Scroll Animations
@@ -685,204 +409,6 @@
             }
           },
           "retina_detect": true
-        });
-
-        // Updated Project Data with Image Arrays
-        const projectData = {
-            'amphi-cad': {
-                title: 'AmphiGlide Biomimetic Robot',
-                // YOU CAN ADD AS MANY IMAGES AS YOU WANT HERE! 
-                // Just add a comma and the new filename inside quotes.
-                images: ['amphiglide-1.jpg', 'amphiglide-2.jpg', 'amphiglide-3.jpg', 'amphiglide-4.jpg'],
-                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=AmphiGlide+Robot',
-                date: 'May 2026',
-                desc: 'A novel amphibious robotic platform engineered for versatile, multi-terrain navigation. Engineered the structural housing to integrate a dual-environment propulsion system, bridging the gap between aquatic and terrestrial environments. The project successfully transitioned from theoretical CAD models to a fully functional 3D-printed prototype for empirical field testing.',
-                tags: ['SolidWorks', 'Biomimetic Design', 'FDM Printing', 'Rapid Prototyping']
-            },
-            'ehpvc': {
-                title: 'EHPVC Trike Chassis',
-                // To add more images, just change this to: ['ehpvc-1.jpg', 'ehpvc-2.jpg']
-                images: ['ehpvc.jpg'], 
-                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=EHPVC+Trike',
-                date: 'May 2025',
-                desc: 'Served as Team Lead, Lead Designer, and Head of Analysis. Spearheaded the development of this vehicle utilizing a "tadpole" recumbent tricycle configuration for superior stability. Designed a robust tubular space frame chassis with a high-profile roll cage, integrating a hybrid powertrain involving a rear hub motor and a front manual pedal chain drive. Secured 1st Position in the university competition.',
-                tags: ['Team Lead', 'Tubular Frame', 'Aerodynamics', 'Hybrid Powertrain']
-            },
-            'copilot': {
-                title: 'Factory Copilot Wearable',
-                images: ['copilot-1.jpg', 'copilot-2.jpg', 'copilot-3.jpg'],
-                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Factory+Copilot',
-                date: 'Aug 2025',
-                desc: 'An industrial head-mounted wearable designed to assist workers in assembly environments. Executed three distinct design iterations. Evolved the architecture from a bulky block ABS housing to a highly streamlined PETG frame, eventually offloading the Raspberry Pi processing unit and battery payload into a separate, ergonomic belt-mounted power module to maximize user comfort.',
-                tags: ['Iterative Design', 'Raspberry Pi Zero', 'PETG/ABS', 'Ergonomics']
-            },
-            'hydrosense': {
-                title: 'HydroSense System',
-                images: ['hydrosense.jpg'],
-                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=HydroSense',
-                date: 'April 2025',
-                desc: 'A fully integrated smart plant watering system designed as an innovative consumer product. Engineered a space-efficient cylindrical housing featuring a custom-designed, tolerance-based bayonet lock mechanism. The electromechanical assembly flawlessly integrated internal fluid routing, miniature pump mechanisms, and dual soil moisture probes.',
-                tags: ['Electromechanical', 'Tolerance Analysis', 'Mechanism Design']
-            },
-            'holter': {
-                title: 'Biomedical Holter Housing',
-                images: ['holter.jpg'],
-                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Holter+Enclosure',
-                date: 'April 2025',
-                desc: 'Collaborated directly with electrical engineering researchers to develop a custom 3D CAD enclosure for a low-cost Holter monitor. Rigorously applied Design for Manufacturability (DFM) principles and conducted thorough tolerance analysis. Delivered an interference-free, medical-grade ABS prototype that met all design specifications on its absolute first iteration.',
-                tags: ['Medical Device', 'DFM', 'ABS Plastic', 'PCB Integration']
-            },
-            'asus': {
-                title: 'Hardware Replication',
-                images: ['asus.jpg'],
-                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=ASUS+Motherboard',
-                date: 'Nov 2024',
-                desc: 'Commissioned freelance project mapping the complex micro-architecture of a modern ASUS motherboard. Independently modeled high-density components from scratch to achieve exact dimensional accuracy, validating spatial layouts of standard interfaces. Also collaboratively reverse-engineered a heavy-duty physical agricultural seeder into a fully validated, CNC-ready 3D CAD model.',
-                tags: ['Reverse Engineering', 'Complex Assembly', 'Freelance Contract']
-            },
-            'oceangate': {
-                title: 'OceanGate Failure FEA',
-                images: ['oceangate.jpg'],
-                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=OceanGate+FEA',
-                date: 'Dec 2024',
-                desc: 'A rigorous digital simulation study focused on the structural validation and pressure failure analysis of the OceanGate Titan submersible hull. Executed comprehensive Finite Element Analysis (FEA) utilizing ANSYS Structural to determine failure points under extreme deep-sea pressure variables.',
-                tags: ['ANSYS Structural', 'Failure Analysis', 'Deep Sea FEA']
-            },
-            'li-ion': {
-                title: 'Li-Ion Thermal Mgmt',
-                images: ['li-ion.jpg'],
-                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Thermal+CFD',
-                date: 'April 2025',
-                desc: 'Advanced computational fluid dynamics (CFD) studies focused on the optimization of battery thermal management. Utilized ANSYS Fluent to meticulously monitor heat dissipation patterns, testing variables to ensure peak operational safety and efficiency for lithium-ion power banks.',
-                tags: ['ANSYS Fluent', 'Thermal Management', 'CFD']
-            },
-            'amphi-sim': {
-                title: 'AmphiGlide Validation',
-                images: ['amphi-sim.jpg'],
-                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=AmphiGlide+Sim',
-                date: 'May 2026',
-                desc: 'Comprehensive computational validation of the AmphiGlide biomimetic robot prior to physical manufacturing. The complex external geometry was rigorously validated using ANSYS CFD for fluid dynamics, paired alongside ANSYS FEA to guarantee absolute structural integrity under high-pressure aquatic conditions.',
-                tags: ['ANSYS CFD', 'Structural FEA', 'Design Validation']
-            },
-            'amphi-logic': {
-                title: 'AmphiGlide Control Logic',
-                images: ['amphi-logic.jpg'],
-                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Control+Logic',
-                date: 'May 2026',
-                desc: 'Collaborated alongside Ali Shahbaz to engineer the overarching control architecture for the amphibious robot. Successfully integrated Raspberry Pi and ESP32 computing modules to handle complex sensor inputs and dictate seamless mechanical actuation across diverse aquatic and terrestrial terrains.',
-                tags: ['Raspberry Pi', 'ESP32', 'Mechatronics', 'System Architecture']
-            },
-            'wind-tunnel': {
-                title: 'Arduino Wind Tunnel',
-                images: ['wind-tunnel.jpg'],
-                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Wind+Tunnel',
-                date: '2025',
-                desc: 'Developed the complete electronic control architecture for a custom-built fluid mechanics wind tunnel. The system was engineered utilizing the Arduino platform, integrating a complex network of sensors to extract and log precise aerodynamic data during physical testing phases.',
-                tags: ['Arduino', 'Sensor Integration', 'Data Logging']
-            },
-            'robot': {
-                title: 'Object Detection Bot',
-                images: ['robot.jpg'],
-                fallback: 'https://placehold.co/800x800/f8fafc/1a1a1a?text=Robotics',
-                date: '2024',
-                desc: 'Engineered a specialized motion and line-following navigator robotics platform. The hardware integration involved establishing active object detection protocols, utilizing real-time sensor feedback loops to dynamically adjust the robotic path and avoid physical collisions.',
-                tags: ['Robotics', 'Hardware Logic', 'Object Detection']
-            }
-        };
-
-        // Modal and Carousel Logic
-        const modal = document.getElementById('project-modal');
-        const modalContent = document.getElementById('modal-content');
-        
-        let currentProjectImages = [];
-        let currentImageIndex = 0;
-
-        function openModal(projectId) {
-            const data = projectData[projectId];
-            if (!data) return;
-
-            // Populate Text Data
-            document.getElementById('modal-title').textContent = data.title;
-            document.getElementById('modal-desc').textContent = data.desc;
-            document.getElementById('modal-date').textContent = data.date;
-
-            // Build Tags
-            const tagsHtml = data.tags.map(tag => 
-                `<span class="px-4 py-2 bg-stone-100 text-gray-800 font-bold tracking-widest uppercase text-[10px] rounded-sm border border-stone-200">${tag}</span>`
-            ).join('');
-            document.getElementById('modal-tags').innerHTML = tagsHtml;
-
-            // Setup Carousel State
-            currentProjectImages = data.images;
-            currentImageIndex = 0;
-            renderCarouselImage();
-
-            // Trigger Fluid Open Animations
-            modal.classList.remove('modal-enter');
-            modal.classList.add('modal-enter-active');
-            
-            modalContent.classList.remove('modal-scale-enter');
-            requestAnimationFrame(() => {
-                modalContent.classList.add('modal-scale-enter-active');
-            });
-            
-            document.body.style.overflow = 'hidden'; 
-        }
-
-        function renderCarouselImage() {
-            const imgEl = document.getElementById('modal-img');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            const counter = document.getElementById('image-counter');
-
-            // Quick fade out effect for smooth transitions
-            imgEl.style.opacity = '0.4';
-            
-            setTimeout(() => {
-                const currentData = Object.values(projectData).find(p => p.images === currentProjectImages);
-                imgEl.src = currentProjectImages[currentImageIndex];
-                imgEl.onerror = () => { imgEl.src = currentData ? currentData.fallback : 'https://placehold.co/800x800/f8fafc/1a1a1a'; };
-                imgEl.style.opacity = '1';
-            }, 150); // Matches opacity transition duration
-
-            // Show/Hide Controls based on image count
-            if (currentProjectImages.length > 1) {
-                prevBtn.classList.remove('hidden');
-                nextBtn.classList.remove('hidden');
-                counter.classList.remove('hidden');
-                counter.textContent = `${currentImageIndex + 1} / ${currentProjectImages.length}`;
-            } else {
-                prevBtn.classList.add('hidden');
-                nextBtn.classList.add('hidden');
-                counter.classList.add('hidden');
-            }
-        }
-
-        function prevImage() {
-            currentImageIndex = (currentImageIndex - 1 + currentProjectImages.length) % currentProjectImages.length;
-            renderCarouselImage();
-        }
-
-        function nextImage() {
-            currentImageIndex = (currentImageIndex + 1) % currentProjectImages.length;
-            renderCarouselImage();
-        }
-
-        function closeModal() {
-            modal.classList.remove('modal-enter-active');
-            modal.classList.add('modal-enter');
-            
-            modalContent.classList.remove('modal-scale-enter-active');
-            modalContent.classList.add('modal-scale-enter');
-            
-            document.body.style.overflow = 'auto'; 
-        }
-
-        // Close modal on ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.classList.contains('modal-enter-active')) {
-                closeModal();
-            }
         });
     </script>
 </body>
