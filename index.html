@@ -1,394 +1,124 @@
-<!-- Ultra-Fluid Digital Identity for Taimour Zahid -->
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taimour Zahid | Mechanical Design Engineer</title>
-    <link rel="icon" href="logo.png" type="image/png">
-    
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- AOS Animation Library for initial load effects -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
     <style>
-        /* Modern Typography */
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Space+Mono:wght@400;700&display=swap');
         
-        body { 
-            font-family: 'Manrope', sans-serif; 
-            background-color: #ffffff; 
-            color: #1a1a1a; 
-            margin: 0; 
-            overflow-x: hidden; 
-        }
+        body { font-family: 'Manrope', sans-serif; background-color: #ffffff; color: #1a1a1a; overflow-x: hidden; }
+        h1, h2, .brand-font { font-family: 'Space Mono', monospace; letter-spacing: -0.02em; }
         
-        h1, h2, h3, .brand-font { 
-            font-family: 'Syncopate', sans-serif; 
-            letter-spacing: -0.02em;
-        }
-
-        /* --- TRENDY BLURRED DOTS (MESH GRADIENT) BACKGROUND --- */
-        .mesh-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            background: #ffffff;
-            overflow: hidden;
-        }
-        .mesh-blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(90px);
-            opacity: 0.6;
-            animation: float 20s infinite ease-in-out alternate;
-        }
-        .blob-1 {
-            top: -10%; left: -10%;
-            width: 50vw; height: 50vw;
-            background: #e2e8f0; /* Soft gray */
-            animation-delay: 0s;
-        }
-        .blob-2 {
-            bottom: -20%; right: -10%;
-            width: 60vw; height: 60vw;
-            background: #fecaca; /* Very soft red/pink */
-            animation-delay: -5s;
-        }
-        .blob-3 {
-            top: 40%; left: 60%;
-            width: 40vw; height: 40vw;
-            background: #f1f5f9; /* Slate gray */
-            animation-delay: -10s;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(5%, 10%) scale(1.1); }
-        }
-
-        /* Glassmorphism Cards */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
-            border-radius: 24px;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 4px; }
+        .mesh-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; background: #ffffff; }
+        .mesh-blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.4; animation: float 20s infinite alternate; }
+        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(10%, 10%) scale(1.2); } }
+        
+        .js-scroll-card { transform: translateY(30px); opacity: 0; transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .js-scroll-card.in-view { transform: translateY(0); opacity: 1; }
+        
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #b91c1c; }
-
-        /* Dynamic Scroll Elements */
-        .scroll-zoom-element {
-            transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.1s ease-out;
-            will-change: transform, opacity;
-        }
-        
-        .timeline-card {
-            transform: scale(0.9) translateY(30px);
-            opacity: 0.5;
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .timeline-card.in-view {
-            transform: scale(1) translateY(0);
-            opacity: 1;
-        }
     </style>
 </head>
-<body class="antialiased selection:bg-red-700 selection:text-white">
+<body class="antialiased">
 
-    <!-- Blurred Mesh Background -->
+    <!-- Background -->
     <div class="mesh-bg">
-        <div class="mesh-blob blob-1"></div>
-        <div class="mesh-blob blob-2"></div>
-        <div class="mesh-blob blob-3"></div>
+        <div class="mesh-blob blob-1" style="top: -10%; left: -10%; width: 50vw; height: 50vw; background: #f1f5f9;"></div>
+        <div class="mesh-blob blob-2" style="bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: #fee2e2;"></div>
     </div>
 
-    <!-- STICKY GLASS HEADER -->
-    <header id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 py-6">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center glass-card py-4 px-8 mx-4 md:mx-auto mt-2">
-            <a href="#" class="brand-font font-bold text-sm md:text-lg tracking-widest uppercase text-gray-900 flex items-center gap-2 group">
-                <div class="w-2 h-2 bg-red-700 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
-                TAIMOUR
-            </a>
-            
-            <nav class="hidden md:flex gap-8 text-xs font-bold tracking-[0.2em] uppercase text-gray-500">
-                <a href="#about" class="hover:text-red-700 transition-colors duration-300">Profile</a>
-                <a href="#experience" class="hover:text-red-700 transition-colors duration-300">Experience</a>
-                <a href="#projects" class="hover:text-red-700 transition-colors duration-300">Projects</a>
-                <a href="#contact" class="hover:text-red-700 transition-colors duration-300">Connect</a>
-            </nav>
-        </div>
+    <!-- Header -->
+    <header class="fixed w-full z-50 py-6 px-6 md:px-12 flex justify-between items-center bg-white/50 backdrop-blur-md border-b border-gray-100">
+        <div class="font-bold text-lg tracking-tighter">TAIMOUR_ZAHID.LOG</div>
+        <nav class="hidden md:flex gap-8 text-[10px] font-bold tracking-[0.2em] uppercase text-gray-500">
+            <a href="#profile" class="hover:text-red-700">Profile</a>
+            <a href="#experience" class="hover:text-red-700">Experience</a>
+            <a href="#projects" class="hover:text-red-700">Projects</a>
+        </nav>
     </header>
 
-    <!-- HERO SECTION (Scroll Zoom Applied) -->
-    <section class="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-32 pb-16">
-        <div class="max-w-7xl mx-auto w-full flex flex-col items-center text-center scroll-zoom-element" id="hero-content">
-            
-            <div data-aos="fade-down" data-aos-duration="1200">
-                <div class="inline-flex items-center gap-3 px-4 py-2 glass-card mb-8">
-                    <span class="w-2 h-2 bg-red-600 rounded-full animate-pulse"></span>
-                    <span class="text-xs font-bold tracking-[0.2em] uppercase text-gray-600">Mechanical Design Engineer</span>
-                </div>
-            </div>
-            
-            <h1 class="brand-font text-5xl md:text-[6rem] lg:text-[7.5rem] font-bold uppercase leading-[0.9] text-gray-900 mb-6 w-full mix-blend-multiply" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="200">
-                Precision <br>
-                <span class="text-gray-300 block mt-2">In Motion.</span>
-            </h1>
-
-            <p class="text-lg md:text-xl text-gray-500 font-light max-w-2xl leading-relaxed mb-10" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                Reliability-focused engineering student translating complex simulations into robust, scalable hardware solutions for heavy industry and advanced robotics.
+    <!-- Hero -->
+    <section id="profile" class="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-32">
+        <div class="max-w-4xl">
+            <h1 class="text-5xl md:text-8xl font-bold uppercase mb-6 leading-tight">Mechanical <br> Design Engineer</h1>
+            <p class="text-xl text-gray-500 max-w-xl font-light leading-relaxed">
+                Reliability-focused engineering student with hands-on experience in industrial design and advanced robotics. Specializing in structural integrity, fluid dynamics, and CAD/CAE tools[cite: 2].
             </p>
-
-            <div class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
-                <a href="https://lowinertia.com/portfolio/taimour-zahid" target="_blank" class="px-8 py-4 bg-gray-900 hover:bg-red-700 text-white font-bold text-xs tracking-[0.2em] uppercase rounded-full transition-all duration-500 shadow-lg hover:shadow-red-700/30 hover:-translate-y-1">
-                    View Design Portfolio
-                </a>
-            </div>
-
         </div>
     </section>
 
-    <!-- PROFESSIONAL EXPERIENCE TIMELINE (Scroll Triggered UI) -->
-    <section id="experience" class="relative py-32 px-6 md:px-12">
+    <!-- Experience -->
+    <section id="experience" class="py-32 px-6 md:px-12">
         <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold uppercase mb-12">Professional Log</h2>
             
-            <div class="text-center mb-24" data-aos="fade-up">
-                <h2 class="brand-font text-3xl md:text-5xl font-bold text-gray-900 uppercase">Industry Experience</h2>
-                <div class="w-12 h-1 bg-red-700 mx-auto mt-6 rounded-full"></div>
-            </div>
-            
-            <div class="relative space-y-12">
-                <!-- Center Line -->
-                <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-gray-200 via-gray-300 to-transparent -translate-x-1/2"></div>
-                
-                <!-- Experience 1: VISIONRD -->
-                <div class="relative flex flex-col md:flex-row justify-between items-center w-full group timeline-card js-scroll-card">
-                    <div class="hidden md:block md:w-5/12 text-right pr-12">
-                        <span class="text-sm font-bold text-gray-400 tracking-widest uppercase">Jun 2025 - Sept 2025</span>
-                        <p class="text-xs text-gray-500 font-medium tracking-widest mt-1">Islamabad, PK</p>
+            <div class="space-y-6">
+                <!-- VISIONRD -->
+                <div class="group relative bg-white border border-gray-200 p-8 hover:border-red-700 transition-all duration-300 js-scroll-card">
+                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-100 group-hover:bg-red-700"></div>
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="font-mono text-[10px] tracking-widest text-gray-400 uppercase">Jun 2025 - Sept 2025</span>
+                        <span class="font-mono text-[10px] tracking-widest text-red-700 uppercase font-bold">Islamabad, PK</span>
                     </div>
-                    <div class="absolute left-4 md:left-1/2 w-4 h-4 bg-white border-2 border-red-700 rounded-full transform -translate-x-1/2 group-hover:bg-red-700 group-hover:scale-150 transition-all duration-500 z-10 shadow-lg shadow-red-700/20"></div>
-                    <div class="w-full md:w-5/12 pl-12 md:pl-0 text-left glass-card p-8 hover:-translate-y-2 transition-transform duration-500">
-                        <span class="md:hidden text-xs font-bold text-gray-400 tracking-widest uppercase mb-2 block">Jun 2025 - Sept 2025</span>
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase mb-1">VISIONRD</h3>
-                        <h4 class="text-sm text-red-700 font-bold mb-4 tracking-widest uppercase">Industrial Design Intern</h4>
-                        <p class="text-gray-600 font-light text-sm leading-relaxed mb-4">
-                            Led complete hardware design and integration of an AI-enabled wearable device for automated supervision in industrial assembly. 
-                        </p>
-                        <ul class="space-y-2 text-xs text-gray-500 font-medium">
-                            <li class="flex gap-2"><i class="fa-solid fa-check text-red-700 mt-0.5"></i> Conducted FEA to evaluate mechanical durability and fracture resistance.</li>
-                            <li class="flex gap-2"><i class="fa-solid fa-check text-red-700 mt-0.5"></i> Prototype secured a contract with HAVAL Automotive.</li>
-                        </ul>
+                    <h3 class="text-xl font-bold uppercase tracking-tight mb-1">VISIONRD</h3>
+                    <div class="text-sm font-bold text-gray-900 mb-6 uppercase border-b border-gray-100 pb-4">Industrial Design Engineering Intern</div>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">Led complete hardware design and integration of an AI-enabled wearable device for automated supervision in industrial assembly, from concept to deployment-ready prototype[cite: 2].</p>
+                    <div class="space-y-2 text-sm text-gray-500">
+                        <p>• Conducted finite element analysis (FEA) to evaluate mechanical durability and fracture resistance[cite: 2].</p>
+                        <p>• Prototype secured a contract with HAVAL Automotive[cite: 2].</p>
                     </div>
                 </div>
 
-                <!-- Experience 2: NCRA -->
-                <div class="relative flex flex-col md:flex-row-reverse justify-between items-center w-full group timeline-card js-scroll-card">
-                    <div class="hidden md:block md:w-5/12 text-left pl-12">
-                        <span class="text-sm font-bold text-gray-400 tracking-widest uppercase">Jul 2024 - Aug 2024</span>
-                        <p class="text-xs text-gray-500 font-medium tracking-widest mt-1">Islamabad, PK</p>
+                <!-- NCRA -->
+                <div class="group relative bg-white border border-gray-200 p-8 hover:border-red-700 transition-all duration-300 js-scroll-card">
+                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-100 group-hover:bg-red-700"></div>
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="font-mono text-[10px] tracking-widest text-gray-400 uppercase">Jul 2024 - Aug 2024</span>
+                        <span class="font-mono text-[10px] tracking-widest text-red-700 uppercase font-bold">Islamabad, PK</span>
                     </div>
-                    <div class="absolute left-4 md:left-1/2 w-4 h-4 bg-white border-2 border-gray-400 rounded-full transform -translate-x-1/2 group-hover:border-red-700 transition-all duration-500 z-10"></div>
-                    <div class="w-full md:w-5/12 pl-12 md:pl-0 text-left md:text-right glass-card p-8 hover:-translate-y-2 transition-transform duration-500">
-                        <span class="md:hidden text-xs font-bold text-gray-400 tracking-widest uppercase mb-2 block">Jul 2024 - Aug 2024</span>
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase mb-1">NCRA</h3>
-                        <h4 class="text-sm text-gray-700 font-bold mb-4 tracking-widest uppercase">Design Engineering Intern</h4>
-                        <p class="text-gray-600 font-light text-sm leading-relaxed mb-4">
-                            National Centre of Robotics and Automation. Focused on reverse engineering and bionic optimizations.
-                        </p>
-                        <ul class="space-y-2 text-xs text-gray-500 font-medium flex flex-col md:items-end">
-                            <li class="flex gap-2 md:flex-row-reverse"><i class="fa-solid fa-arrow-right-arrow-left text-gray-400 mt-0.5"></i> Reverse-engineered field seeder machine via dimensional analysis to SolidWorks.</li>
-                            <li class="flex gap-2 md:flex-row-reverse"><i class="fa-solid fa-arrow-right-arrow-left text-gray-400 mt-0.5"></i> Redesigned bionic hand joint geometry utilizing 3D printing.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Experience 3: ASME -->
-                <div class="relative flex flex-col md:flex-row justify-between items-center w-full group timeline-card js-scroll-card">
-                    <div class="hidden md:block md:w-5/12 text-right pr-12">
-                        <span class="text-sm font-bold text-gray-400 tracking-widest uppercase">Nov 2023 - Present</span>
-                        <p class="text-xs text-gray-500 font-medium tracking-widest mt-1">Islamabad, PK</p>
-                    </div>
-                    <div class="absolute left-4 md:left-1/2 w-4 h-4 bg-white border-2 border-gray-400 rounded-full transform -translate-x-1/2 group-hover:border-red-700 transition-all duration-500 z-10"></div>
-                    <div class="w-full md:w-5/12 pl-12 md:pl-0 text-left glass-card p-8 hover:-translate-y-2 transition-transform duration-500">
-                        <span class="md:hidden text-xs font-bold text-gray-400 tracking-widest uppercase mb-2 block">Nov 2023 - Present</span>
-                        <h3 class="brand-font text-xl font-bold text-gray-900 uppercase mb-1">ASME CEME</h3>
-                        <h4 class="text-sm text-gray-700 font-bold mb-4 tracking-widest uppercase">Design Engineer</h4>
-                        <p class="text-gray-600 font-light text-sm leading-relaxed">
-                            Designed autonomous robot testing maze in SolidWorks with ROS integration for navigation benchmarking. Performed tolerance analysis and layout optimization for robotics competitions.
-                        </p>
+                    <h3 class="text-xl font-bold uppercase tracking-tight mb-1">NCRA</h3>
+                    <div class="text-sm font-bold text-gray-900 mb-6 uppercase border-b border-gray-100 pb-4">Design Engineering Intern</div>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">Reverse-engineered field seeder machine through dimensional analysis, creating a comprehensive SolidWorks CAD model[cite: 2].</p>
+                    <div class="space-y-2 text-sm text-gray-500">
+                        <p>• Redesigned bionic hand joint geometry and executed full design-to-test cycle using 3D printing[cite: 2].</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- KEY PROJECTS & SKILLS -->
-    <section id="projects" class="relative py-32 px-6 md:px-12">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-            
-            <!-- Academic Projects -->
-            <div>
-                <h2 class="brand-font text-3xl font-bold text-gray-900 uppercase mb-10">Key Projects</h2>
-                
-                <div class="space-y-6">
-                    <div class="glass-card p-8 group timeline-card js-scroll-card">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="brand-font text-lg font-bold text-gray-900 uppercase">AmphiGlide Biomimetic Robot</h3>
-                            <span class="text-xs bg-red-50 text-red-700 font-bold px-3 py-1 rounded-full uppercase tracking-widest">April 2026</span>
-                        </div>
-                        <p class="text-gray-600 text-sm font-light leading-relaxed mb-4">
-                            Engineered biomimetic locomotion strategies for an amphibious robot. Performed extensive CAD modeling, CFD, and FEA to optimize hydrodynamic performance and structural integrity across iterations.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-[10px] font-bold text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-200">CFD / FEA</span>
-                            <span class="text-[10px] font-bold text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-200">Control Architecture</span>
-                        </div>
-                    </div>
-
-                    <div class="glass-card p-8 group timeline-card js-scroll-card">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="brand-font text-lg font-bold text-gray-900 uppercase">EHPVC Trike Chassis</h3>
-                            <span class="text-xs bg-gray-100 text-gray-700 font-bold px-3 py-1 rounded-full uppercase tracking-widest">May 2025</span>
-                        </div>
-                        <p class="text-gray-600 text-sm font-light leading-relaxed mb-4">
-                            Served as Team Lead for Electric Human Powered Vehicle. Secured 1st Place globally. Executed aerodynamic optimization using CFD and ensured structural integrity via FEA simulations.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-[10px] font-bold text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-200">Team Lead</span>
-                            <span class="text-[10px] font-bold text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-200">Aerodynamics</span>
-                        </div>
-                    </div>
+    <!-- Projects -->
+    <section id="projects" class="py-32 px-6 md:px-12 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold uppercase mb-12">Academic Projects</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- AmphiGlide -->
+                <div class="bg-white p-8 border border-gray-200 js-scroll-card">
+                    <span class="font-mono text-[10px] text-gray-400">APRIL 2026</span>
+                    <h3 class="font-bold uppercase mt-2 mb-4">AmphiGlide</h3>
+                    <p class="text-sm text-gray-600 mb-4">Engineered biomimetic locomotion for amphibious robots. Performed CAD, CFD, and FEA to optimize structural integrity[cite: 2].</p>
+                </div>
+                <!-- EHPVC -->
+                <div class="bg-white p-8 border border-gray-200 js-scroll-card">
+                    <span class="font-mono text-[10px] text-gray-400">MAY 2025</span>
+                    <h3 class="font-bold uppercase mt-2 mb-4">EHPVC Trike</h3>
+                    <p class="text-sm text-gray-600 mb-4">Secured 1st Place by leading the full conceptualization and fabrication of a hybrid powertrain vehicle[cite: 2].</p>
                 </div>
             </div>
-
-            <!-- Skills & Certifications -->
-            <div class="flex flex-col justify-center timeline-card js-scroll-card">
-                <div class="glass-card p-10 bg-gradient-to-br from-white/80 to-gray-50/40">
-                    <h2 class="brand-font text-2xl font-bold text-gray-900 uppercase mb-8">Technical Arsenal</h2>
-                    
-                    <div class="space-y-8">
-                        <div>
-                            <h4 class="text-xs font-bold text-red-700 uppercase tracking-[0.2em] mb-4">CAD & Design</h4>
-                            <div class="flex flex-wrap gap-3">
-                                <span class="px-4 py-2 bg-white rounded-full text-xs font-semibold text-gray-800 shadow-sm border border-gray-100">SolidWorks (Advanced)</span>
-                                <span class="px-4 py-2 bg-white rounded-full text-xs font-semibold text-gray-800 shadow-sm border border-gray-100">AutoCAD</span>
-                                <span class="px-4 py-2 bg-white rounded-full text-xs font-semibold text-gray-800 shadow-sm border border-gray-100">3D Printing / Additive</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h4 class="text-xs font-bold text-gray-500 uppercase tracking-[0.2em] mb-4">Analysis & Simulation</h4>
-                            <div class="flex flex-wrap gap-3">
-                                <span class="px-4 py-2 bg-white rounded-full text-xs font-semibold text-gray-800 shadow-sm border border-gray-100">ANSYS</span>
-                                <span class="px-4 py-2 bg-white rounded-full text-xs font-semibold text-gray-800 shadow-sm border border-gray-100">FEA</span>
-                                <span class="px-4 py-2 bg-white rounded-full text-xs font-semibold text-gray-800 shadow-sm border border-gray-100">CFD</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h4 class="text-xs font-bold text-gray-500 uppercase tracking-[0.2em] mb-4">Certifications</h4>
-                            <ul class="text-sm text-gray-600 space-y-2 font-medium">
-                                <li>• Six Sigma Yellow & White Belt (2023)</li>
-                                <li>• McKinsey Forward Program (2024)</li>
-                                <li>• BSc Mechanical Engineering, NUST (2026)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- CONTACT FOOTER -->
-    <section id="contact" class="relative py-32 px-6 md:px-12 border-t border-gray-200">
-        <div class="max-w-4xl mx-auto text-center glass-card p-12 lg:p-24 shadow-xl">
-            
-            <h2 class="brand-font text-4xl md:text-5xl font-bold tracking-tight mb-6 uppercase text-gray-900">
-                Let's Build.
-            </h2>
-            <p class="text-gray-500 font-light text-lg mb-12 max-w-xl mx-auto">
-                Currently pursuing full-time enterprise roles and advanced engineering integrations.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="mailto:taimourzahid999@gmail.com" class="w-full sm:w-auto px-8 py-4 bg-red-700 hover:bg-gray-900 text-white font-bold tracking-widest uppercase text-xs rounded-full transition-all">
-                    taimourzahid999@gmail.com
-                </a>
-                <a href="https://www.linkedin.com/in/taimour-z-41a39a290/" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-white border border-gray-200 hover:border-gray-900 text-gray-900 font-bold tracking-widest uppercase text-xs rounded-full transition-all">
-                    LinkedIn Network
-                </a>
-            </div>
-            
         </div>
     </section>
 
     <script>
-        // 1. Initialize AOS for static load animations
-        AOS.init({
-            once: true,
-            offset: 50,
-            duration: 1000, 
-            easing: 'ease-out-cubic', 
-        });
-
-        // 2. Custom Water-Level Scroll Fluidity (Parallax & Scale)
-        const heroContent = document.getElementById('hero-content');
-        const scrollCards = document.querySelectorAll('.js-scroll-card');
-
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-
-            // Hero Section Parallax (Pushes back and fades slightly on scroll)
-            if (scrollY < 800) {
-                const scaleValue = Math.max(0.8, 1 - (scrollY / 2000));
-                const opacityValue = Math.max(0, 1 - (scrollY / 600));
-                const translateY = scrollY * 0.4; // Moves down slightly slower than scroll
-                heroContent.style.transform = `translateY(${translateY}px) scale(${scaleValue})`;
-                heroContent.style.opacity = opacityValue;
-            }
-        });
-
-        // 3. Intersection Observer for Timeline Cards (Zooms in as you scroll)
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px 0px -15% 0px', // Triggers slightly before the element hits the bottom of viewport
-            threshold: 0.2
-        };
-
-        const cardObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                    // Optional: stop observing once loaded
-                    // observer.unobserve(entry.target);
-                } else {
-                    // Remove class if you want them to animate out when scrolling back up
-                    entry.target.classList.remove('in-view');
-                }
-            });
-        }, observerOptions);
-
-        scrollCards.forEach(card => {
-            cardObserver.observe(card);
-        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in-view'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.js-scroll-card').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
