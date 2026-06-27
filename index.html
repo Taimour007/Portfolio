@@ -1,454 +1,515 @@
+<!-- Ultra-Fluid Digital Identity for Taimour Zahid -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taimour Zahid | Mechanical Engineer | Biomimetic Design</title>
-    <!-- Use standard file name verbatim: profile.jpg -->
-    <link rel="icon" href="profile.jpg" type="image/jpeg">
-    <!-- Tailwind CSS CDN -->
+    <title>Taimour Zahid | Mechanical Design Engineer</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome CDN -->
+    
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Modern sans-serif, like armghan.me style -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Syncopate:wght@700&display=swap" rel="stylesheet">
-    <!-- GSAP CDN -->
+
+    <!-- GSAP for Advanced Scroll Fluidity -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <!-- Custom CSS -->
+    
     <style>
-        :root {
-            --primary: #000;
-            --white: #fff;
-            --accent: #dc2626; /* Red for emphasis */
-            --bg-grid: rgba(0,0,0,0.03);
-            --transition: all 0.4s ease-out;
+        /* Modern Typography */
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap');
+        
+        body { 
+            font-family: 'Manrope', sans-serif; 
+            background-color: #fafafa; 
+            color: #111827; 
+            margin: 0; 
+            overflow-x: hidden; 
         }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--white);
-            color: var(--primary);
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, .brand-font {
-            font-family: 'Syncopate', sans-serif;
-            font-weight: 700;
+        
+        h1, h2, h3, .brand-font { 
+            font-family: 'Syncopate', sans-serif; 
             letter-spacing: -0.02em;
         }
 
-        /* Particles Background */
-        #particles-js {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-        }
-
-        /* Smooth Scroll Setup */
-        html {
-            scroll-behavior: initial; /* GSAP handles smooth scroll */
-        }
-
-        /* Preloader */
-        #loader {
-            position: fixed;
-            inset: 0;
-            background-color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            transition: opacity 0.6s ease-in-out;
-        }
-        .loader-dot {
-            width: 10px; height: 10px;
-            background-color: var(--accent);
-            border-radius: 50%;
-            margin: 0 4px;
-            animation: pulse 1.2s infinite ease-in-out;
-        }
-        .loader-dot:nth-child(2) { animation-delay: 0.2s; }
-        .loader-dot:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes pulse {
-            0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; }
-            40% { transform: scale(1.1); opacity: 1; }
-        }
-
-        /* Utilities */
-        .white-card {
-            background-color: var(--white);
-            border: 1px solid rgba(0,0,0,0.05);
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-            transition: var(--transition);
-        }
-        .white-card:hover {
-            box-shadow: 0 10px 20px rgba(0,0,0,0.04);
-            transform: translateY(-2px);
+        /* Glassmorphism Cards - Light Theme */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+            border-radius: 16px;
         }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+        ::-webkit-scrollbar-track { background: #f3f4f6; }
+        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #dc2626; }
 
-        /* Mountain Landscape in Footer */
-        #dynamic-landscape {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            background-color: var(--white);
-            overflow: hidden;
-            display: flex;
-            align-items: flex-end;
+        /* Canvas Positioning */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
         }
-        .landscape-layer {
+
+        #wave-canvas {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: -1;
             pointer-events: none;
         }
-        .landscape-layer svg {
-            width: 100%;
-            height: 100%;
-        }
 
-        /* AmphiGlide Project Page Layout */
-        .project-detailed {
-            grid-template-columns: 1fr;
-        }
-        @media (min-width: 768px) {
-            .project-detailed {
-                grid-template-columns: 1fr 1fr;
-            }
+        /* Hide elements before GSAP loads to prevent flashing */
+        .gsap-reveal { visibility: hidden; }
+
+        /* Massive Background Text */
+        .bg-text {
+            font-size: 15vw;
+            line-height: 1;
+            color: rgba(0, 0, 0, 0.03);
+            user-select: none;
+            white-space: nowrap;
         }
     </style>
 </head>
-<body class="selection:bg-red-700 selection:text-white">
-    <!-- Loader -->
-    <div id="loader">
-        <div class="loader-dot"></div>
-        <div class="loader-dot"></div>
-        <div class="loader-dot"></div>
-    </div>
+<body class="antialiased selection:bg-red-600 selection:text-white">
 
-    <!-- Matrix Balls Particle Background -->
-    <div id="particles-js"></div>
+    <!-- Interactive Matrix Balls Background -->
+    <canvas id="matrix-canvas"></canvas>
 
-    <!-- HEADER -->
-    <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex items-center justify-between">
-        <a href="#" class="flex items-center gap-4 group">
-            <!-- Use standard file name verbatim: profile.jpg -->
-            <img src="profile.jpg" alt="Taimour Zahid Profile" class="w-12 h-12 rounded-full border-2 border-white shadow-lg transition-transform duration-500 group-hover:scale-110">
-            <div class="flex flex-col">
-                <span class="brand-font text-lg md:text-xl text-primary">Taimour Zahid</span>
-                <span class="text-sm text-gray-600 font-light tracking-wide">Mechanical Engineer | Biomimetic Design</span>
-            </div>
-        </a>
-        <nav class="hidden md:flex gap-10 text-xs font-bold tracking-[0.2em] uppercase text-gray-500">
-            <a href="#about" class="hover:text-primary transition-colors duration-300">Profile</a>
-            <a href="#experience" class="hover:text-primary transition-colors duration-300">Experience</a>
-            <a href="#education" class="hover:text-primary transition-colors duration-300">Education</a>
-            <a href="#projects" class="hover:text-primary transition-colors duration-300">AmphiGlide Project</a>
-            <a href="#lets-build" class="hover:text-primary transition-colors duration-300">Connect</a>
-        </nav>
+    <!-- STICKY GLASS HEADER -->
+    <header id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 py-6">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center glass-card py-4 px-8 mx-4 md:mx-auto mt-2">
+            <a href="#" class="brand-font font-bold text-sm md:text-lg tracking-widest uppercase text-gray-900 flex items-center gap-3 group">
+                <div class="w-2 h-2 bg-red-600 rounded-full group-hover:scale-150 transition-transform duration-500 shadow-[0_0_10px_rgba(220,38,38,0.5)]"></div>
+                TAIMOUR ZAHID
+            </a>
+            
+            <nav class="hidden md:flex gap-8 text-xs font-bold tracking-[0.2em] uppercase text-gray-500">
+                <a href="#about" class="hover:text-red-600 transition-colors duration-300">Profile</a>
+                <a href="#experience" class="hover:text-red-600 transition-colors duration-300">Experience</a>
+                <a href="#education" class="hover:text-red-600 transition-colors duration-300">Education</a>
+                <a href="#projects" class="hover:text-red-600 transition-colors duration-300">Projects</a>
+                <a href="#contact" class="hover:text-red-600 transition-colors duration-300">Connect</a>
+            </nav>
+        </div>
     </header>
 
-    <main class="space-y-24 md:space-y-40">
-        <!-- HERO / ABOUT -->
-        <section id="about" class="pt-32 md:pt-48 pb-10 container mx-auto px-6 max-w-7xl">
-            <div class="flex flex-col md:flex-row items-center gap-12 ... white-card">
-                <div class="w-full md:w-2/5 flex justify-center ...">
-                    <!-- Use standard file name verbatim: profile.jpg -->
-                    <img src="profile.jpg" alt="Taimour Zahid Profile" class="w-64 h-64 md:w-80 md:h-80 rounded-full shadow-xl border-4 border-white transform transition duration-500 hover:scale-105">
-                </div>
-                <div class="w-full md:w-3/5 ...">
-                    <h1 class="brand-font text-5xl md:text-6xl font-extrabold uppercase leading-[0.9] text-primary mb-6 ... mix-blend-multiply">Precision <br><span class="text-gray-300 block mt-1">in Motion.</span></h1>
-                    <p class="text-lg md:text-xl text-gray-600 font-light max-w-2xl leading-relaxed mb-10 ...">I am a Mechanical Engineer specializing in mechatronics, biomimetics, and finite element analysis. With a passion for innovative design, I translate intricate calculations and simulations into robust, physical hardware. Currently focused on dynamic control and hydrodynamic performance.</p>
-                </div>
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-32 pb-16 overflow-hidden">
+        <div class="max-w-7xl mx-auto w-full flex flex-col items-center text-center gsap-hero" id="hero-content">
+            
+            <!-- Profile Image -->
+            <div class="relative mb-8 group">
+                <div class="absolute inset-0 bg-red-600 rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                <img src="profile.jpg" alt="Taimour Zahid" class="relative w-40 h-40 md:w-52 md:h-52 object-cover rounded-full border-4 border-white shadow-2xl z-10 transition-transform duration-500 group-hover:scale-105">
             </div>
-        </section>
 
-        <!-- EXPERIENCE -->
-        <section id="experience" class="py-20 bg-gray-50 container mx-auto px-6 max-w-7xl">
-            <div class="text-center mb-20 ... gsap-reveal">
-                <h2 class="brand-font text-3xl md:text-5xl font-bold text-primary uppercase">Professional Journey</h2>
-                <div class="w-12 h-1 bg-accent mx-auto mt-6 rounded-full shadow-[0_0_10px_#dc2626]"></div>
+            <div class="inline-flex items-center gap-3 px-4 py-2 glass-card mb-8">
+                <span class="w-2 h-2 bg-red-600 rounded-full animate-pulse shadow-[0_0_10px_rgba(220,38,38,0.5)]"></span>
+                <span class="text-xs font-bold tracking-[0.2em] uppercase text-gray-600">Mechanical Design Engineer</span>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 ...">
-                <!-- Blue Surge (Job) -->
-                <div class="white-card ... gsap-reveal border-l-4 border-accent">
-                    <div class="flex justify-between items-start mb-6 ...">
-                        <div class="flex items-center gap-4">
-                            <!-- Blue Surge logo image reference or minimalist marker -->
-                            <div class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-accent"><i class="fa-solid fa-industry"></i></div>
-                            <div>
-                                <h3 class="brand-font text-xl font-bold text-primary uppercase">Blue Surge Pvt Ltd</h3>
-                                <h4 class="text-sm text-gray-500 font-medium tracking-widest uppercase mt-1">Research Engineer</h4>
-                            </div>
-                        </div>
-                        <span class="text-xs font-bold text-accent tracking-widest uppercase bg-red-50 px-3 py-1.5 rounded-full ...">Jun 2026 - Present</span>
-                    </div>
-                    <p class="text-gray-600 font-light text-sm leading-relaxed ...">Spearheading dynamic analysis and mechanical simulations for a revolutionary mechanism design project, pushing the boundaries of mechanical systems in heavy industry.</p>
-                </div>
-                <!-- VisionRD -->
-                <div class="white-card ... gsap-reveal">
-                    <div class="flex justify-between items-start mb-6 ...">
-                        <div class="flex items-center gap-4">
-                            <!-- VisionRD minimalist marker -->
-                            <div class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-500"><i class="fa-solid fa-robot"></i></div>
-                            <div>
-                                <h3 class="brand-font text-xl font-bold text-primary uppercase">VISIONRD</h3>
-                                <h4 class="text-sm text-gray-500 font-medium tracking-widest uppercase mt-1">Industrial Design Intern</h4>
-                            </div>
-                        </div>
-                        <span class="text-xs font-bold text-gray-500 tracking-widest uppercase ...">Jun 2025 - Aug 2025</span>
-                    </div>
-                    <p class="text-gray-600 font-light text-sm leading-relaxed mb-3 ...">Led the mechanical design and FEA for an AI-enabled wearable device for industrial assembly supervision.</p>
-                    <ul class="space-y-2 text-xs text-gray-500 font-medium ...">
-                        <li class="flex gap-2"><i class="fa-solid fa-chevron-right text-accent mt-0.5"></i> Conducted detailed FEA on flexible materials.</li>
-                        <li class="flex gap-2"><i class="fa-solid fa-chevron-right text-accent mt-0.5"></i> Prototyped and validated device performance, contributing to a project securing an international contract.</li>
-                    </ul>
-                </div>
-                <!-- NCRA -->
-                <div class="white-card ... gsap-reveal">
-                    <div class="flex justify-between items-start mb-6 ...">
-                        <div class="flex items-center gap-4">
-                            <!-- NCRA minimalist marker -->
-                            <div class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-500"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                            <div>
-                                <h3 class="brand-font text-xl font-bold text-primary uppercase">NCRA</h3>
-                                <h4 class="text-sm text-gray-500 font-medium tracking-widest uppercase mt-1">Design Engineering Intern</h4>
-                            </div>
-                        </div>
-                        <span class="text-xs font-bold text-gray-500 tracking-widest uppercase ...">Jul 2024 - Aug 2024</span>
-                    </div>
-                    <p class="text-gray-600 font-light text-sm leading-relaxed ...">Designed, optimized, and rapid-prototyped customized prosthetic joints with a focus on manufacturing (DFM).</p>
-                </div>
-                <!-- ASME -->
-                <div class="white-card ... gsap-reveal">
-                    <div class="flex justify-between items-start mb-6 ...">
-                        <div class="flex items-center gap-4">
-                            <!-- ASME minimalist marker -->
-                            <div class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-500"><i class="fa-solid fa-chess-board"></i></div>
-                            <div>
-                                <h3 class="brand-font text-xl font-bold text-primary uppercase">ASME CEME Student Section</h3>
-                                <h4 class="text-sm text-gray-500 font-medium tracking-widest uppercase mt-1">Design Engineer (Seasonal)</h4>
-                            </div>
-                        </div>
-                        <span class="text-xs font-bold text-gray-500 tracking-widest uppercase ...">Nov 2023 - Nov 2024</span>
-                    </div>
-                    <p class="text-gray-600 font-light text-sm leading-relaxed ...">Designed an autonomous robot maze, creating custom mechanical parts, performing full SolidWorks modelling, and integrating ROS benchmarks.</p>
-                </div>
-            </div>
-        </section>
+            <h1 class="brand-font text-5xl md:text-[6rem] lg:text-[7.5rem] font-bold uppercase leading-[0.9] text-gray-900 mb-6 w-full mix-blend-multiply">
+                Precision <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600 block mt-2">In Motion.</span>
+            </h1>
 
-        <!-- EDUCATION -->
-        <section id="education" class="py-20 container mx-auto px-6 max-w-7xl">
-            <div class="text-center mb-20 ... gsap-reveal">
-                <h2 class="brand-font text-3xl md:text-5xl font-bold text-primary uppercase">Academic Excellence</h2>
-                <div class="w-12 h-1 bg-accent mx-auto mt-6 rounded-full shadow-[0_0_10px_#dc2626]"></div>
+            <p class="text-lg md:text-xl text-gray-500 font-light max-w-2xl leading-relaxed mb-10">
+                Transforming complex mechanical challenges into robust, real-world solutions. Specialized in mechatronics, biomimetics, FDM printing, and finite element analysis.
+            </p>
+        </div>
+    </section>
+
+    <!-- PROFESSIONAL EXPERIENCE TIMELINE -->
+    <section id="experience" class="relative py-32 px-6 md:px-12">
+        <div class="max-w-5xl mx-auto">
+            
+            <div class="text-center mb-24 gsap-reveal section-header">
+                <h2 class="brand-font text-3xl md:text-5xl font-bold text-gray-900 uppercase">Industry Experience</h2>
+                <div class="w-12 h-1 bg-red-600 mx-auto mt-6 rounded-full shadow-[0_0_10px_rgba(220,38,38,0.5)]"></div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 ...">
-                <!-- NUST Main -->
-                <div class="white-card ... gsap-reveal flex items-center gap-8 border-l-4 border-accent">
-                    <div class="w-20 h-20 flex-shrink-0 flex items-center justify-center rounded-full bg-red-50 text-accent"><i class="fa-solid fa-graduation-cap fa-3x"></i></div>
-                    <div>
-                        <h3 class="brand-font text-2xl font-bold text-primary uppercase">Bachelor of Mechanical Engineering</h3>
-                        <h4 class="text-lg text-gray-600 font-semibold tracking-wide mt-1">NUST College of E&ME, Pakistan</h4>
-                        <p class="text-sm text-gray-500 font-medium tracking-widest uppercase mt-2 ...">Exp. July 2026</p>
+            <div class="relative space-y-16 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-300 before:to-transparent">
+                
+                <!-- Experience 1: Blue Surge -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active gsap-timeline-item">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-red-600 shadow-[0_0_15px_rgba(220,38,38,0.4)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform duration-500 group-hover:scale-125"></div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-8 hover:border-red-600/30 transition-colors duration-300">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+                            <h3 class="brand-font text-xl font-bold text-gray-900 uppercase">Blue Surge Pvt Ltd</h3>
+                            <span class="text-xs font-bold text-red-600 tracking-widest uppercase mt-2 md:mt-0">Jun 2026 - Present</span>
+                        </div>
+                        <h4 class="text-sm text-gray-500 font-bold mb-4 tracking-widest uppercase">Research Engineer</h4>
+                        <p class="text-gray-600 font-light text-sm leading-relaxed mb-4">
+                            Driving innovation in mechanism and machine design. Applying advanced industrial design principles to develop cutting-edge hardware solutions.
+                        </p>
                     </div>
                 </div>
-                <!-- NUST Key Achievement / Award card -->
-                <div class="white-card ... gsap-reveal flex items-center gap-8">
-                    <div class="w-20 h-20 flex-shrink-0 flex items-center justify-center rounded-full bg-gray-100 text-gray-500"><i class="fa-solid fa-award fa-3x"></i></div>
-                    <div>
-                        <h3 class="brand-font text-xl font-bold text-primary uppercase">Outstanding Performance in Mechatronics Design</h3>
-                        <p class="text-sm text-gray-600 font-light ...">Recognized for delivering a top-tier group project in integrated mechatronic systems design, showcasing advanced control and practical engineering.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- PROJECT - Amphiglide (In-Depth Page View) -->
-        <section id="projects" class="py-20 bg-white/60 backdrop-blur-md container mx-auto px-6 max-w-7xl">
-            <div class="white-card ... mb-16 gsap-reveal flex flex-col md:flex-row ... items-center ... gap-8">
-                <div class="w-full md:w-3/5 ...">
-                    <h2 class="brand-font text-4xl font-bold text-primary uppercase mb-6 ...">AmphiGlide Biomimetic Robot (Final Year Project)</h2>
-                    <p class="text-lg text-gray-600 font-light leading-relaxed mb-8 ...">The AmphiGlide robot is a pioneering biomimetic system designed to navigate seamlessly between complex aquatic and terrestrial environments. Inspired by the efficient locomotion of cuttlefish and stringrays, this project pushes the boundaries of multidisciplinary engineering.</p>
-                    <div class="flex gap-3 ... mb-4">
-                        <span class="text-xs bg-red-50 text-accent font-bold px-3 py-1.5 rounded-full uppercase tracking-widest ... border border-accent/10">3D Industrial Design</span>
-                        <span class="text-xs bg-red-50 text-accent font-bold px-3 py-1.5 rounded-full uppercase tracking-widest ... border border-accent/10">CFD & FEA</span>
-                        <span class="text-xs bg-gray-100 text-gray-600 font-bold px-3 py-1.5 rounded-full uppercase tracking-widest ... border border-gray-200">Mechatronics Integration</span>
-                    </div>
-                </div>
-                <div class="w-full md:w-2/5 flex flex-col items-center ...">
-                    <div class="w-full aspect-video white-card flex items-center justify-center ... mb-4"><i class="fa-solid fa-robot fa-5x text-accent/20"></i><!-- Placeholder for physical prototype image --></div>
-                    <p class="text-sm text-gray-500 font-light text-center ...">Physical prototype validating fin locomotion principles in a controlled tank environment.</p>
-                </div>
-            </div>
-            
-            <div class="grid project-detailed gap-12 ...">
-                <!-- Detailed Text Sections -->
-                <div class="white-card ... gsap-reveal space-y-8 ...">
-                    <div>
-                        <h3 class="brand-font text-2xl font-bold text-primary uppercase mb-4 ...">Design Innovation</h3>
-                        <p class="text-gray-600 font-light leading-relaxed ...">AmphiGlide uses custom-designed, undulating fin modules. Inspired by nature, these fins generate continuous, efficient thrust without traditional propellers, minimizing disturbance. CAD models for fin structure were meticulously created, incorporating elastic properties, while waterproof mechatronics modules house advanced control and propulsion. This design ensures stealth and scalability.</p>
-                    </div>
-                    <div>
-                        <h3 class="brand-font text-2xl font-bold text-primary uppercase mb-4 ...">Multidisciplinary Engineering</h3>
-                        <p class="text-gray-600 font-light leading-relaxed mb-4 ...">The project involved a full spectrum of engineering challenges:</p>
-                        <ul class="space-y-4 text-sm text-gray-500 font-medium ...">
-                            <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-accent mt-1"></i> Mechanism Design: Developing reliable, low-friction linkages for efficient undulating fin motion using custom linkages.</li>
-                            <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-accent mt-1"></i> CFD Simulation: Extensive hydrodynamic simulations to analyze fluid-structure interaction, optimize drag coefficients for undulating fins, and predict effective thrust generation.</li>
-                            <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-accent mt-1"></i> FEA of Fin Structure: Material characterization and finite element analysis of the flexible fin membrane to validate structural integrity under high-frequency deformation.</li>
-                            <li class="flex gap-3"><i class="fa-solid fa-chevron-right text-accent mt-1"></i> Mechatronics & Control: Integration of microcontrollers, customized servos, and sensor arrays, implementing closed-loop control to dynamic fin amplitude and frequency modulation.</li>
+                <!-- Experience 2: VISIONRD -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group gsap-timeline-item">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-gray-300 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-colors duration-500 group-hover:bg-red-600"></div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-8 hover:border-red-600/30 transition-colors duration-300">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+                            <h3 class="brand-font text-xl font-bold text-gray-900 uppercase">VISIONRD</h3>
+                            <span class="text-xs font-bold text-gray-400 tracking-widest uppercase mt-2 md:mt-0">Jun 2025 - Aug 2025</span>
+                        </div>
+                        <h4 class="text-sm text-gray-500 font-bold mb-4 tracking-widest uppercase">Industrial Design Intern</h4>
+                        <p class="text-gray-600 font-light text-sm leading-relaxed mb-4">
+                            Spearheaded end-to-end hardware design and integration of an AI-enabled wearable device for automated industrial assembly supervision.
+                        </p>
+                        <ul class="space-y-2 text-xs text-gray-500 font-medium">
+                            <li class="flex gap-2"><i class="fa-solid fa-chevron-right text-red-600 mt-0.5"></i> Conducted FEA for mechanical durability and fracture resistance.</li>
+                            <li class="flex gap-2"><i class="fa-solid fa-chevron-right text-red-600 mt-0.5"></i> Prototype secured a contract with HAVAL Automotive.</li>
                         </ul>
                     </div>
-                    <div>
-                        <h3 class="brand-font text-2xl font-bold text-primary uppercase mb-4 ...">Key Results</h3>
-                        <p class="text-gray-600 font-light leading-relaxed ...">The project has successfully validated the fin locomotion principle and generated consistent thrust in simulations. Initial physical testing has demonstrated the effectiveness of waterproof mechatronics modules and provided crucial data for control optimization. This proof-of-concept lays the foundation for specialized operations in challenging environments.</p>
+                </div>
+
+                <!-- Experience 3: NCRA -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group gsap-timeline-item">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-gray-300 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-colors duration-500 group-hover:bg-red-600"></div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-8 hover:border-red-600/30 transition-colors duration-300">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+                            <h3 class="brand-font text-xl font-bold text-gray-900 uppercase">NCRA</h3>
+                            <span class="text-xs font-bold text-gray-400 tracking-widest uppercase mt-2 md:mt-0">Jul 2024 - Aug 2024</span>
+                        </div>
+                        <h4 class="text-sm text-gray-500 font-bold mb-4 tracking-widest uppercase">Mechanical Design Engineer</h4>
+                        <p class="text-gray-600 font-light text-sm leading-relaxed mb-4">
+                            National Centre of Robotics and Automation. Focused on advanced prosthetics design and Design for Manufacturability (DFM).
+                        </p>
+                        <ul class="space-y-2 text-xs text-gray-500 font-medium">
+                            <li class="flex gap-2"><i class="fa-solid fa-chevron-right text-red-600 mt-0.5"></i> Reverse-engineered a field seeder machine via dimensional analysis into SolidWorks.</li>
+                            <li class="flex gap-2"><i class="fa-solid fa-chevron-right text-red-600 mt-0.5"></i> Redesigned bionic hand joint geometry optimizing grip through 3D printing.</li>
+                        </ul>
                     </div>
                 </div>
-                <!-- Image gallery section / Placeholder -->
-                <div class="white-card ... gsap-reveal grid grid-cols-2 gap-6 ... items-start ...">
-                    <div class="aspect-video white-card flex items-center justify-center ..."><i class="fa-solid fa-drafting-compass fa-3x text-accent/10"></i></div>
-                    <div class="aspect-video white-card flex items-center justify-center ..."><i class="fa-solid fa-wave-square fa-3x text-accent/10"></i></div>
-                    <div class="aspect-video white-card flex items-center justify-center ..."><i class="fa-solid fa-thermometer-half fa-3x text-accent/10"></i></div>
-                    <div class="aspect-video white-card flex items-center justify-center ..."><i class="fa-solid fa-code fa-3x text-accent/10"></i></div>
-                    <p class="col-span-2 text-sm text-gray-500 font-light text-center ...">Gallery of CAD design process, hydrodynamic flow patterns, stress heatmaps from simulations, and embedded mechatronics control code.</p>
+
+                <!-- Experience 4: ASME -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group gsap-timeline-item">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-gray-300 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-colors duration-500 group-hover:bg-red-600"></div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-8 hover:border-red-600/30 transition-colors duration-300">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+                            <h3 class="brand-font text-xl font-bold text-gray-900 uppercase">ASME CEME</h3>
+                            <span class="text-xs font-bold text-gray-400 tracking-widest uppercase mt-2 md:mt-0">Nov 2023 - Nov 2024</span>
+                        </div>
+                        <h4 class="text-sm text-gray-500 font-bold mb-4 tracking-widest uppercase">Design Engineer</h4>
+                        <p class="text-gray-600 font-light text-sm leading-relaxed">
+                            Designed and built an autonomous robot testing maze in SolidWorks with ROS integration. Performed layout optimization to ensure structural accuracy for competition use.
+                        </p>
+                    </div>
                 </div>
+
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <!-- FOOTER - Creative "Let's Build" Landscape -->
-    <footer id="lets-build" class="py-24 md:py-32 bg-gray-50 border-t border-gray-100 container mx-auto px-6 max-w-7xl ... mt-20 md:mt-32">
-        <div class="white-card p-12 lg:p-20 shadow-2xl relative ... flex flex-col md:flex-row items-center gap-12 ...">
-            
-            <div class="w-full md:w-3/5 ...">
-                <h2 class="brand-font text-4xl md:text-5xl font-bold uppercase leading-[0.9] text-primary mb-6 ... mix-blend-multiply">Let's Build <br><span class="text-gray-300 block mt-1">the Future.</span></h2>
-                <p class="text-lg text-gray-600 font-light max-w-xl leading-relaxed mb-10 ...">I am seeking challenging opportunities to integrate mechatronics and biomimetic principles into next-generation industrial systems and robotic solutions. Reach out to collaborate.</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 ... mb-10 ... pt-8 border-t border-gray-100">
-                    <a href="mailto:taimourzahid999@gmail.com" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 flex items-center justify-center rounded-full bg-red-50 text-accent"><i class="fa-solid fa-paper-plane fa-lg"></i></div>
-                        <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest ...">Email</p><p class="text-sm font-semibold text-gray-800 ...">taimourzahid999@gmail.com</p></div>
-                    </a>
-                    <a href="https://www.linkedin.com/in/taimour-z-41a39a290/" target="_blank" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 group-hover:bg-red-50 group-hover:text-accent transition-colors"><i class="fa-brands fa-linkedin-in fa-lg"></i></div>
-                        <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest ...">LinkedIn</p><p class="text-sm font-semibold text-gray-800 ...">Network</p></div>
-                    </a>
-                    <a href="https://github.com/Taimour007" target="_blank" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 group-hover:bg-red-50 group-hover:text-accent transition-colors"><i class="fa-brands fa-github fa-lg"></i></div>
-                        <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest ...">GitHub</p><p class="text-sm font-semibold text-gray-800 ...">Code Repository</p></div>
-                    </a>
-                    <a href="https://lowinertia.com/portfolio/taimour-zahid" target="_blank" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 group-hover:bg-red-50 group-hover:text-accent transition-colors"><i class="fa-solid fa-link fa-lg"></i></div>
-                        <div><p class="text-xs font-bold text-gray-400 uppercase tracking-widest ...">Portfolio</p><p class="text-sm font-semibold text-gray-800 ...">Lowinertia</p></div>
-                    </a>
-                </div>
-
-                <div class="flex gap-4 ... pt-8 border-t border-gray-100">
-                    <a href="#projects" class="px-8 py-4 bg-gray-900 hover:bg-accent text-white font-bold text-xs tracking-[0.2em] uppercase rounded-full transition-all duration-500 shadow-xl hover:shadow-accent/30 hover:-translate-y-1">AmphiGlide FYP Details</a>
-                    <a href="https://lowinertia.com/portfolio/taimour-zahid" target="_blank" class="px-8 py-4 bg-white border border-gray-200 hover:border-gray-900 text-primary font-bold text-xs tracking-[0.2em] uppercase rounded-full transition-all duration-500 shadow-md">View Full Portfolio</a>
-                </div>
-            </div>
-
-            <!-- Dynamic Mountain Landscape - Background Creative -->
-            <div id="dynamic-landscape" class="w-full md:w-2/5 aspect-video md:aspect-auto h-full ... absolute ... -z-1 ...">
-                <!-- Layered SVGs/canvas for landscape -->
-                <div class="landscape-layer layer-4">
-                    <svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 100 C 10 90, 20 85, 30 90 L 100 100 Z" fill="#f3f4f6"/></svg>
-                </div>
-                <div class="landscape-layer layer-3">
-                    <svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 100 C 15 95, 25 80, 40 85 C 50 90, 60 85, 70 90 L 100 100 Z" fill="#e5e7eb"/></svg>
-                </div>
-                <div class="landscape-layer layer-2">
-                    <svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 100 C 20 98, 30 75, 50 80 C 60 85, 70 70, 80 75 C 90 80, 95 85, 100 100 Z" fill="#d1d5db"/></svg>
-                </div>
-                <div class="landscape-layer layer-1">
-                    <svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 100 C 10 98, 20 70, 40 75 C 50 80, 60 65, 70 70 C 80 75, 90 60, 100 100 Z" fill="#9ca3af"/></svg>
+    <!-- EDUCATION SECTION -->
+    <section id="education" class="relative py-20 px-6 md:px-12 z-10">
+        <div class="max-w-4xl mx-auto gsap-edu-card">
+            <div class="glass-card p-10 md:p-14 border-t-4 border-t-red-600 bg-gradient-to-br from-white/90 to-gray-50/80 shadow-2xl hover:shadow-red-600/10 transition-shadow duration-500 text-center md:text-left">
+                <div class="flex flex-col md:flex-row items-center md:items-start justify-between gap-6">
+                    <div>
+                        <h4 class="text-sm font-bold text-red-600 tracking-widest uppercase mb-2">Academic Foundation</h4>
+                        <h3 class="brand-font text-2xl md:text-3xl font-bold text-gray-900 uppercase mb-4">National University of Sciences and Technology (NUST)</h3>
+                        <p class="text-gray-600 font-medium text-lg mb-2">Bachelor of Science in Mechanical Engineering</p>
+                        <p class="text-gray-500 font-light">Core focus on mechatronics, advanced CAD modeling, and biomimetic robotics.</p>
+                    </div>
+                    <div class="text-center md:text-right shrink-0">
+                        <span class="inline-block px-4 py-2 bg-gray-900 text-white text-xs font-bold uppercase tracking-widest rounded-full shadow-lg">Class of 2026</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <!-- Particles.js Script -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- KEY PROJECTS & SKILLS -->
+    <section id="projects" class="relative py-32 px-6 md:px-12 overflow-hidden">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+            
+            <!-- Projects -->
+            <div class="gsap-project-container">
+                <h2 class="brand-font text-3xl font-bold text-gray-900 uppercase mb-10">Flagship Project</h2>
+                
+                <div class="space-y-6">
+                    <div class="glass-card p-10 hover:border-red-600/40 transition-all duration-300 gsap-project-card shadow-xl">
+                        <div class="flex flex-col sm:flex-row justify-between items-start mb-6 gap-4">
+                            <h3 class="brand-font text-2xl font-bold text-gray-900 uppercase">AmphiGlide Biomimetic Robot</h3>
+                            <span class="text-[10px] bg-red-50 text-red-700 font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-red-200 whitespace-nowrap">Final Year Project</span>
+                        </div>
+                        <p class="text-gray-600 text-sm font-light leading-relaxed mb-6">
+                            Lead developer for the AmphiGlide biomimetic amphibious robot, utilizing advanced undulating fin propulsion. Executed extensive 3D industrial design, focusing on complex surfacing and mechanical integration. Conducted rigorous fluid-structure interaction simulations, CFD, and FEA to optimize hydrodynamic performance and ensure structural integrity. Successfully navigated real-world engineering constraints to transition from concept to a robust, functional prototype.
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="text-[10px] font-bold text-gray-600 bg-white px-4 py-2 rounded-full border border-gray-200 shadow-sm">3D Industrial Design</span>
+                            <span class="text-[10px] font-bold text-gray-600 bg-white px-4 py-2 rounded-full border border-gray-200 shadow-sm">Fluid-Structure Interaction</span>
+                            <span class="text-[10px] font-bold text-gray-600 bg-white px-4 py-2 rounded-full border border-gray-200 shadow-sm">CFD & FEA Optimization</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Dashboard -->
+            <div class="flex flex-col justify-center gsap-skills">
+                <div class="glass-card p-10 border-l-4 border-l-red-600 bg-white/60">
+                    <h2 class="brand-font text-2xl font-bold text-gray-900 uppercase mb-8">Technical Arsenal</h2>
+                    
+                    <div class="space-y-8">
+                        <div>
+                            <h4 class="text-xs font-bold text-red-600 uppercase tracking-[0.2em] mb-4">CAD & Engineering Software</h4>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-4 py-2 bg-gray-100 rounded-full text-xs font-semibold text-gray-800 border border-gray-200 shadow-sm hover:border-red-300 transition-colors">SolidWorks (Advanced)</span>
+                                <span class="px-4 py-2 bg-gray-100 rounded-full text-xs font-semibold text-gray-800 border border-gray-200 shadow-sm hover:border-red-300 transition-colors">ANSYS</span>
+                                <span class="px-4 py-2 bg-gray-100 rounded-full text-xs font-semibold text-gray-800 border border-gray-200 shadow-sm hover:border-red-300 transition-colors">MATLAB</span>
+                                <span class="px-4 py-2 bg-gray-100 rounded-full text-xs font-semibold text-gray-800 border border-gray-200 shadow-sm hover:border-red-300 transition-colors">Siemens NX</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-500 uppercase tracking-[0.2em] mb-4">Simulation & Prototyping</h4>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-4 py-2 bg-gray-100 rounded-full text-xs font-semibold text-gray-800 border border-gray-200 shadow-sm hover:border-red-300 transition-colors">FEA & CFD</span>
+                                <span class="px-4 py-2 bg-gray-100 rounded-full text-xs font-semibold text-gray-800 border border-gray-200 shadow-sm hover:border-red-300 transition-colors">FDM 3D Printing (PETG, ABS, PLA)</span>
+                                <span class="px-4 py-2 bg-gray-100 rounded-full text-xs font-semibold text-gray-800 border border-gray-200 shadow-sm hover:border-red-300 transition-colors">Rapid Prototyping</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ENGAGING CONTACT FOOTER -->
+    <section id="contact" class="relative py-40 overflow-hidden border-t border-gray-200 flex items-center justify-center min-h-[80vh]">
+        
+        <!-- Dynamic Wave Background -->
+        <canvas id="wave-canvas"></canvas>
+
+        <!-- Huge Parallax Text -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+            <h1 class="brand-font bg-text font-bold uppercase tracking-tighter opacity-70 gsap-bg-text">CONNECT</h1>
+        </div>
+
+        <div class="relative z-10 w-full max-w-5xl mx-auto px-6 text-center gsap-footer">
+            
+            <h4 class="text-sm font-bold text-red-600 tracking-[0.3em] uppercase mb-4">Let's Connect</h4>
+            <h2 class="brand-font text-5xl md:text-7xl font-bold tracking-tight mb-6 uppercase text-gray-900 drop-shadow-sm">
+                Get In Touch
+            </h2>
+            <p class="text-gray-600 font-medium text-lg md:text-xl mb-16 max-w-2xl mx-auto leading-relaxed">
+                Open to full-time enterprise roles, high-performance engineering challenges, and collaborative industrial integrations.
+            </p>
+            
+            <!-- Main Action Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-16">
+                <!-- Portfolio Link -->
+                <a href="https://lowinertia.com/portfolio/taimour-zahid" target="_blank" class="w-full sm:w-auto px-10 py-5 bg-red-600 hover:bg-gray-900 text-white font-bold tracking-widest uppercase text-sm rounded-lg transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-layer-group text-lg"></i> View Design Portfolio
+                </a>
+                
+                <!-- Email Link -->
+                <a href="mailto:taimourzahid999@gmail.com" class="w-full sm:w-auto px-10 py-5 bg-white border border-gray-200 hover:border-gray-900 text-gray-900 font-bold tracking-widest uppercase text-sm rounded-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-3">
+                    <i class="fa-regular fa-envelope text-lg"></i> Email Me
+                </a>
+            </div>
+            
+            <!-- Bottom Social Bar -->
+            <div class="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-gray-300/50 gap-6">
+                <div class="flex gap-4">
+                    <a href="https://www.linkedin.com/in/taimour-z-41a39a290/" target="_blank" class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-gray-600 hover:text-blue-600 hover:shadow-lg transition-all border border-gray-200">
+                        <i class="fa-brands fa-linkedin-in text-xl"></i>
+                    </a>
+                    <a href="https://github.com/Taimour007" target="_blank" class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-gray-600 hover:text-gray-900 hover:shadow-lg transition-all border border-gray-200">
+                        <i class="fa-brands fa-github text-xl"></i>
+                    </a>
+                    <a href="mailto:taimourzahid999@gmail.com" class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-gray-600 hover:text-red-600 hover:shadow-lg transition-all border border-gray-200">
+                        <i class="fa-solid fa-envelope text-xl"></i>
+                    </a>
+                </div>
+                <div class="text-sm text-gray-500 font-medium">
+                    Personal Portfolio / <span class="text-gray-900 font-bold">2026</span>
+                </div>
+                <div class="text-sm text-gray-500 font-medium">
+                    &copy; 2026 Taimour Zahid. All rights reserved.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Animation Logic & Canvas Scripts -->
     <script>
-        particlesJS('particles-js', {
-            "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#dc2626" }, /* White for particles against white page - correction, red matrix balls user request but let's make it minimalist. Red logic. */
-                "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, },
-                "opacity": { "value": 0.3, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } },
-                "size": { "value": 4, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } },
-                "line_linked": { "enable": true, "distance": 150, "color": "#dc2626", "opacity": 0.2, "width": 1 },
-                "move": { "enable": true, "speed": 3, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } }
-            },
-            "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } },
-            "retina_detect": true
+        // --- 1. GSAP Scroll Animations ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Fade & Zoom Out
+        gsap.to(".gsap-hero", {
+            scrollTrigger: { trigger: "body", start: "top top", end: "800px top", scrub: 1 },
+            scale: 0.9, opacity: 0, y: 100, ease: "power1.inOut"
         });
-    </script>
-    <!-- GSAP Smooth Scroll and Section Animations -->
-    <script>
-        window.addEventListener('load', () => {
-            gsap.registerPlugin(ScrollTrigger);
 
-            // Preloader finish
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                loader.style.opacity = 0;
-                loader.style.pointerEvents = 'none';
-                document.body.classList.remove('loader-active'); // Ensure smooth scroll is active
-            }, 1000);
+        // Timeline Items - Zoom in and scale fluidity
+        const timelineItems = gsap.utils.toArray('.gsap-timeline-item');
+        timelineItems.forEach((item) => {
+            gsap.fromTo(item, 
+                { opacity: 0, scale: 0.8, y: 80 },
+                {
+                    scrollTrigger: { trigger: item, start: "top 85%", end: "top 60%", scrub: 0.5 },
+                    opacity: 1, scale: 1, y: 0, ease: "back.out(1.5)"
+                }
+            );
+        });
 
-            // Smooth scrolling to anchors
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        gsap.to(window, { duration: 1.2, scrollTo: { y: targetElement, offsetY: 100 }, ease: "power3.inOut" });
+        // Education Card pop-in
+        gsap.fromTo(".gsap-edu-card", 
+            { opacity: 0, scale: 0.9, y: 50 },
+            { scrollTrigger: { trigger: "#education", start: "top 80%", end: "top 50%", scrub: 1 }, opacity: 1, scale: 1, y: 0, ease: "power2.out" }
+        );
+
+        // Project Card staggered entry
+        gsap.fromTo(".gsap-project-card", 
+            { opacity: 0, scale: 0.8, x: -50 },
+            { scrollTrigger: { trigger: ".gsap-project-container", start: "top 80%", end: "bottom 90%", scrub: 1 }, opacity: 1, scale: 1, x: 0, ease: "power2.out" }
+        );
+
+        // Skills Block
+        gsap.fromTo(".gsap-skills",
+            { opacity: 0, scale: 0.9, x: 50 },
+            { scrollTrigger: { trigger: ".gsap-skills", start: "top 80%", end: "top 50%", scrub: 1 }, opacity: 1, scale: 1, x: 0, ease: "power2.out" }
+        );
+
+        // Footer Parallax Text
+        gsap.to(".gsap-bg-text", {
+            scrollTrigger: { trigger: "#contact", start: "top bottom", end: "bottom bottom", scrub: 1 },
+            y: 100, scale: 1.1, ease: "none"
+        });
+
+        // Footer Content Scale In
+        gsap.fromTo(".gsap-footer",
+            { opacity: 0, y: 100, scale: 0.95 },
+            { scrollTrigger: { trigger: "#contact", start: "top 80%", end: "center center", scrub: 1 }, opacity: 1, y: 0, scale: 1, ease: "power3.out" }
+        );
+
+
+        // --- 2. Interactive Matrix Balls Canvas (Background) ---
+        const matrixCanvas = document.getElementById('matrix-canvas');
+        const mCtx = matrixCanvas.getContext('2d');
+        let mWidth, mHeight;
+        let particles = [];
+
+        function resizeMatrix() {
+            mWidth = matrixCanvas.width = window.innerWidth;
+            mHeight = matrixCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeMatrix);
+        resizeMatrix();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * mWidth;
+                this.y = Math.random() * mHeight;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2 + 1;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > mWidth) this.vx *= -1;
+                if (this.y < 0 || this.y > mHeight) this.vy *= -1;
+            }
+            draw() {
+                mCtx.beginPath();
+                mCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                mCtx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+                mCtx.fill();
+            }
+        }
+
+        for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+        function animateMatrix() {
+            mCtx.clearRect(0, 0, mWidth, mHeight);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 120) {
+                        mCtx.beginPath();
+                        mCtx.strokeStyle = `rgba(0, 0, 0, ${0.1 - distance / 1200})`;
+                        mCtx.lineWidth = 1;
+                        mCtx.moveTo(particles[i].x, particles[i].y);
+                        mCtx.lineTo(particles[j].x, particles[j].y);
+                        mCtx.stroke();
                     }
-                });
-            });
+                }
+            }
+            requestAnimationFrame(animateMatrix);
+        }
+        animateMatrix();
 
-            // Section Reveal Animations
-            document.querySelectorAll('.gsap-reveal').forEach(section => {
-                gsap.from(section, {
-                    scrollTrigger: {
-                        trigger: section,
-                        start: 'top 85%',
-                        end: 'bottom 80%',
-                        toggleActions: 'play none none none'
-                    },
-                    opacity: 0,
-                    y: 100,
-                    scale: 0.9,
-                    ease: 'power3.out',
-                    duration: 1.2
-                });
-            });
 
-            // Dynamic Mountain Landscape Parallax
-            gsap.to('.landscape-layer layer-4', { y: 200, scrollTrigger: { trigger: '#lets-build', start: 'top 80%', end: 'bottom 10%', scrub: true } });
-            gsap.to('.landscape-layer layer-3', { y: 150, scrollTrigger: { trigger: '#lets-build', start: 'top 80%', end: 'bottom 10%', scrub: true } });
-            gsap.to('.landscape-layer layer-2', { y: 100, scrollTrigger: { trigger: '#lets-build', start: 'top 80%', end: 'bottom 10%', scrub: true } });
-            gsap.to('.landscape-layer layer-1', { y: 50, scrollTrigger: { trigger: '#lets-build', start: 'top 80%', end: 'bottom 10%', scrub: true } });
+        // --- 3. Dynamic Wave Canvas (Footer Mountain/Waves) ---
+        const waveCanvas = document.getElementById('wave-canvas');
+        const wCtx = waveCanvas.getContext('2d');
+        let wWidth, wHeight;
+        let time = 0;
 
+        function resizeWave() {
+            wWidth = waveCanvas.width = waveCanvas.parentElement.clientWidth;
+            wHeight = waveCanvas.height = waveCanvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeWave);
+        resizeWave();
+
+        function drawWave(yOffset, amplitude, frequency, phaseSpeed, color) {
+            wCtx.beginPath();
+            wCtx.moveTo(0, wHeight);
+            for (let x = 0; x <= wWidth; x += 10) {
+                const y = yOffset + Math.sin(x * frequency + time * phaseSpeed) * amplitude;
+                wCtx.lineTo(x, y);
+            }
+            wCtx.lineTo(wWidth, wHeight);
+            wCtx.fillStyle = color;
+            wCtx.fill();
+            wCtx.closePath();
+        }
+
+        function animateWaves() {
+            wCtx.clearRect(0, 0, wWidth, wHeight);
+            
+            // Draw overlapping dynamic mountains/waves
+            drawWave(wHeight - 150, 40, 0.002, 0.5, 'rgba(0, 0, 0, 0.02)');
+            drawWave(wHeight - 100, 60, 0.003, 0.7, 'rgba(220, 38, 38, 0.03)'); // Subtle red tint
+            drawWave(wHeight - 50, 30, 0.004, 1.2, 'rgba(0, 0, 0, 0.04)');
+            
+            time += 0.05;
+            requestAnimationFrame(animateWaves);
+        }
+        
+        // Start animation only when scrolled into view to save performance
+        ScrollTrigger.create({
+            trigger: "#contact",
+            start: "top bottom",
+            onEnter: () => gsap.ticker.add(animateWaves),
+            onLeaveBack: () => gsap.ticker.remove(animateWaves)
         });
+
     </script>
 </body>
 </html>
