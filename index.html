@@ -481,9 +481,14 @@
             <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-24">
                 
                 <!-- Email Link -->
-                <a href="mailto:taimourzahid999@gmail.com" class="w-full sm:w-auto px-12 py-6 bg-gray-900 hover:bg-gray-800 text-white font-bold tracking-[0.15em] uppercase text-sm rounded-xl transition-all shadow-2xl hover:shadow-gray-900/40 hover:-translate-y-2 flex items-center justify-center gap-4 interactive-element group">
-                    <i class="fa-regular fa-envelope text-xl group-hover:scale-110 transition-transform"></i> Email Me Directly
-                </a>
+               <!-- Email Link with Clipboard Fallback -->
+<a href="mailto:taimourzahid999@gmail.com" 
+   onclick="copyEmail(event)"
+   id="email-btn"
+   class="w-full sm:w-auto px-12 py-6 bg-gray-900 hover:bg-gray-800 text-white font-bold tracking-[0.15em] uppercase text-sm rounded-xl transition-all shadow-2xl hover:shadow-gray-900/40 hover:-translate-y-2 flex items-center justify-center gap-4 interactive-element group cursor-pointer">
+    <i class="fa-regular fa-envelope text-xl group-hover:scale-110 transition-transform"></i> 
+    <span id="email-text">Email Me Directly</span>
+</a>
 
                 <!-- External Portfolio Link (Moved to bottom as requested) -->
                 <a href="https://lowinertia.com/portfolio/taimour-zahid" target="_blank" class="w-full sm:w-auto px-12 py-6 bg-white border-2 border-gray-200 hover:border-red-600 text-gray-900 font-bold tracking-[0.15em] uppercase text-sm rounded-xl transition-all shadow-xl hover:shadow-red-600/20 hover:-translate-y-2 flex items-center justify-center gap-4 interactive-element group">
